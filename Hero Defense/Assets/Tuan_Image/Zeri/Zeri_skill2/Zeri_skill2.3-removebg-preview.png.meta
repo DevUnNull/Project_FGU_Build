@@ -99,6 +99,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -107,11 +120,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 33
-        y: 47
-        width: 66
-        height: 85
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 39
+        width: 504
+        height: 93
+      alignment: 9
+      pivot: {x: 0.057047654, y: 0.13955213}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -124,33 +137,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.3-removebg-preview_1
-      rect:
-        serializedVersion: 2
-        x: 145
-        y: 41
-        width: 380
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7334072a48c59240800000000000000
-      internalID: 4797961198840853370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 701606f595498b54da64ab646cd8cb25
     internalID: 0
     vertices: []
     indices: 

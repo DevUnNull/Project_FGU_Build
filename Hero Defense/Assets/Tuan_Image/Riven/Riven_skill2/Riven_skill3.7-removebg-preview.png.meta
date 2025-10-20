@@ -126,85 +126,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_0
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 178
-        width: 13
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d9aa902221885f40800000000000000
-      internalID: 5717461710522722775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_1
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 96
-        width: 12
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cfd09b99246779e90800000000000000
-      internalID: -7019011465814667780
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_2
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 63
-        width: 49
-        height: 67
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 27a3e6f97ed964e40800000000000000
-      internalID: 5640369201465932402
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Riven_skill3.7-removebg-preview_3
       rect:
         serializedVersion: 2
-        x: 129
+        x: 67
         y: 37
-        width: 148
-        height: 101
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 274
+        height: 163
+      alignment: 9
+      pivot: {x: 0.4424169, y: 0.17058071}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -217,165 +164,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_4
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 90
-        width: 7
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1ae1b6549c63cb0e0800000000000000
-      internalID: -2252865475511116127
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_5
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 63
-        width: 48
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98416537a48040130800000000000000
-      internalID: 3531957123620934793
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_6
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 96
-        width: 13
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06084f19d89707f40800000000000000
-      internalID: 5724208775333970016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_7
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 75
-        width: 12
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1392ccd4e2b74cef0800000000000000
-      internalID: -88810653836629711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_8
-      rect:
-        serializedVersion: 2
-        x: 327
-        y: 75
-        width: 13
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f259e608ce4314f20800000000000000
-      internalID: 3405060983640462639
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_9
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 66
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 97b2bfbe170bb8b40800000000000000
-      internalID: 5443638577944275833
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Riven_skill3.7-removebg-preview_10
-      rect:
-        serializedVersion: 2
-        x: 324
-        y: 66
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 332fee440054b8b80800000000000000
-      internalID: -8391537613215960525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 73f1ca1211d9f964f9d3f18b20a45967
     internalID: 0
     vertices: []
     indices: 

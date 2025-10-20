@@ -120,6 +120,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -127,12 +140,12 @@ TextureImporter:
       name: Zeri_skill2.4-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 53
-        width: 63
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 31
+        y: 47
+        width: 570
+        height: 84
+      alignment: 9
+      pivot: {x: 0.07468221, y: 0.1455688}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -145,187 +158,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.4-removebg-preview_1
-      rect:
-        serializedVersion: 2
-        x: 189
-        y: 100
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a96f01d961c0e07f0800000000000000
-      internalID: -644564405403453798
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.4-removebg-preview_2
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 74
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6f4dfe5e19ebd32c0800000000000000
-      internalID: -4450191322934946570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.4-removebg-preview_3
-      rect:
-        serializedVersion: 2
-        x: 186
-        y: 79
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe11d4236a86b2970800000000000000
-      internalID: 8731187365605609967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.4-removebg-preview_4
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 78
-        width: 390
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fb2d5365863cd3920800000000000000
-      internalID: 2971746182024778431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.4-removebg-preview_5
-      rect:
-        serializedVersion: 2
-        x: 108
-        y: 56
-        width: 13
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89ad1acbf22e234f0800000000000000
-      internalID: -850368684963538280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.4-removebg-preview_6
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 68
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3556dd7d712e9a220800000000000000
-      internalID: 2497776060387386707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.4-removebg-preview_7
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 53
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 63c879403713d1540800000000000000
-      internalID: 4980191133009677366
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Zeri_skill2.4-removebg-preview_8
-      rect:
-        serializedVersion: 2
-        x: 215
-        y: 47
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 630dcae77429813c0800000000000000
-      internalID: -4388597001106960330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: db8ba47d4f6fc4d4eb791887aeaccf3e
     internalID: 0
     vertices: []
     indices: 
