@@ -15,6 +15,12 @@ Records/
 CrashReports/
 Assets/AssetStoreTools*
 
+# === THÊM (ignore riêng layout cá nhân) ===
+# Không theo dõi file bố cục giao diện cá nhân của Unity
+Hero Defense/UserSettings/Layouts/
+*.dwlt
+*.dwlt.meta
+
 # === Auto-generated files ===
 *.pidb
 *.booproj
@@ -34,7 +40,6 @@ Assets/AssetStoreTools*
 *.pdb.meta
 
 # === Unity Addressables / Cache ===
-# (Unity sẽ tự tạo lại các cache này)
 [Aa]ssets/AddressableAssetsData/*
 !Assets/AddressableAssetsData/*.json
 [Aa]ssets/StreamingAssets/aa/*
@@ -83,7 +88,6 @@ IL2CPPOutputProject/
 !.vscode/extensions.json
 
 # === Unity Package Manager ===
-# Keep only manifest and lock file
 [Pp]ackages/*
 ![Pp]ackages/manifest.json
 ![Pp]ackages/packages-lock.json
