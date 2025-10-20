@@ -1,0 +1,1131 @@
+fileFormatVersion: 2
+guid: 74877ee28fc036e4c94a0a04090371cb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2486306627544709665
+    second: Riven_skill3.8-removebg-preview_0
+  - first:
+      213: 5463483215835298131
+    second: Riven_skill3.8-removebg-preview_1
+  - first:
+      213: 8205152390657224544
+    second: Riven_skill3.8-removebg-preview_2
+  - first:
+      213: 3872779514415058686
+    second: Riven_skill3.8-removebg-preview_3
+  - first:
+      213: -5361860442525136988
+    second: Riven_skill3.8-removebg-preview_4
+  - first:
+      213: 5268623496090873047
+    second: Riven_skill3.8-removebg-preview_5
+  - first:
+      213: -6267920009383575219
+    second: Riven_skill3.8-removebg-preview_6
+  - first:
+      213: 2712170065799322672
+    second: Riven_skill3.8-removebg-preview_7
+  - first:
+      213: -6194503891931252367
+    second: Riven_skill3.8-removebg-preview_8
+  - first:
+      213: -6241258468251549258
+    second: Riven_skill3.8-removebg-preview_9
+  - first:
+      213: 4935553970570150495
+    second: Riven_skill3.8-removebg-preview_10
+  - first:
+      213: 7964935622213558290
+    second: Riven_skill3.8-removebg-preview_11
+  - first:
+      213: 8349540296085038586
+    second: Riven_skill3.8-removebg-preview_12
+  - first:
+      213: -8876612578033223574
+    second: Riven_skill3.8-removebg-preview_13
+  - first:
+      213: 2578278352582735462
+    second: Riven_skill3.8-removebg-preview_14
+  - first:
+      213: 3383765971849023909
+    second: Riven_skill3.8-removebg-preview_15
+  - first:
+      213: 5434743863022434870
+    second: Riven_skill3.8-removebg-preview_16
+  - first:
+      213: -4131404941460090623
+    second: Riven_skill3.8-removebg-preview_17
+  - first:
+      213: -7053639920055887656
+    second: Riven_skill3.8-removebg-preview_18
+  - first:
+      213: -7594930392740291671
+    second: Riven_skill3.8-removebg-preview_19
+  - first:
+      213: 649464352166542291
+    second: Riven_skill3.8-removebg-preview_20
+  - first:
+      213: 309296513228703331
+    second: Riven_skill3.8-removebg-preview_21
+  - first:
+      213: 816328674562961645
+    second: Riven_skill3.8-removebg-preview_22
+  - first:
+      213: 655717849295670826
+    second: Riven_skill3.8-removebg-preview_23
+  - first:
+      213: 8447764317223936340
+    second: Riven_skill3.8-removebg-preview_24
+  - first:
+      213: -7679118697105868332
+    second: Riven_skill3.8-removebg-preview_25
+  - first:
+      213: 6716756821003291940
+    second: Riven_skill3.8-removebg-preview_26
+  - first:
+      213: -8503645850805036684
+    second: Riven_skill3.8-removebg-preview_27
+  - first:
+      213: 6578919176012077092
+    second: Riven_skill3.8-removebg-preview_28
+  - first:
+      213: 6859455718399966572
+    second: Riven_skill3.8-removebg-preview_29
+  - first:
+      213: -5571956149395241364
+    second: Riven_skill3.8-removebg-preview_30
+  - first:
+      213: 68886306548451384
+    second: Riven_skill3.8-removebg-preview_31
+  - first:
+      213: -2568542220721957701
+    second: Riven_skill3.8-removebg-preview_32
+  - first:
+      213: -2464733907430811561
+    second: Riven_skill3.8-removebg-preview_33
+  - first:
+      213: 7146336248660953584
+    second: Riven_skill3.8-removebg-preview_34
+  - first:
+      213: -8992249815589123929
+    second: Riven_skill3.8-removebg-preview_35
+  - first:
+      213: -8950980578972525644
+    second: Riven_skill3.8-removebg-preview_36
+  - first:
+      213: -6589824617291397064
+    second: Riven_skill3.8-removebg-preview_37
+  - first:
+      213: -1630065735907475574
+    second: Riven_skill3.8-removebg-preview_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 86
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd58f769b4dde7dd0800000000000000
+      internalID: -2486306627544709665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 80
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 359fb2cb90132db40800000000000000
+      internalID: 5463483215835298131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 92
+        width: 55
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06f221560ae8ed170800000000000000
+      internalID: 8205152390657224544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 83
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe8e121370eeb530800000000000000
+      internalID: 3872779514415058686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 86
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a7021cf558d695b0800000000000000
+      internalID: -5361860442525136988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 59
+        width: 31
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dce5c3c729ed1940800000000000000
+      internalID: 5268623496090873047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 92
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d410128d5ffd309a0800000000000000
+      internalID: -6267920009383575219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 60
+        width: 56
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03c9a6e1e4093a520800000000000000
+      internalID: 2712170065799322672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 74
+        width: 7
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 179b9a9b783b80aa0800000000000000
+      internalID: -6194503891931252367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 92
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b1c770ad789269a0800000000000000
+      internalID: -6241258468251549258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 59
+        width: 31
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f524a91cf2c9e7440800000000000000
+      internalID: 4935553970570150495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 92
+        width: 54
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 210e4e49fb2298e60800000000000000
+      internalID: 7964935622213558290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 86
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af565f959a68fd370800000000000000
+      internalID: 8349540296085038586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 83
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a68b09df3efefc480800000000000000
+      internalID: -8876612578033223574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 80
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 666f5c95082e7c320800000000000000
+      internalID: 2578278352582735462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 86
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a19d13393d85fe20800000000000000
+      internalID: 3383765971849023909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_16
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 77
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63abfa8bfb61c6b40800000000000000
+      internalID: 5434743863022434870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_17
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 74
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1015af8481d4aa6c0800000000000000
+      internalID: -4131404941460090623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_18
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 77
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d8dd8f4ddf6c1e90800000000000000
+      internalID: -7053639920055887656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_19
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 80
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ab95e62c03699690800000000000000
+      internalID: -7594930392740291671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_20
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 83
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db7a25236c530900800000000000000
+      internalID: 649464352166542291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_21
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 79
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36683414a87da4400800000000000000
+      internalID: 309296513228703331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_22
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 77
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de07a4bba9e245b00800000000000000
+      internalID: 816328674562961645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_23
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 74
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ec628e8e3991900800000000000000
+      internalID: 655717849295670826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_24
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 77
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4516a5a63ec7c3570800000000000000
+      internalID: 8447764317223936340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_25
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 68
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d9b1fe0b3a4e6590800000000000000
+      internalID: -7679118697105868332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_26
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 74
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42d4596edb6b63d50800000000000000
+      internalID: 6716756821003291940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_27
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 60
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4799a07272bfcf980800000000000000
+      internalID: -8503645850805036684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_28
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 68
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 428943c42240d4b50800000000000000
+      internalID: 6578919176012077092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_29
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 60
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6d70c702aea13f50800000000000000
+      internalID: 6859455718399966572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_30
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 51
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c664e33576f6ca2b0800000000000000
+      internalID: -5571956149395241364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_31
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 44
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83885b71bbbb4f000800000000000000
+      internalID: 68886306548451384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_32
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 45
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb4564f7574ba5cd0800000000000000
+      internalID: -2568542220721957701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_33
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 51
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 758d9b5e1918bcdd0800000000000000
+      internalID: -2464733907430811561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_34
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 39
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f90fea84f2ec2360800000000000000
+      internalID: 7146336248660953584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_35
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 35
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a80d3a8f6c153380800000000000000
+      internalID: -8992249815589123929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_36
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 33
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bb1ce6769ab7c380800000000000000
+      internalID: -8950980578972525644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_37
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 36
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838c83acc6d3c84a0800000000000000
+      internalID: -6589824617291397064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Riven_skill3.8-removebg-preview_38
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 39
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ff2b289d7d069e0800000000000000
+      internalID: -1630065735907475574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Riven_skill3.8-removebg-preview_0: -2486306627544709665
+      Riven_skill3.8-removebg-preview_1: 5463483215835298131
+      Riven_skill3.8-removebg-preview_10: 4935553970570150495
+      Riven_skill3.8-removebg-preview_11: 7964935622213558290
+      Riven_skill3.8-removebg-preview_12: 8349540296085038586
+      Riven_skill3.8-removebg-preview_13: -8876612578033223574
+      Riven_skill3.8-removebg-preview_14: 2578278352582735462
+      Riven_skill3.8-removebg-preview_15: 3383765971849023909
+      Riven_skill3.8-removebg-preview_16: 5434743863022434870
+      Riven_skill3.8-removebg-preview_17: -4131404941460090623
+      Riven_skill3.8-removebg-preview_18: -7053639920055887656
+      Riven_skill3.8-removebg-preview_19: -7594930392740291671
+      Riven_skill3.8-removebg-preview_2: 8205152390657224544
+      Riven_skill3.8-removebg-preview_20: 649464352166542291
+      Riven_skill3.8-removebg-preview_21: 309296513228703331
+      Riven_skill3.8-removebg-preview_22: 816328674562961645
+      Riven_skill3.8-removebg-preview_23: 655717849295670826
+      Riven_skill3.8-removebg-preview_24: 8447764317223936340
+      Riven_skill3.8-removebg-preview_25: -7679118697105868332
+      Riven_skill3.8-removebg-preview_26: 6716756821003291940
+      Riven_skill3.8-removebg-preview_27: -8503645850805036684
+      Riven_skill3.8-removebg-preview_28: 6578919176012077092
+      Riven_skill3.8-removebg-preview_29: 6859455718399966572
+      Riven_skill3.8-removebg-preview_3: 3872779514415058686
+      Riven_skill3.8-removebg-preview_30: -5571956149395241364
+      Riven_skill3.8-removebg-preview_31: 68886306548451384
+      Riven_skill3.8-removebg-preview_32: -2568542220721957701
+      Riven_skill3.8-removebg-preview_33: -2464733907430811561
+      Riven_skill3.8-removebg-preview_34: 7146336248660953584
+      Riven_skill3.8-removebg-preview_35: -8992249815589123929
+      Riven_skill3.8-removebg-preview_36: -8950980578972525644
+      Riven_skill3.8-removebg-preview_37: -6589824617291397064
+      Riven_skill3.8-removebg-preview_38: -1630065735907475574
+      Riven_skill3.8-removebg-preview_4: -5361860442525136988
+      Riven_skill3.8-removebg-preview_5: 5268623496090873047
+      Riven_skill3.8-removebg-preview_6: -6267920009383575219
+      Riven_skill3.8-removebg-preview_7: 2712170065799322672
+      Riven_skill3.8-removebg-preview_8: -6194503891931252367
+      Riven_skill3.8-removebg-preview_9: -6241258468251549258
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
