@@ -1,0 +1,911 @@
+fileFormatVersion: 2
+guid: 240233ff3be68304ba42ffe82d675f64
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -610213103402138149
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_0
+  - first:
+      213: 6420160783845383587
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_1
+  - first:
+      213: 3387287181967768629
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_2
+  - first:
+      213: -2297536242786932581
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_3
+  - first:
+      213: 3799555538402957135
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_4
+  - first:
+      213: -2979126743935898641
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_5
+  - first:
+      213: 6582958268203903011
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_6
+  - first:
+      213: 3639044224225752890
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_7
+  - first:
+      213: -3723787402491395199
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_8
+  - first:
+      213: 2403041195427174267
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_9
+  - first:
+      213: -7376558826311920112
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_10
+  - first:
+      213: -3883502631902849165
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_11
+  - first:
+      213: 3141729870812855950
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_12
+  - first:
+      213: 768976667613400634
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_13
+  - first:
+      213: -1646350059681773814
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_14
+  - first:
+      213: -4059476874615732123
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_15
+  - first:
+      213: 4588995529439149920
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_16
+  - first:
+      213: -4230667475365819683
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_17
+  - first:
+      213: 4354167601432858309
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_18
+  - first:
+      213: 7669683002254978528
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_19
+  - first:
+      213: -4070238784309637169
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_20
+  - first:
+      213: -954464490068265308
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_21
+  - first:
+      213: 390625800695816942
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_22
+  - first:
+      213: 9129797963325425379
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_23
+  - first:
+      213: -4263211049582833987
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_24
+  - first:
+      213: -9216378468467318093
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_25
+  - first:
+      213: -5668421156054246236
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_26
+  - first:
+      213: 954209788447177130
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_27
+  - first:
+      213: 2590835487572598420
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_28
+  - first:
+      213: 2702862696001161849
+    second: orc-archer-game-character-creating-260nw-780817930-removebg-preview_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 190
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd54d6e5a661887f0800000000000000
+      internalID: -610213103402138149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 190
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ad5ff9a73ef81950800000000000000
+      internalID: 6420160783845383587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 190
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53c3c61debf020f20800000000000000
+      internalID: 3387287181967768629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 190
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b986916c5f28d10e0800000000000000
+      internalID: -2297536242786932581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 190
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4750ea91abbab430800000000000000
+      internalID: 3799555538402957135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 190
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feba5dea20408a6d0800000000000000
+      internalID: -2979126743935898641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 136
+        width: 42
+        height: 49
+      alignment: 9
+      pivot: {x: 0.43628034, y: 0.47951898}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a37b9e2017b708230800000000000000
+      internalID: 3639044224225752890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 135
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1830d6f3613725cc0800000000000000
+      internalID: -3723787402491395199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 135
+        width: 39
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7711124c31595120800000000000000
+      internalID: 2403041195427174267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 135
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 016d7e484d231a990800000000000000
+      internalID: -7376558826311920112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 136
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 377d2259ee60b1ac0800000000000000
+      internalID: -3883502631902849165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 152
+        width: 26
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8eb8020caaa99b20800000000000000
+      internalID: 3141729870812855950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 78
+        width: 34
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3e09a97434fbaa00800000000000000
+      internalID: 768976667613400634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_14
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 78
+        width: 35
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0789bce75df629e0800000000000000
+      internalID: -1646350059681773814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_15
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 78
+        width: 43
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 568cd926a47d9a7c0800000000000000
+      internalID: -4059476874615732123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_16
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 76
+        width: 43
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06f7318de136faf30800000000000000
+      internalID: 4588995529439149920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_17
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 75
+        width: 46
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda8500a856a945c0800000000000000
+      internalID: -4230667475365819683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_18
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 24
+        width: 35
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ce8be73d5c1d6c30800000000000000
+      internalID: 4354167601432858309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_19
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 35
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ed62490e00307a60800000000000000
+      internalID: 7669683002254978528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_20
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 26
+        width: 34
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcfc436046b9387c0800000000000000
+      internalID: -4070238784309637169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_21
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 26
+        width: 34
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a6b1ce6a9f01c2f0800000000000000
+      internalID: -954464490068265308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_22
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 26
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee2a39a9818cb6500800000000000000
+      internalID: 390625800695816942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_23
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 26
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e6c81b30ee83be70800000000000000
+      internalID: 9129797963325425379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_24
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 24
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbe481b432806d4c0800000000000000
+      internalID: -4263211049582833987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_25
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 25
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b262770d98d81080800000000000000
+      internalID: -9216378468467318093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_26
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 24
+        width: 35
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4acd31cbdf8b551b0800000000000000
+      internalID: -5668421156054246236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_27
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 26
+        width: 35
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa938993fb80e3d00800000000000000
+      internalID: 954209788447177130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_28
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 26
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49e9d3c262f74f320800000000000000
+      internalID: 2590835487572598420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_29
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 26
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97acdc73d4f728520800000000000000
+      internalID: 2702862696001161849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: orc-archer-game-character-creating-260nw-780817930-removebg-preview_30
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 25
+        width: 35
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 604b0f6699bb7e344a6e45d9cf4dab94
+      internalID: -839598337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 987c2f1e6e6a024408b0d3d9fa84b36f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_0: -610213103402138149
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_1: 6420160783845383587
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_10: -7376558826311920112
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_11: -3883502631902849165
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_12: 3141729870812855950
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_13: 768976667613400634
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_14: -1646350059681773814
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_15: -4059476874615732123
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_16: 4588995529439149920
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_17: -4230667475365819683
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_18: 4354167601432858309
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_19: 7669683002254978528
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_2: 3387287181967768629
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_20: -4070238784309637169
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_21: -954464490068265308
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_22: 390625800695816942
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_23: 9129797963325425379
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_24: -4263211049582833987
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_25: -9216378468467318093
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_26: -5668421156054246236
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_27: 954209788447177130
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_28: 2590835487572598420
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_29: 2702862696001161849
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_3: -2297536242786932581
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_30: -839598337
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_4: 3799555538402957135
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_5: -2979126743935898641
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_6: 6582958268203903011
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_7: 3639044224225752890
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_8: -3723787402491395199
+      orc-archer-game-character-creating-260nw-780817930-removebg-preview_9: 2403041195427174267
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
