@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZeriSkill2
+  m_Name: zeriSkill2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,13 +22,13 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -2454265483450576968, guid: 248455800717bce48b54f7cd1402d006, type: 3}
-    - time: 0.15
+    - time: 0.13333334
       value: {fileID: -5310453608150620929, guid: dbb6ea54be1a89a439ced3825b49c4f8, type: 3}
-    - time: 0.3
+    - time: 0.26666668
       value: {fileID: 2947208416710158613, guid: b0e648c85db30834b8386ea6681a508c, type: 3}
-    - time: 0.43333334
+    - time: 0.4
       value: {fileID: -2375431499832982428, guid: 07432443c6c63b648abbe1fb0ea24076, type: 3}
-    - time: 0.5833333
+    - time: 0.53333336
       value: {fileID: -5267684097547079306, guid: b5a912c3d45b05644ab19d3ae57b8c43, type: 3}
     attribute: m_Sprite
     path: 
@@ -62,7 +62,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.59999996
+    m_StopTime: 0.55
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

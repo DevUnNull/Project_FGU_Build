@@ -205,7 +205,7 @@ Animator:
   m_GameObject: {fileID: 85953291}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2fc5ee376ee3c614183e4154fc90092b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 56d21e9034847b64f9715808595eeedc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 300196054}
   - component: {fileID: 300196053}
   m_Layer: 0
-  m_Name: Zeri_skill1-removebg-preview_0
+  m_Name: Zeri
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ Animator:
   m_GameObject: {fileID: 300196052}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 56d21e9034847b64f9715808595eeedc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ec240e8b7294804888fd2bbaf1a384b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -901,7 +901,7 @@ Animator:
   m_GameObject: {fileID: 1118475626}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5a120141aaa51d045a5a295f1ce8e68d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 084627a500c68df489e186ee8e5473b9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
