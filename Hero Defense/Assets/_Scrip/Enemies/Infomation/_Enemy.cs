@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class _Enemy :  EnemyBase
 {
-    private void Update()
+    private void Awake()
     {
         SetFromData(enemyData);
     }
+
 }

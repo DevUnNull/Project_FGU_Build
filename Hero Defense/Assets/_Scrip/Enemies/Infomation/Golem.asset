@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab90df9aaa7609841953e53e86568a82, type: 3}
   m_Name: Golem
   m_EditorClassIdentifier: 
-  enemyName: 
-  damage: 0
-  health: 0
-  speed: 0
+  enemyName: Golem1
+  damage: 1
+  health: 10
+  speed: 2

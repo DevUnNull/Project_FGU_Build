@@ -3,13 +3,20 @@
 public class WaypointMovement : MonoBehaviour
 {
     public Transform[] waypoints;
-    public float speed = 2f;
+    public float speed ;
     public bool loop = true;
 
     private int currentIndex = 0;
     private bool isForward = true;
 
+    public _Enemy enemy;
     // Phương thức công khai để các lớp khác có thể gọi
+    public void Start()
+    {
+        enemy = GetComponent<_Enemy>();
+        speed = enemy.speed;
+        Debug.Log("Speed " + speed);
+    }
     public void UpdateMovement()
     {
         // Thêm kiểm tra null tại đây
