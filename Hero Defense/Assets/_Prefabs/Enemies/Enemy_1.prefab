@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8988653336113628233}
   m_Layer: 0
   m_Name: Enemy_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   damage: 0
   health: 0
   speed: 0
+  currencyWorth: 50
 --- !u!61 &1098780337542622033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -221,6 +222,7 @@ MonoBehaviour:
   waypoints: []
   speed: 2
   loop: 1
+  enemy: {fileID: 0}
 --- !u!114 &8988653336113628233
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,27 +3,28 @@
 public class WaypointMovement : MonoBehaviour
 {
     public Transform[] waypoints;
-    public float speed ;
+    public float speed;
     public bool loop = true;
 
     private int currentIndex = 0;
     private bool isForward = true;
 
     public _Enemy enemy;
-    // Phương thức công khai để các lớp khác có thể gọi
+
+    private Vector3 lastPosition;
+
     public void Start()
     {
         enemy = GetComponent<_Enemy>();
         speed = enemy.speed;
+        lastPosition = transform.position;
         Debug.Log("Speed " + speed);
     }
+
     public void UpdateMovement()
     {
-        // Thêm kiểm tra null tại đây
         if (waypoints == null || waypoints.Length == 0)
-        {
             return;
-        }
 
         Transform targetPoint = waypoints[currentIndex];
         transform.position = Vector2.MoveTowards(
@@ -32,6 +33,16 @@ public class WaypointMovement : MonoBehaviour
             speed * Time.deltaTime
         );
 
+        // ✅ Xoay hướng theo hướng di chuyển (flip X)
+        Vector3 moveDir = transform.position - lastPosition;
+        if (moveDir.x > 0.01f)
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (moveDir.x < -0.01f)
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+        lastPosition = transform.position;
+
+        // Chuyển waypoint
         if (Vector2.Distance(transform.position, targetPoint.position) < 0.05f)
         {
             if (loop)
@@ -61,6 +72,7 @@ public class WaypointMovement : MonoBehaviour
             }
         }
     }
+
     public void setCurrentIndex()
     {
         currentIndex = 0;
