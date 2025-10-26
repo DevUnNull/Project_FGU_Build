@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbc43671facfb4a9a043e32ce5152e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: cd076f568ecdd0640b2828d2b5fed214, type: 2}
+  enemyData: {fileID: 11400000, guid: 00c5e2b1246f2384b823178364c42143, type: 2}
   enemyName: 
   damage: 0
   health: 0
