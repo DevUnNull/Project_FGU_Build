@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 2620001502899846451}
   - component: {fileID: -2007236405597701077}
   - component: {fileID: -6254293651804505078}
-  - component: {fileID: -1443158262989630146}
-  - component: {fileID: 537240875961640383}
-  - component: {fileID: 7628311421851246854}
+  - component: {fileID: 1600098252404626267}
+  - component: {fileID: 4189011923803581440}
+  - component: {fileID: 8105811423436625359}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -220,7 +220,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-1443158262989630146
+--- !u!114 &1600098252404626267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,27 +232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9529ace1d9f0f4abbf3f3e1454d87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 2
+  waypoints: []
+  speed: 0
   loop: 1
   enemy: {fileID: 0}
---- !u!114 &537240875961640383
+--- !u!114 &4189011923803581440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,11 +245,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7598332495153089325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a400f797c50da8246a337397713b0210, type: 3}
+  m_Script: {fileID: 11500000, guid: 06200f70fa6ae2f439e591ad7be945fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaypointMovement: {fileID: -1495780540387539119, guid: b3df95e580f1cab41995143514bf50da, type: 3}
---- !u!114 &7628311421851246854
+  waypointMovement: {fileID: 1600098252404626267}
+--- !u!114 &8105811423436625359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbc43671facfb4a9a043e32ce5152e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: cd076f568ecdd0640b2828d2b5fed214, type: 2}
+  enemyData: {fileID: 11400000, guid: 00c5e2b1246f2384b823178364c42143, type: 2}
   enemyName: 
   damage: 0
   health: 0
