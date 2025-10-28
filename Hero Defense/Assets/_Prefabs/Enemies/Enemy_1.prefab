@@ -132,7 +132,7 @@ MonoBehaviour:
   enemyName: 
   damage: 0
   health: 0
-  speed: 0
+  speed: 9
   currencyWorth: 50
 --- !u!61 &1098780337542622033
 BoxCollider2D:
