@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1fb194b615ef24ca4b2b8e2a0f85f0, type: 3}
-  m_Name: TuneConfig 1
+  m_Name: TuneConfigMap1_1
   m_EditorClassIdentifier: 
   waves:
   - {fileID: 11400000, guid: 922f74a330b20b34f93481851c998231, type: 2}
