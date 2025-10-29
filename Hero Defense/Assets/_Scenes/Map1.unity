@@ -131,7 +131,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path12
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -162,7 +162,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 14
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -193,7 +193,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 4
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -627,7 +627,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path1
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -852,7 +852,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path14
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -883,7 +883,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 7
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -914,7 +914,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path6
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -945,7 +945,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path18
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -976,7 +976,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 23
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1007,7 +1007,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path2
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1038,7 +1038,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path24
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1378,7 +1378,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 13
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1409,7 +1409,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 1
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1440,7 +1440,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path11
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1605,7 +1605,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path20
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1636,7 +1636,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path3
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1667,7 +1667,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path19
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1698,7 +1698,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 19
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1729,7 +1729,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path9
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1760,7 +1760,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path21
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1791,7 +1791,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 8
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1901,7 +1901,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path22
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2030,7 +2030,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path8
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2061,7 +2061,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 16
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2092,7 +2092,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 21
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2300,7 +2300,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path16
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2423,7 +2423,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 2
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2454,7 +2454,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path13
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2485,7 +2485,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 24
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2954,7 +2954,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path17
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3164,7 +3164,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 17
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3195,7 +3195,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 18
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3347,7 +3347,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 3
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3865,7 +3865,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path15
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3896,7 +3896,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path4
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3927,7 +3927,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 12
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3958,7 +3958,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 6
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3989,7 +3989,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path7
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4020,7 +4020,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path10
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4051,7 +4051,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path5
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4180,7 +4180,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 10
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4382,7 +4382,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 9
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4413,7 +4413,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 20
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4444,7 +4444,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 15
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4475,7 +4475,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 11
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4650,7 +4650,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path23
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4726,7 +4726,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 22
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4757,7 +4757,7 @@ GameObject:
   m_Layer: 0
   m_Name: waypoint 5
   m_TagString: waypoint
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
