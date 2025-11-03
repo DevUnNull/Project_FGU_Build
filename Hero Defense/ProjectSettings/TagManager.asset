@@ -6,11 +6,13 @@ TagManager:
   tags:
   - waypoint
   - Enemy
+  - Tile
+  - TileEdge
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
