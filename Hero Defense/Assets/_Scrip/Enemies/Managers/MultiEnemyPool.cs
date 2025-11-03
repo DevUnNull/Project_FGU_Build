@@ -56,6 +56,12 @@ public class MultiEnemyPool : MonoBehaviour
             poolable.Reset();
             enemy.SetActive(false);
             pools[poolable.GetEnemyType()].Enqueue(enemy);
+            
+            // Thông báo WaveManager rằng enemy đã được return về pool
+            if (WaveManager.Instance != null)
+            {
+                WaveManager.Instance.OnEnemyReturned();
+            }
         }
     }
 }

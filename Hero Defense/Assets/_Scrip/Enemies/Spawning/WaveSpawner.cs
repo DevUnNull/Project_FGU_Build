@@ -73,6 +73,12 @@ public class WaveSpawner : MonoBehaviour
         {
             wayEnemy.Init(assignedPath);
             Debug.Log($"✅ Spawned {type} on {myPathID}");
+            
+            // Thông báo WaveManager rằng có enemy được spawn
+            if (WaveManager.Instance != null)
+            {
+                WaveManager.Instance.OnEnemySpawned();
+            }
         }
         else
         {
