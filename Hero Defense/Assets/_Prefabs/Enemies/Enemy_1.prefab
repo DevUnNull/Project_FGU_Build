@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1198968610673058369}
   - component: {fileID: -1495780540387539119}
   - component: {fileID: 8563215904364536778}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   enemyName: 
   damage: 0
   health: 0
-  speed: 0
+  speed: 9
   currencyWorth: 50
 --- !u!61 &1098780337542622033
 BoxCollider2D:
@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6275595862691077290}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ZoneAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
