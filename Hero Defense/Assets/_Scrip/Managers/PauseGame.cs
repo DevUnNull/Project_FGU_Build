@@ -169,7 +169,7 @@ public class PauseMenu : MonoBehaviour
     // 🏠 Thoát về Home
     public void ExitToHome()
     {
-        StartCoroutine(ExitToHomeAfterAnim(closeAnimTime));
+        StartCoroutine(ExitToHomeAfterAnim(closeAnimTime));      
     }
 
     private IEnumerator ExitToHomeAfterAnim(float delay)
@@ -183,6 +183,7 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay);
 
         Time.timeScale = 1f;
+        
 
         if (MultiEnemyPool.Instance != null)
             Destroy(MultiEnemyPool.Instance.gameObject);
