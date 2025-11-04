@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Tris
   m_EditorClassIdentifier: 
   HeroName: Tris
-  damage: 10
+  damage: 4
   health: 10
   speed: 0
   price: 10
+  spawnSound: {fileID: 8300000, guid: 9cbd69a0ff885714b9f596f39e803cea, type: 3}
+  spawnSoundVolume: 0.505

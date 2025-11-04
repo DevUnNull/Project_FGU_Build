@@ -15,5 +15,5 @@ MonoBehaviour:
   pathID: 1
   groups:
   - type: 0
-    count: 5
+    count: 4
     interval: 1

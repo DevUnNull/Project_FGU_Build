@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
     {
         // Đăng ký callback khi scene được load
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
+
         // Tìm ngay lập tức nếu có thể
         TryFindReferences();
     }

@@ -10,8 +10,12 @@ public class HeroBase : MonoBehaviour
     public int speed;
     public int price;
 
+    // Property để HeroAudio có thể lấy HeroData
+    public HeroData HeroData => heroData;
+
     public void SetFromData(HeroData heroData)
     {
+        this.heroData = heroData;
         enemyName = heroData.name;
         damage = heroData.damage;
         health = heroData.health;

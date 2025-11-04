@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Riven
   m_EditorClassIdentifier: 
   HeroName: Riven
-  damage: 10
+  damage: 6
   health: 50
   speed: 1
   price: 20
+  spawnSound: {fileID: 8300000, guid: 4fa2ca440b92d6d46b18aeaa89e33aed, type: 3}
+  spawnSoundVolume: 0.553

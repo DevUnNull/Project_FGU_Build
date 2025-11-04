@@ -13,5 +13,5 @@ public class WaveConfig : ScriptableObject
     }
 
     public PathID pathID;
-    public List<SpawnGroup> groups = new();  // Path này spawn các group này
+    public List<SpawnGroup> groups = new();  // Path nï¿½y spawn cï¿½c group nï¿½y
 }

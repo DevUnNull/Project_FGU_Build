@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Zeri
   m_EditorClassIdentifier: 
   HeroName: Zeri
-  damage: 30
+  damage: 4
   health: 30
   speed: 0
   price: 10
+  spawnSound: {fileID: 8300000, guid: fd5a20bf737a7354fa1b62f0fb7f97de, type: 3}
+  spawnSoundVolume: 0.515

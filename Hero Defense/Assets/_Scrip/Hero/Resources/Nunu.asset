@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Nunu
   m_EditorClassIdentifier: 
   HeroName: Nunu
-  damage: 60
+  damage: 10
   health: 50
   speed: 1
   price: 50
+  spawnSound: {fileID: 8300000, guid: 71c3ca329534e7e4cbed0fedb9c15416, type: 3}
+  spawnSoundVolume: 0.515

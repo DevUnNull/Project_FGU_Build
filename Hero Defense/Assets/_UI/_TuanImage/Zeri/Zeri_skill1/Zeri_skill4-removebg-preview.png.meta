@@ -124,7 +124,7 @@ TextureImporter:
         serializedVersion: 2
         x: 44
         y: 47
-        width: 320
+        width: 136
         height: 76
       alignment: 9
       pivot: {x: 0.015624988, y: 0.06214684}
@@ -136,6 +136,28 @@ TextureImporter:
       bones: []
       spriteID: 76898d84e48df3990800000000000000
       internalID: -7403961431632603033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zeri_skill4-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 63
+        width: 116
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1c65a7249fa52b47b1dd547531d9319
+      internalID: -5027666177124140877
       vertices: []
       indices: 
       edges: []

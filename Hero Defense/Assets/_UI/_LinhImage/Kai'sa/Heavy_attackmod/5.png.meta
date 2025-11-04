@@ -137,12 +137,12 @@ TextureImporter:
       name: 5_1
       rect:
         serializedVersion: 2
-        x: 18
-        y: 8
-        width: 274
+        x: 16
+        y: 11
+        width: 166
         height: 87
       alignment: 9
-      pivot: {x: 0.17825997, y: 0.28469932}
+      pivot: {x: 0.28178146, y: 0.24914515}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,6 +151,28 @@ TextureImporter:
       bones: []
       spriteID: d8f9301170ef31c90800000000000000
       internalID: -7200132072931614835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_0
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 8
+        width: 54
+        height: 90
+      alignment: 9
+      pivot: {x: 0.90097326, y: 0.45417458}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa22c257f6a06b4dbb1f938a8466c94
+      internalID: 4130640169021434097
       vertices: []
       indices: 
       edges: []

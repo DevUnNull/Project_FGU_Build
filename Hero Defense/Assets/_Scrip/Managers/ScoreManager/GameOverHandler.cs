@@ -137,14 +137,25 @@ public class GameOverHandler : MonoBehaviour, IGameOverHandler, ILifeListener
         Debug.Log("🎯 GameOverHandler: OnAllWavesCompleted được gọi!");
         
         // Kiểm tra nếu player còn máu thì thắng
-        if (lifeManager != null && lifeManager.CurrentLife > 0)
+        if (lifeManager == null)
+        {
+            Debug.LogError("❌ GameOverHandler: lifeManager is null!");
+            lifeManager = LifeManager.Instance;
+            if (lifeManager == null)
+            {
+                Debug.LogError("❌ GameOverHandler: LifeManager.Instance cũng là null!");
+                return;
+            }
+        }
+        
+        if (lifeManager.CurrentLife > 0)
         {
             Debug.Log($"✅ Player thắng với {lifeManager.CurrentLife}/{lifeManager.MaxLife} máu còn lại!");
             ShowVictory();
         }
         else
         {
-            Debug.LogWarning("⚠️ Tất cả wave đã hoàn thành nhưng player đã hết máu!");
+            Debug.LogWarning($"⚠️ Tất cả wave đã hoàn thành nhưng player đã hết máu! (CurrentLife={lifeManager.CurrentLife})");
         }
     }
 
@@ -153,9 +164,11 @@ public class GameOverHandler : MonoBehaviour, IGameOverHandler, ILifeListener
     /// </summary>
     public void ShowVictory()
     {
+        Debug.Log("🎉 ShowVictory() được gọi!");
+        
         if (gameWinPanel == null)
         {
-            Debug.LogWarning("GameWinPanel chưa được gán!");
+            Debug.LogError("❌ GameWinPanel chưa được gán trong Inspector!");
             return;
         }
 
@@ -164,21 +177,34 @@ public class GameOverHandler : MonoBehaviour, IGameOverHandler, ILifeListener
         if (lifeManager != null && starCalculator != null)
         {
             stars = starCalculator.CalculateStars(lifeManager.CurrentLife, lifeManager.MaxLife);
+            Debug.Log($"⭐ Tính được {stars} sao từ {lifeManager.CurrentLife}/{lifeManager.MaxLife} máu.");
+        }
+        else
+        {
+            Debug.LogWarning($"⚠️ lifeManager={lifeManager}, starCalculator={starCalculator}");
         }
 
         // Hiển thị sao
         UpdateStarDisplay(stars);
 
         // Hiển thị panel
+        Debug.Log("🖼️ Đang hiển thị gameWinPanel...");
         gameWinPanel.SetActive(true);
+        
         if (boardWinAnimator != null)
         {
             boardWinAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             boardWinAnimator.Play("BoardMenu");
+            Debug.Log("▶️ Đã play animation BoardMenu.");
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ boardWinAnimator chưa được gán!");
         }
 
         // Dừng game
         Time.timeScale = 0f;
+        Debug.Log("⏸️ Time.timeScale đã được set về 0.");
 
         Debug.Log($"🎉 VICTORY! Đã hoàn thành tất cả wave! Số sao đạt được: {stars}");
     }

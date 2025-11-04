@@ -17,3 +17,5 @@ MonoBehaviour:
   health: 100
   speed: 1
   price: 30
+  spawnSound: {fileID: 8300000, guid: e262fc73dfdf7af4d96cff6289f36c54, type: 3}
+  spawnSoundVolume: 0.515

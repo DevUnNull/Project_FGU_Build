@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Yasuo
   m_EditorClassIdentifier: 
   HeroName: Yasuo
-  damage: 40
+  damage: 10
   health: 50
   speed: 1
   price: 40
+  spawnSound: {fileID: 8300000, guid: ac9f0d889884cf9408cce1640c847c53, type: 3}
+  spawnSoundVolume: 0.534

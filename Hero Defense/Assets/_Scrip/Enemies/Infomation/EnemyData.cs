@@ -7,4 +7,6 @@ public class EnemyData : ScriptableObject
     public int damage;
     public int health;
     public int speed;
+    [Header("Reward")]
+    public int rewardGold = 10;
 }

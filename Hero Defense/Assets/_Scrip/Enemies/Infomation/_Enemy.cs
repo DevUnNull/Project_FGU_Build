@@ -5,14 +5,26 @@ using System.Collections.Generic;
 // Class _Enemy - đây là class chính của Enemy
 public class _Enemy : EnemyBase
 {
-    // Giá trị tiền thưởng khi tiêu diệt enemy này
-    [SerializeField] private int currencyWorth = 50;
+    // Giá trị tiền thưởng khi tiêu diệt enemy này (đọc từ EnemyData)
+    [SerializeField] private int currencyWorth = 0;
+    
+    // Reference đến EnemyPopUp component
+    private EnemyPopUp enemyPopUp;
     
     // Hàm Awake được gọi khi GameObject được tạo
     private void Awake()
     {
         // Set dữ liệu từ enemyData
         SetFromData(enemyData);
+        
+        // Lấy EnemyPopUp component (có thể không có nếu chưa gắn)
+        enemyPopUp = GetComponent<EnemyPopUp>();
+
+        // Đồng bộ reward từ EnemyData (fallback nếu asset chưa set)
+        if (rewardGold > 0)
+        {
+            currencyWorth = rewardGold;
+        }
     }
     
     // Hàm nhận sát thương từ Hero
@@ -20,6 +32,12 @@ public class _Enemy : EnemyBase
     {
         // Trừ máu
         health -= damageAmount;
+        
+        // Hiển thị popup damage (nếu có component)
+        if (enemyPopUp != null)
+        {
+            enemyPopUp.PopUpDame(damageAmount);
+        }
         
         // Nếu máu <= 0 thì enemy chết
         if (health <= 0)
@@ -32,10 +50,32 @@ public class _Enemy : EnemyBase
     // Hàm xử lý khi enemy bị tiêu diệt
     private void Die()
     {
-        // Gọi ShopManager.AddCurrency để cộng tiền khi enemy bị tiêu diệt
-        if (ShopManager.main != null)
+        int amount = Mathf.Max(0, currencyWorth);
+        if (amount > 0)
         {
-            ShopManager.main.AddCurrency(currencyWorth);
+            bool paid = false;
+            if (GoldManager.Instance != null)
+            {
+                GoldManager.Instance.AddGold(amount);
+                paid = true;
+                Debug.Log($"{enemyName} died! +{amount} gold (GoldManager)");
+            }
+            else if (ShopManager.main != null)
+            {
+                ShopManager.main.AddCurrency(amount);
+                paid = true;
+                Debug.Log($"{enemyName} died! +{amount} currency (ShopManager)");
+            }
+            if (!paid)
+            {
+                Debug.LogWarning($"⚠️ No GoldManager/ShopManager found. Reward {amount} not applied.");
+            }
+
+            // Popup vàng nếu có component
+            if (enemyPopUp != null)
+            {
+                enemyPopUp.PopUpGold(amount);
+            }
         }
         
         // Trả enemy về pool để tái sử dụng
