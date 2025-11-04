@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Gwen
   m_EditorClassIdentifier: 
   HeroName: Gwen
-  damage: 50
+  damage: 10
   health: 50
   speed: 1
   price: 40
+  spawnSound: {fileID: 8300000, guid: ecdb50ac7a69f354fb72efc14eb6396d, type: 3}
+  spawnSoundVolume: 0.524

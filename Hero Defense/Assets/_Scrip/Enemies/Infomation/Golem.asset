@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Golem1
   damage: 1
-  health: 10
+  health: 30
   speed: 1
+  rewardGold: 3

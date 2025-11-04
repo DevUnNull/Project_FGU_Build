@@ -8,6 +8,7 @@ public class EnemyBase : MonoBehaviour
     public int damage;
     public int health;
     public int speed;
+    public int rewardGold;
 
     public void SetFromData(EnemyData enemyData)
     {
@@ -15,5 +16,6 @@ public class EnemyBase : MonoBehaviour
         damage = enemyData.damage;
         health = enemyData.health;
         speed = enemyData.speed;
+        rewardGold = enemyData.rewardGold;
     }
 }

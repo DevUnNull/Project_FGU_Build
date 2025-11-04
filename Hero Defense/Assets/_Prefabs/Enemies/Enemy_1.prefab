@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1198968610673058369}
   - component: {fileID: -1495780540387539119}
   - component: {fileID: 8563215904364536778}
+  - component: {fileID: -8000713489358865013}
   m_Layer: 3
   m_Name: Enemy_1
   m_TagString: Enemy
@@ -133,6 +134,7 @@ MonoBehaviour:
   damage: 0
   health: 0
   speed: 9
+  rewardGold: 0
   currencyWorth: 50
 --- !u!61 &1098780337542622033
 BoxCollider2D:
@@ -236,6 +238,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointMovement: {fileID: -1495780540387539119}
+--- !u!114 &-8000713489358865013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815273019782857060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb851ef4038cbe488a357f56317219b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  PopUp_Prefab: {fileID: 3189915503243111414, guid: 36bf5f1b714e09f46bf30b895cb3f43d, type: 3}
+  GoldPopUp_Prefab: {fileID: 0}
+  damageAnchor: {fileID: 0}
+  goldAnchor: {fileID: 0}
+  targetCanvas: {fileID: 0}
+  offset: {x: 0, y: 30, z: 0}
+  goldOffset: {x: 0, y: 50, z: 0}
+  randomOffsetRange: 20
 --- !u!1 &2700147931694028479
 GameObject:
   m_ObjectHideFlags: 0

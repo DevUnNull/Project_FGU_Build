@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -4667473931007775703}
   - component: {fileID: 4881773440676697290}
   - component: {fileID: -2604023570491069839}
+  - component: {fileID: -2396779861132992196}
+  - component: {fileID: 3272177492204384900}
   m_Layer: 0
   m_Name: Gwen
   m_TagString: Player
@@ -34,7 +36,8 @@ Transform:
   m_LocalPosition: {x: 2.1734085, y: -4.153907, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3850232356093797799}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &306497400414925397
@@ -224,3 +227,61 @@ MonoBehaviour:
   attackRange: 1.5
   attackRate: 1
   showRanges: 1
+--- !u!114 &-2396779861132992196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5739167166759905286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0e1cfb7b5d38442bce06d2b39bdb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3272177492204384900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5739167166759905286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10430f583fcb39246ba48db107a2f473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5904114329077672342, guid: 23d63dbf767ad1f4288d803f9e2c6749, type: 3}
+  firePoint: {fileID: 3850232356093797799}
+  projectileSpeed: 10
+--- !u!1 &9049893446635165106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3850232356093797799}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3850232356093797799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9049893446635165106}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5116038053293931402}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -123,12 +123,17 @@ public class DragAndDrop : MonoBehaviour
         isPlacedOnBoard = true;
 
         // Nếu vừa mua → trừ tiền
+        bool justBought = false;
         if (!isBuy) 
         {
             isBuy = true;
+            justBought = true;
             GoldManager.Instance.SpendGold(price);
             Debug.Log("ban da bi tru:" + price);
         }
+
+        // Phát âm thanh khi đặt thành công (khi vừa mua hoặc di chuyển đến vị trí mới)
+        PlayHeroSpawnSound();
 
         // Bật lại Animator
         Animator animator = GetComponent<Animator>();
@@ -149,6 +154,47 @@ public class DragAndDrop : MonoBehaviour
         {
             // Đã từng được đặt → trở lại chỗ cũ
             transform.position = previousPosition;
+        }
+    }
+
+    /// <summary>
+    /// Phát âm thanh khi hero được đặt thành công
+    /// </summary>
+    private void PlayHeroSpawnSound()
+    {
+        // Cách 1: Dùng HeroAudio component nếu có
+        HeroAudio heroAudio = GetComponent<HeroAudio>();
+        if (heroAudio != null)
+        {
+            heroAudio.PlaySpawnSound();
+            return;
+        }
+
+        // Cách 2: Lấy HeroData và play trực tiếp qua AudioManager
+        _Hero hero = GetComponent<_Hero>();
+        if (hero != null && hero.HeroData != null)
+        {
+            HeroData heroData = hero.HeroData;
+            if (heroData.spawnSound != null)
+            {
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySFX(
+                        heroData.spawnSound,
+                        heroData.spawnSoundVolume,
+                        1f
+                    );
+                }
+                else
+                {
+                    // Fallback nếu không có AudioManager
+                    AudioSource.PlayClipAtPoint(
+                        heroData.spawnSound,
+                        transform.position,
+                        heroData.spawnSoundVolume
+                    );
+                }
+            }
         }
     }
 

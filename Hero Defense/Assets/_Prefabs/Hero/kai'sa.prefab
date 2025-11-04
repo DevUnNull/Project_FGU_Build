@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -7696717951054010400}
   - component: {fileID: -7782131589883937464}
   - component: {fileID: 2176957303808914784}
+  - component: {fileID: 2407374064440444553}
+  - component: {fileID: -3948754708497290600}
   m_Layer: 0
   m_Name: kai'sa
   m_TagString: Player
@@ -34,7 +36,8 @@ Transform:
   m_LocalPosition: {x: -1.5826508, y: 1.87911, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2389637952604656656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8828268982477400982
@@ -224,3 +227,61 @@ MonoBehaviour:
   attackRange: 3
   attackRate: 1
   showRanges: 1
+--- !u!114 &2407374064440444553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460581237215679934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0e1cfb7b5d38442bce06d2b39bdb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3948754708497290600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460581237215679934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10430f583fcb39246ba48db107a2f473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 440367542604560181, guid: d3c86b32972592d4998af840545d8a1d, type: 3}
+  firePoint: {fileID: 2389637952604656656}
+  projectileSpeed: 10
+--- !u!1 &7170463194831306694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2389637952604656656}
+  m_Layer: 0
+  m_Name: Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2389637952604656656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7170463194831306694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.675, y: 0.187, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6486702085974092284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

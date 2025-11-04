@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5783711045590936682}
   - component: {fileID: 5122478064743549478}
   - component: {fileID: 4247157757221716445}
+  - component: {fileID: 1047578309002454412}
   m_Layer: 0
   m_Name: MunDo
   m_TagString: Player
@@ -224,3 +225,15 @@ MonoBehaviour:
   attackRange: 1.5
   attackRate: 1
   showRanges: 1
+--- !u!114 &1047578309002454412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272708343191281842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0e1cfb7b5d38442bce06d2b39bdb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

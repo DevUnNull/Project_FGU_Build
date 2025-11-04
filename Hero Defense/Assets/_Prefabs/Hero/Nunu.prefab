@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1256715730320489383}
   - component: {fileID: -8764657673862940282}
   - component: {fileID: -8504853081796721031}
+  - component: {fileID: -3952880443904678170}
   m_Layer: 0
   m_Name: Nunu
   m_TagString: Player
@@ -224,3 +225,15 @@ MonoBehaviour:
   attackRange: 1.5
   attackRate: 1
   showRanges: 1
+--- !u!114 &-3952880443904678170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3700765197739297041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0e1cfb7b5d38442bce06d2b39bdb51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,1 +1,1 @@
-﻿public enum EnemyType { Normal, Fast, Tank }  // Thêm type mới dễ dàng
+﻿public enum EnemyType { Normal, Fast, Tank, Minotaur }  // Thêm type mới dễ dàng

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9010238743461751320}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ZoneAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,8 +45,10 @@ GameObject:
   - component: {fileID: -3650969582692166794}
   - component: {fileID: -8326669352458539706}
   - component: {fileID: -2051173994385210019}
-  - component: {fileID: 8484987322121449920}
-  m_Layer: 0
+  - component: {fileID: 1888763562507643575}
+  - component: {fileID: 4966551285838061705}
+  - component: {fileID: 7969175659228331070}
+  m_Layer: 3
   m_Name: Enemy_3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -235,7 +237,7 @@ MonoBehaviour:
   speed: 2
   loop: 1
   enemy: {fileID: 0}
---- !u!114 &8484987322121449920
+--- !u!114 &1888763562507643575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -244,7 +246,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 6463300893222789675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a400f797c50da8246a337397713b0210, type: 3}
+  m_Script: {fileID: 11500000, guid: 06200f70fa6ae2f439e591ad7be945fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaypointMovement: {fileID: -1495780540387539119, guid: b3df95e580f1cab41995143514bf50da, type: 3}
+  waypointMovement: {fileID: -2051173994385210019}
+--- !u!114 &4966551285838061705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463300893222789675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75bbc43671facfb4a9a043e32ce5152e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 00c5e2b1246f2384b823178364c42143, type: 2}
+  enemyName: 
+  damage: 0
+  health: 0
+  speed: 0
+  currencyWorth: 50
+--- !u!114 &7969175659228331070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463300893222789675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb851ef4038cbe488a357f56317219b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  PopUp_Prefab: {fileID: 3189915503243111414, guid: 36bf5f1b714e09f46bf30b895cb3f43d, type: 3}
+  targetCanvas: {fileID: 0}
+  offset: {x: 0, y: 30, z: 0}
+  randomOffsetRange: 20
