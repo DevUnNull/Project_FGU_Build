@@ -23,7 +23,7 @@ public class SceneUIController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.Play(); // Start music
         Debug.Log("it will run");
-        
+
     }
 
     public void FadeOutAndStop(float duration)
@@ -54,13 +54,13 @@ public class SceneUIController : MonoBehaviour
     public void CampaignHover()
     {
         if (isMOn == true)
-        {audioSource.PlayOneShot(campaignHover, 1.0f);}
+        { audioSource.PlayOneShot(campaignHover, 1.0f); }
     }
 
     public void MusicSet()             //Sound when setting music
     {
         if (isOn) { audioSource.Stop(); isOn = false; }
-        else      { audioSource.Play(); isOn = true; }
+        else { audioSource.Play(); isOn = true; }
     }
 
     public void SoundSet()         //Setting game sound
@@ -78,22 +78,22 @@ public class SceneUIController : MonoBehaviour
         settingBoard.SetActive(false);
     }
     //Map setting open/off
-    public void CheckSetting ()
+    public void CheckSetting()
     {
         if (!settingState) { SetOpen1(); settingState = true; }
-        else               { SetCancel1(); settingState = false;}
-    } 
-     public void SetOpen1()
+        else { SetCancel1(); settingState = false; }
+    }
+    public void SetOpen1()
     {
         music.SetActive(true);
         sound.SetActive(true);
-        music.GetComponent<SmoothMoveSet>().PlaySlideIn(-393f);
-        sound.GetComponent<SmoothMoveSet>().PlaySlideIn(-327f);
+        music.GetComponent<SmoothMoveSet>().PlaySlideIn(-303);
+        sound.GetComponent<SmoothMoveSet>().PlaySlideIn(-231);
     }
     public void SetCancel1()
     {
-        music.GetComponent<SmoothMoveSet>().PlaySlideIn(-471f);
-        sound.GetComponent<SmoothMoveSet>().PlaySlideIn(-471f);
+        music.GetComponent<SmoothMoveSet>().PlaySlideIn(-353f);
+        sound.GetComponent<SmoothMoveSet>().PlaySlideIn(-353f);
         music.SetActive(false);
         sound.SetActive(false);
     }
