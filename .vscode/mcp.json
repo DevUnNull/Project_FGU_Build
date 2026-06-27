@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "unity-synaptic": {
+      "type": "stdio",
+      "command": "/usr/local/bin/node",
+      "args": [
+        "/Users/user/Documents/Unity/ProjectUnity/Project_FGU_Build/Hero Defense/Assets/Synaptic AI Pro/MCPServer/index-supersave.js"
+      ],
+      "cwd": "/Users/user/Documents/Unity/ProjectUnity/Project_FGU_Build/Hero Defense/Assets/Synaptic AI Pro/MCPServer"
+    }
+  }
+}

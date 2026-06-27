@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "unity-synaptic": {
+      "command": "/usr/local/bin/node",
+      "args": [
+        "/Users/user/Documents/Unity/ProjectUnity/Project_FGU_Build/Hero Defense/Assets/Synaptic AI Pro/MCPServer/index-supersave.js"
+      ],
+      "env": {}
+    }
+  },
+  "permissions": {
+    "allow": [
+      "mcp__unity-synaptic"
+    ],
+    "deny": []
+  }
+}
