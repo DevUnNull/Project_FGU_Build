@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Hero Defense.slnx"
+    "dotnet.defaultSolution": "Project_FGU_Build.slnx"
 }

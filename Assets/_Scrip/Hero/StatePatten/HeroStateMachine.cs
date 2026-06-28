@@ -17,6 +17,8 @@ public class HeroStateMachine : MonoBehaviour
     // Tham chiếu đến HeroBase component để truy cập thông tin Hero
     private HeroBase hero;
 
+    [HideInInspector] public Vector3 originalLocalScale;
+
     // Các thông số cấu hình cho state machine
     
     // LayerMask định nghĩa layer nào được coi là enemy
@@ -34,9 +36,18 @@ public class HeroStateMachine : MonoBehaviour
     // Cờ bật/tắt hiển thị tầm trong Scene View của Unity Editor
     public bool showRanges = true;
 
+    public enum DetectionType { Radial, Line }
+    [Header("Detection Settings")]
+    public DetectionType detectionType = DetectionType.Radial;
+    
+    [Header("Line Detection Specific Settings")]
+    public Vector2 checkDirection = Vector2.right;
+    public float checkHeight = 1f;
+
     // Hàm Awake được gọi trước Start, dùng để khởi tạo
     void Awake()
     {
+        originalLocalScale = transform.localScale;
         // Lấy component HeroBase từ GameObject hiện tại
         hero = GetComponent<HeroBase>();
         // Kiểm tra nếu không có HeroBase component thì báo lỗi
@@ -103,15 +114,82 @@ public class HeroStateMachine : MonoBehaviour
         }
     }
 
+    // Hàm tìm target (sẽ được override ở các class con)
+    public virtual GameObject FindTarget()
+    {
+        GameObject nearestEnemy = null;
+        float nearestDistance = float.MaxValue;
+
+        if (detectionType == DetectionType.Radial)
+        {
+            Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, detectionRange, enemyLayer);
+            foreach (Collider2D enemyCollider in enemies)
+            {
+                float distance = Vector2.Distance(transform.position, enemyCollider.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestEnemy = enemyCollider.gameObject;
+                }
+            }
+        }
+        else if (detectionType == DetectionType.Line)
+        {
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(
+                transform.position,
+                new Vector2(checkHeight, checkHeight), // Kích thước box
+                0f,                                    // Góc quay
+                checkDirection.normalized,             // Hướng check
+                detectionRange,                        // Tầm xa
+                enemyLayer                             // Chỉ check layer Enemy
+            );
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                float distance = Vector2.Distance(transform.position, hit.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestEnemy = hit.collider.gameObject;
+                }
+            }
+        }
+
+        return nearestEnemy;
+    }
+
+    // Quay mặt hero về phía 1 điểm (2D): flip localScale X theo hướng deltaX
+    public void FaceTowards(Vector3 targetPosition)
+    {
+        float deltaX = targetPosition.x - transform.position.x;
+        if (Mathf.Approximately(deltaX, 0f)) return;
+
+        Vector3 scale = transform.localScale;
+        float absX = Mathf.Abs(originalLocalScale.x) > 0f ? Mathf.Abs(originalLocalScale.x) : Mathf.Abs(scale.x);
+        scale.x = deltaX > 0f ? absX : -absX; // nhìn phải nếu target ở bên phải, ngược lại nhìn trái
+        transform.localScale = scale;
+    }
+
     // Hàm vẽ Gizmos để hiển thị tầm trong Scene View của Unity Editor
     void OnDrawGizmosSelected()
     {
         // Nếu tắt hiển thị range thì return
         if (!showRanges) return;
 
-        // Vẽ tầm phát hiện (màu vàng) - Sphere wireframe
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        if (detectionType == DetectionType.Radial)
+        {
+            // Vẽ tầm phát hiện (màu vàng) - Sphere wireframe
+            Gizmos.DrawWireSphere(transform.position, detectionRange);
+        }
+        else if (detectionType == DetectionType.Line)
+        {
+            // Vẽ tầm phát hiện (màu vàng) - Đường thẳng và box ở cuối
+            Vector3 start = transform.position;
+            Vector3 end = start + (Vector3)checkDirection.normalized * detectionRange;
+            Gizmos.DrawLine(start, end);
+            Gizmos.DrawWireCube(end, new Vector3(checkHeight, checkHeight, 0));
+        }
 
         // Vẽ tầm tấn công (màu đỏ) - Sphere wireframe
         Gizmos.color = Color.red;

@@ -35,16 +35,22 @@ public class HeroIdleState : IHeroState
     // Hàm được gọi mỗi frame khi đang ở Idle State
     public void UpdateState()
     {
-        // Tìm kiếm enemy gần nhất trong phạm vi
-        GameObject enemy = FindNearestEnemy();
+        // Tìm kiếm enemy gần nhất trong phạm vi nhìn thấy (detectionRange)
+        GameObject enemy = stateMachine.FindTarget();
 
-        // Nếu tìm thấy enemy thì chuyển sang Attack State
         if (enemy != null)
         {
-            // Chuyển sang attack state để bắt đầu tấn công
-            stateMachine.ChangeState(stateMachine.attackState);
+            // Đã thấy địch -> Quay mặt về phía địch chuẩn bị
+            stateMachine.FaceTowards(enemy.transform.position);
+
+            // Kiểm tra xem địch đã vào tầm đánh (attackRange) chưa
+            float distance = Vector2.Distance(hero.transform.position, enemy.transform.position);
+            if (distance <= stateMachine.attackRange)
+            {
+                // Địch đã vào tầm đánh -> Chuyển sang trạng thái tấn công
+                stateMachine.ChangeState(stateMachine.attackState);
+            }
         }
-        // Nếu không tìm thấy enemy thì tiếp tục ở Idle State
     }
 
     // Hàm được gọi khi thoát khỏi Idle State
@@ -54,32 +60,4 @@ public class HeroIdleState : IHeroState
         Debug.Log("Hero: Exit Idle State");
     }
 
-    // Hàm tìm enemy gần nhất trong phạm vi phát hiện
-    private GameObject FindNearestEnemy()
-    {
-        // Tìm tất cả enemy trong phạm vi phát hiện bằng OverlapCircleAll
-        // Sử dụng detectionRange và enemyLayer từ stateMachine
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(hero.transform.position, stateMachine.detectionRange, stateMachine.enemyLayer);
-
-        // Biến lưu enemy gần nhất và khoảng cách đến enemy đó
-        GameObject nearestEnemy = null;
-        float nearestDistance = float.MaxValue;
-
-        // Duyệt qua tất cả enemy tìm được
-        foreach (Collider2D enemyCollider in enemies)
-        {
-            // Tính khoảng cách từ Hero đến enemy hiện tại
-            float distance = Vector2.Distance(hero.transform.position, enemyCollider.transform.position);
-            // Nếu enemy này gần hơn enemy gần nhất trước đó
-            if (distance < nearestDistance)
-            {
-                // Cập nhật enemy gần nhất và khoảng cách
-                nearestDistance = distance;
-                nearestEnemy = enemyCollider.gameObject;
-            }
-        }
-
-        // Trả về enemy gần nhất (null nếu không có enemy nào)
-        return nearestEnemy;
-    }
 }
