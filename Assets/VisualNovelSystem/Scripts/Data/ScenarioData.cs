@@ -86,7 +86,7 @@ public class SituationData
     public List<ChoiceData> choices = new List<ChoiceData>();
 }
 
-[CreateAssetMenu(fileName = "NewScenario", menuName = "Call Out My Cells/Scenario Data")]
+[CreateAssetMenu(fileName = "NewScenario", menuName = "Visual Novels/Scenario Data")]
 public class ScenarioData : ScriptableObject
 {
     public string entryGuid; // Node bắt đầu
