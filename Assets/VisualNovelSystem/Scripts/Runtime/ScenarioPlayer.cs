@@ -311,7 +311,8 @@ public class ScenarioPlayer : MonoBehaviour
 
     private void ExecuteTransition(TargetType tType, string tGuid)
     {
-        if (tType == TargetType.EndScene)
+        // Hỗ trợ tương thích ngược (Backward Compatibility) cho chuỗi "END" cũ
+        if (tType == TargetType.EndScene || tGuid == "END")
         {
             SceneManager.LoadScene("Scene2_Transition");
             return;
