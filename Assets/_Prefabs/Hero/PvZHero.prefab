@@ -244,7 +244,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5826508, y: 2.9918563, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7647167380139242125}
   m_Father: {fileID: 0}
@@ -459,6 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114aafdf811264327b4eebeb791d23d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LineHeroStateMachine
+  originalLocalScale: {x: 0, y: 0, z: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -466,6 +467,9 @@ MonoBehaviour:
   attackRange: 1.5
   attackRate: 1
   showRanges: 1
+  detectionType: 0
+  checkDirection: {x: 1, y: 0}
+  checkHeight: 1
   checkDirection: {x: 1, y: 0}
   checkHeight: 1
 --- !u!1 &6443997888010057238

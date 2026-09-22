@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb434556fcaea141957da6f62d611dd, type: 3}
+  m_Name: PoolConfig_Virus
+  m_EditorClassIdentifier: 
+  pools:
+  - type: 4
+    prefab: {fileID: 2698530195585558081, guid: f1ea6f00a50c145bd8063326c1706fc4, type: 3}
+    initialSize: 10
+  - type: 5
+    prefab: {fileID: 2698530195585558081, guid: a8b476d496bed4714ad7fdd87cecbeb3, type: 3}
+    initialSize: 10
+  - type: 6
+    prefab: {fileID: 2698530195585558081, guid: ac73cc2a4633b45d7bf7fc4e6f541344, type: 3}
+    initialSize: 10
+  - type: 7
+    prefab: {fileID: 2698530195585558081, guid: a58263a9b305b4f43b2b17439b022936, type: 3}
+    initialSize: 10
+  - type: 8
+    prefab: {fileID: 2698530195585558081, guid: 98513681662dd4c41bcac130f8ec4832, type: 3}
+    initialSize: 10

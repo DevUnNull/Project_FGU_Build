@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -182,13 +182,17 @@ public class WaveManager : MonoBehaviour
             Debug.Log($"🎵 [Tune {tuneIdx}] Bắt đầu Wave {waveIdx + 1}");
             OnWaveStart?.Invoke(wave);
 
+            if (waveIdx == 1 && StomachDayData.Instance != null && StomachDayData.Instance.gastricAcidLevel > 30)
+            {
+                StartCoroutine(SpawnGastricAcidWave());
+            }
+
             skipDelays[tuneIdx] = false;
 
             //bool isLastWave = (waveIdx == tune.waves.Count - 1);
-            // QUAN TRỌNG: Chỉ xử lý logic đặc biệt cho wave cuối của TUNE CUỐI CÙNG
-            if (IsLastWaveOfLastTune) // Chỉ check flag này, không cần check isLastWave lại
+            if (isLastWave)
             {
-                Debug.Log($"🕹 [Tune {tuneIdx}] ⭐ WAVE CUỐI CỦA TUNE CUỐI ⭐ — không hiện countdown hoặc nút skip.");
+                Debug.Log($"🕹 [Tune {tuneIdx}] ⭐ WAVE CUỐI CỦA TUNE NÀY ⭐ — không hiện countdown hoặc nút skip.");
 
                 if (countdownText != null)
                     countdownText.gameObject.SetActive(false);
@@ -196,24 +200,34 @@ public class WaveManager : MonoBehaviour
                 if (skipButton != null)
                     skipButton.gameObject.SetActive(false);
 
-                // Đợi wave spawn xong (tính toán thời gian spawn)
-                float totalSpawnTime = CalculateTotalSpawnTime(wave);
-                yield return new WaitForSeconds(totalSpawnTime);
+                if (IsLastWaveOfLastTune)
+                {
+                    // Đợi wave spawn xong (tính toán thời gian spawn)
+                    float totalSpawnTime = CalculateTotalSpawnTime(wave);
+                    yield return new WaitForSeconds(totalSpawnTime);
 
-                // Đợi thêm một chút để đảm bảo tất cả enemy đã được spawn và counter đã cập nhật
-                yield return new WaitForSeconds(0.5f);
+                    // Đợi thêm một chút để đảm bảo tất cả enemy đã được spawn và counter đã cập nhật
+                    yield return new WaitForSeconds(0.5f);
 
-                // Đánh dấu wave đã spawn xong (CHỈ khi là wave cuối của tune cuối)
-                isLastWaveSpawningCompleted = true;
-                Debug.Log($"✅ Wave cuối của TUNE CUỐI đã spawn xong! Enemy hiện tại: {activeEnemiesInCurrentWave}, Đang đợi enemy bị tiêu diệt hết...");
+                    // Đánh dấu wave đã spawn xong (CHỈ khi là wave cuối của tune cuối)
+                    isLastWaveSpawningCompleted = true;
+                    Debug.Log($"✅ Wave cuối của TUNE CUỐI đã spawn xong! Enemy hiện tại: {activeEnemiesInCurrentWave}, Đang đợi enemy bị tiêu diệt hết...");
 
-                // Kiểm tra lại xem có còn enemy nào không (sau khi đã đợi đủ)
-                CheckForVictory();
+                    // Kiểm tra lại xem có còn enemy nào không (sau khi đã đợi đủ)
+                    CheckForVictory();
 
-                // Bắt đầu coroutine check liên tục để đảm bảo không bỏ sót
-                StartCoroutine(ContinuousVictoryCheck());
+                    // Bắt đầu coroutine check liên tục để đảm bảo không bỏ sót
+                    StartCoroutine(ContinuousVictoryCheck());
+                }
+                else
+                {
+                    // Nếu là wave cuối của Tune này (nhưng các Tune khác vẫn đang chạy)
+                    // Chỉ cần đợi wave này spawn xong rồi kết thúc Tune này
+                    float totalSpawnTime = CalculateTotalSpawnTime(wave);
+                    yield return new WaitForSeconds(totalSpawnTime);
+                }
 
-                continue; // Không cần delay giữa wave nữa vì đã là wave cuối
+                continue; // Không cần delay giữa wave nữa vì đã là wave cuối của Tune này
             }
             
             // Nếu KHÔNG phải wave cuối của tune cuối, xử lý bình thường (có skip button)
@@ -587,6 +601,33 @@ public class WaveManager : MonoBehaviour
         {
             Debug.LogWarning($"⚠️ Final check thất bại! Vẫn còn {finalCheck} enemy trên map. Không invoke event.");
             victoryInvoked = false; // Reset flag để có thể thử lại
+        }
+    }
+
+    private IEnumerator SpawnGastricAcidWave()
+    {
+        Debug.Log("🌊 CẢNH BÁO: GASTRIC ACID WAVE TRÀN VÀO LANE 3!");
+        
+        float duration = 10f;
+        float damagePerSecond = 10f;
+        float elapsed = 0f;
+        
+        while (elapsed < duration)
+        {
+            HeroBase[] heroes = FindObjectsOfType<HeroBase>();
+            foreach(var hero in heroes)
+            {
+                if (GridManager.Instance != null)
+                {
+                    float expectedY = GridManager.Instance.GetWorldPosition(2, 0).y;
+                    if (Mathf.Abs(hero.transform.position.y - expectedY) < 0.5f)
+                    {
+                        hero.TakeDamage(Mathf.RoundToInt(damagePerSecond * Time.deltaTime));
+                    }
+                }
+            }
+            elapsed += Time.deltaTime;
+            yield return null;
         }
     }
 }

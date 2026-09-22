@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 5962605782853128782}
   - component: {fileID: 610896071965483043}
   m_Layer: 0
-  m_Name: Zeri
+  m_Name: CellTrap
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +314,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.7602015, y: 0.5143, z: 0}
-  m_LocalScale: {x: 1, y: 0.88075805, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3067899023933404685}
@@ -370,7 +370,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7113969534282013297, guid: 8190d6dde83c93a4b82c9f5dc81e0de9, type: 3}
+  m_Sprite: {fileID: 4278433185314351364, guid: 221c00dd590134d5ab72123647a7c2db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -390,7 +390,7 @@ Animator:
   m_GameObject: {fileID: 5605593753993760622}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9ec240e8b7294804888fd2bbaf1a384b, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd106e890fa0c964db80e223652eb4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroData: {fileID: 11400000, guid: 5cbeeb438ab1af144bfb1c92c9997bcb, type: 2}
+  heroData: {fileID: 11400000, guid: b06e2c9e000ae408b83b82dff85842a0, type: 2}
   enemyName: 
   damage: 0
   health: 0
@@ -482,17 +482,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.11909473, y: 0.35529655}
+  m_Offset: {x: -0.011254311, y: 0.2249471}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.058409806, y: 0.08686443}
-    oldSize: {x: 3.6, y: 0.86}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.24, y: 4.77}
     newSize: {x: 3.6, y: 0.86}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.65874004, y: 0.86}
+  m_Size: {x: 3.852295, y: 3.7276814}
   m_EdgeRadius: 0
 --- !u!114 &5172910156449677594
 MonoBehaviour:

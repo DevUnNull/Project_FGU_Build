@@ -22,9 +22,21 @@ public class HeroBase : MonoBehaviour
     {
         this.heroData = heroData;
         enemyName = heroData.name;
-        damage = heroData.damage;
-        health = heroData.health;
-        maxHealth = heroData.health;
+        
+        // Base values
+        float dmgMult = 1f;
+        float hpMult = 1f;
+        
+        if (StomachDayData.Instance != null)
+        {
+            dmgMult = StomachDayData.Instance.cellDamageMultiplier;
+            hpMult = StomachDayData.Instance.mucosaHpMultiplier;
+        }
+
+        damage = Mathf.RoundToInt(heroData.damage * dmgMult);
+        health = Mathf.RoundToInt(heroData.health * hpMult);
+        maxHealth = health;
+        
         speed = heroData.speed;
         price = heroData.price;
         

@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dade200f2769e438aaae3b11f362ba1b, type: 3}
+  m_Name: Day2_FullScenario
+  m_EditorClassIdentifier: Assembly-CSharp::ScenarioData
+  entryGuid: 5ab74ee5-8243-45ca-a230-30cf0c703e54
+  situations:
+  - guid: 9a7c6fa7-1fac-47da-9b65-a8d9e172621b
+    situationId: Situation_0
+    editorPosition: {x: -535.5, y: -32}
+    timeText: 08:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    description: 
+    dialogues:
+    - "S\xE1ng th\u1EE9c d\u1EADy tr\u1EC5 v\xE0o cu\u1ED1i tu\u1EA7n, b\u1EA1n c\u1EA3m
+      th\u1EA5y m\u1EC7t m\u1ECFi v\xE0 l\u01B0\u1EDDi n\u1EA5u \u0103n."
+    hasMigratedDialogues: 0
+    dialogueLines:
+    - text: "s\xE1ng th\xEC \u0103n g\xEC ?"
+      advanceMode: 0
+      displayDuration: 0
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "U\u1ED1ng v\u1ED9i ly c\xE0 ph\xEA \u0111en \u0111\xE1 v\xE0 nh\u1ECBn
+        \u0103n s\xE1ng."
+      delayAfterChoice: 5
+      videoClip: {fileID: 32900000, guid: 55a07744adfef4f169f8cc0d20d9d83e, type: 3}
+      targetType: 0
+      targetGuid: 10bf1a9e-534a-44f2-99e9-102d8f0f77a9
+      impacts:
+      - targetStat: 4
+        value: 20
+      - targetStat: 1
+        value: -0.2
+    - choiceText: "D\u1EADy n\u1EA5u b\xE1t m\xEC t\xF4m k\xE8m rau xanh v\xE0 tr\u1EE9ng."
+      delayAfterChoice: 2.5
+      videoClip: {fileID: 0}
+      targetType: 0
+      targetGuid: 7ce19232-9a41-408f-a7f6-54cc418f0660
+      impacts:
+      - targetStat: 2
+        value: 0.1
+    - choiceText: "U\u1ED1ng ng\u0169 c\u1ED1c \u1EA5m v\xE0 \u0103n b\xE1nh m\xEC."
+      delayAfterChoice: 2
+      videoClip: {fileID: 0}
+      targetType: 0
+      targetGuid: 66cc0687-c05a-441f-a939-4f1ae2f21cc3
+      impacts:
+      - targetStat: 1
+        value: 0.2
+      - targetStat: 0
+        value: 0.1
+  - guid: 10bf1a9e-534a-44f2-99e9-102d8f0f77a9
+    situationId: Situation_1
+    editorPosition: {x: -61.5, y: -32}
+    timeText: 12:30
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    description: 
+    dialogues:
+    - "B\u1EA1n \u0111i \u0103n ti\u1EC7c buffet BBQ. C\xF3 r\u1EA5t nhi\u1EC1u th\u1ECBt
+      n\u01B0\u1EDBng tr\xEAn b\xE0n."
+    hasMigratedDialogues: 0
+    dialogueLines: []
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "\u0102n th\u1EA3 ga th\u1ECBt n\u01B0\u1EDBng ch\xE1y x\xE9m v\xE0
+        u\u1ED1ng bia."
+      delayAfterChoice: 3
+      videoClip: {fileID: 32900000, guid: 55a07744adfef4f169f8cc0d20d9d83e, type: 3}
+      targetType: 0
+      targetGuid: END
+      impacts:
+      - targetStat: 5
+        value: 2
+      - targetStat: 4
+        value: 30
+    - choiceText: "\u0102n th\u1ECBt n\u01B0\u1EDBng k\xE8m theo x\xE0 l\xE1ch, rau
+        c\u1EE7."
+      delayAfterChoice: 2.5
+      videoClip: {fileID: 0}
+      targetType: 0
+      targetGuid: END
+      impacts:
+      - targetStat: 3
+        value: 0.2
+  - guid: 7ce19232-9a41-408f-a7f6-54cc418f0660
+    situationId: Situation_2
+    editorPosition: {x: -40, y: 93}
+    timeText: 16:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    description: 
+    dialogues:
+    - "\u0110ang b\u1ECB stress, \u0111\u1ED3ng nghi\u1EC7p r\u1EE7 order \u0111\u1ED3
+      \u0103n v\u1EB7t gi\u1EA3i khu\xE2y."
+    hasMigratedDialogues: 0
+    dialogueLines: []
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "G\u1ECDi tr\xE0 s\u1EEFa tr\xE2n ch\xE2u \u0111\u01B0\u1EDDng
+        \u0111en size L."
+      delayAfterChoice: 2.5
+      videoClip: {fileID: 0}
+      targetType: 0
+      targetGuid: END
+      impacts:
+      - targetStat: 5
+        value: 1
+      - targetStat: 2
+        value: -0.1
+    - choiceText: "U\u1ED1ng n\u01B0\u1EDBc l\u1ECDc v\xE0 \u0103n ch\xFAt tr\xE1i
+        c\xE2y."
+      delayAfterChoice: 2
+      videoClip: {fileID: 0}
+      targetType: 0
+      targetGuid: END
+      impacts:
+      - targetStat: 0
+        value: 0.2
+  - guid: 66cc0687-c05a-441f-a939-4f1ae2f21cc3
+    situationId: Situation_3
+    editorPosition: {x: -61.5, y: 214.5}
+    timeText: 22:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    description: 
+    dialogues:
+    - "\u0110ang c\xE0y phim th\xEC b\u1EE5ng s\xF4i s\xF9ng s\u1EE5c v\xEC \u0111\xF3i."
+    hasMigratedDialogues: 0
+    dialogueLines: []
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "\u0110\u1EB7t ngay su\u1EA5t g\xE0 r\xE1n cay v\xE0 khoai t\xE2y
+        chi\xEAn."
+      delayAfterChoice: 3.5
+      videoClip: {fileID: 0}
+      targetType: 1
+      targetGuid: 
+      impacts:
+      - targetStat: 4
+        value: 40
+      - targetStat: 5
+        value: 2
+    - choiceText: "C\u1ED1 g\u1EAFng \u0111i ng\u1EE7 lu\xF4n \u0111\u1EC3 d\u1EA1
+        d\xE0y \u0111\u01B0\u1EE3c ngh\u1EC9 ng\u01A1i."
+      delayAfterChoice: 2
+      videoClip: {fileID: 0}
+      targetType: 1
+      targetGuid: 
+      impacts:
+      - targetStat: 0
+        value: 0.3
+  - guid: 5ab74ee5-8243-45ca-a230-30cf0c703e54
+    situationId: "tho\u1EA1i 1"
+    editorPosition: {x: -792.5, y: 18.5}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    description: 
+    dialogues:
+    - "\xE1aaaaaa bu\u1ED3n ng\u1EE7 qu\xE1aaaaa"
+    - "t\xF4i mu\u1ED1n v\u1EC1 nh\xE0 "
+    hasMigratedDialogues: 0
+    dialogueLines:
+    - text: "b\u1EA1n mu\u1ED1n ch\u01A1i kh\xF4ng"
+      advanceMode: 1
+      displayDuration: 0
+    - text: "C\xF9ng v\xE0o game nh\xE9"
+      advanceMode: 0
+      displayDuration: 3
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 9a7c6fa7-1fac-47da-9b65-a8d9e172621b
+    choices: []

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathID: 2
   groups:
-  - type: 3
+  - type: 6
     count: 2
     interval: 1
-  - type: 3
+  - type: 4
     count: 2
     interval: 1

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathID: 0
   groups:
-  - type: 0
+  - type: 6
     count: 3
     interval: 2
-  - type: 0
+  - type: 7
     count: 3
     interval: 2
-  - type: 0
+  - type: 8
     count: 3
     interval: 2

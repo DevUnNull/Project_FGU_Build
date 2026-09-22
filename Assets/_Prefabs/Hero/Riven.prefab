@@ -394,7 +394,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.7001344, y: -0.5498699, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8394603040406780890}
   m_Father: {fileID: 0}
@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2587b46845edef4db51ddd261216b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalLocalScale: {x: 0, y: 0, z: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8

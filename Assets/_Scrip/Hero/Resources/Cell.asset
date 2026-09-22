@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c055fc04cde39f468c80a80ae4378e4, type: 3}
+  m_Name: Cell
+  m_EditorClassIdentifier: 
+  HeroName: Cell
+  damage: 4
+  health: 30
+  speed: 0
+  price: 10
+  spawnSound: {fileID: 8300000, guid: fd5a20bf737a7354fa1b62f0fb7f97de, type: 3}
+  spawnSoundVolume: 0.515

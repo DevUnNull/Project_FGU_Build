@@ -1,0 +1,102 @@
+CALL OUT MY CELLS - CHAPTER 1: DẠ DÀY BẢO VỆ CHIẾN
+Tài liệu này cung cấp các thông số kỹ thuật và cơ chế logic chi tiết cho phiên bản demo của dự án Call Out My Cells, tập trung vào tác động hai chiều giữa lối sống sinh hoạt và hiệu quả chiến đấu của tế bào.
+1. KIẾN TRÚC DỮ LIỆU & QUẢN LÝ TRẠNG THÁI
+Hệ thống sử dụng một lớp dữ liệu trung gian để duy trì trạng thái xuyên suốt các phân cảnh. Lớp này đóng vai trò là "Cơ sở dữ liệu sinh học" của người chơi.
+Class: StomachDayData
+Dữ liệu được khởi tạo tại Scene 1 và được tham chiếu bởi các hệ thống tại Scene 3:
+
+Tham số
+Kiểu dữ liệu
+Ý nghĩa Gameplay
+atpRecoveryMultiplier
+float
+Tốc độ hồi phục năng lượng để đặt quân.
+mucosaHpMultiplier
+float
+Hệ số máu cho các đơn vị phòng thủ (Tanker).
+cellDamageMultiplier
+float
+Sức mạnh tấn công của các đơn vị chiến đấu.
+cellAttackSpeedMultiplier
+float
+Tần suất tấn công của các đơn vị chiến đấu.
+gastricAcidLevel
+float
+Chỉ số nguy cơ gây ra các sự kiện bất lợi (Axit trào ngược).
+toxinObstaclesCount
+int
+Số lượng ô bị chiếm dụng bởi vật cản (Mỡ, ớt).
+2. SCENE 1: TÌNH HUỐNG TƯƠNG TÁC (DAYTIME)
+Người chơi đối mặt với 4 mốc thời gian quan trọng. Mỗi lựa chọn sẽ trực tiếp sửa đổi các chỉ số trong StomachDayData.
+Logic Tình Huống & Tác Động Chỉ Số
+Tình huống 1: Mới Ngủ Dậy (07:30)
+
+	•	Bối cảnh: "Bụng đói cồn cào sau một đêm dài."
+	•	Lựa chọn A (Lành mạnh): Ăn Phở bò nóng + Nước ấm.
+	•	Kết quả: cellDamageMultiplier += 0.2f
+	•	Lựa chọn B (Độc hại): Bỏ bữa sáng, lướt điện thoại.
+	•	Kết quả: gastricAcidLevel += 35.0f
+
+Tình huống 2: Giờ Giải Lao (10:00)
+
+	•	Bối cảnh: "Cảm thấy uể oải và xót ruột nhẹ."
+	•	Lựa chọn A (Lành mạnh): Nước lọc ấm / Trà hoa cúc.
+	•	Kết quả: mucosaHpMultiplier += 0.25f
+	•	Lựa chọn B (Độc hại): Cà phê đen đặc / Trà sữa khi đói.
+	•	Kết quả: mucosaHpMultiplier -= 0.25f
+
+Tình huống 3: Bữa Tối (19:00)
+
+	•	Bối cảnh: "Hẹn hò ăn uống cùng bạn bè."
+	•	Lựa chọn A (Lành mạnh): Cơm gia đình (Thịt luộc, rau xanh).
+	•	Kết quả: cellAttackSpeedMultiplier += 0.2f
+	•	Lựa chọn B (Độc hại): Mì cay cấp độ 3 + Gà rán nhiều dầu mỡ.
+	•	Kết quả: toxinObstaclesCount += 3
+
+Tình huống 4: Đi Ngủ (23:30)
+
+	•	Bối cảnh: "Cơ thể bắt đầu phát tín hiệu cần nghỉ ngơi."
+	•	Lựa chọn A (Lành mạnh): Tắt thiết bị, ngủ sớm.
+	•	Kết quả: atpRecoveryMultiplier += 0.3f
+	•	Lựa chọn B (Độc hại): Thức khuya cày game đến 2h sáng.
+	•	Kết quả: atpRecoveryMultiplier -= 0.35f
+3. SCENE 2: CHUYỂN CẢNH & TỔNG KẾT (TRANSITION)
+Màn hình hiển thị quá trình "nhập vai" vào cơ thể với các hiệu ứng hình ảnh phản ánh lựa chọn của người chơi.
+
+	•	Visual: Camera zoom xuyên qua da vào môi trường dạ dày 2D.
+	•	Bảng Status Report:
+	•	Trạng thái Tốt: Hiển thị hào quang (Aura) xanh lá. Thông báo: "Cơ thể sung sức! Hệ miễn dịch sẵn sàng chiến đấu."
+	•	Trạng thái Xấu: Hiển thị hiệu ứng mờ tối, rung lắc. Thông báo: "Cơ thể kiệt huệ! Vi khuẩn đang thừa cơ tấn công."
+4. SCENE 3: CHIẾN THUẬT PHÒNG THỦ (TOWER DEFENSE)
+Cơ chế PvZ (Plants vs Zombies) truyền thống được tùy biến dựa trên dữ liệu từ Scene 1.
+4.1. Quy Đổi Chỉ Số Gameplay
+Đơn vị Tế bào
+Chỉ số chịu ảnh hưởng
+Hiệu ứng cụ thể
+Tế bào Tiết Nhầy
+atpRecoveryMultiplier
+Sản sinh năng lượng ATP nhanh hơn để triển khai quân.
+Bạch cầu Trung tính
+cellDamageMultiplier
+Sát thương mỗi viên đạn tăng đáng kể, hiệu ứng đạn to hơn.
+Bạch cầu Trung tính
+cellAttackSpeedMultiplier
+Tần suất bắn tăng (Fire rate), tạo hỏa lực liên thanh.
+Tế bào Niêm mạc
+mucosaHpMultiplier
+Tăng độ bền, chịu được nhiều đợt cắn của Vi khuẩn HP.
+4.2. Hệ Thống Chướng Ngại Vật & Sự Kiện Xấu
+Nếu người chơi thực hiện nhiều lựa chọn sai, các cơ chế sau sẽ kích hoạt:
+
+	•	Toxin Obstacles: Các ô ngẫu nhiên trên Grid (5x9) sẽ bị khóa bởi ToxinObstaclePrefab (hình ảnh Mỡ hoặc Ớt). Người chơi không thể đặt tế bào lên các ô này.
+	•	Gastric Acid Wave: Nếu gastricAcidLevel > 30, tại đợt quái thứ 2 (Wave 2), một luồng axit sẽ quét qua hàng ngang số 3, gây sát thương liên tục cho tất cả tế bào trên hàng đó trong 10 giây.
+4.3. Cấu Trúc Kỹ Thuật (Dành cho Lập trình viên)
+	•	GridManager: Chịu trách nhiệm khởi tạo bàn cờ và spawn các vật cản dựa trên toxinObstaclesCount.
+	•	UnitSpawner: Khi một tế bào được đặt xuống, hàm InitStats() sẽ được gọi để nhân các chỉ số cơ bản của Prefab với các Multiplier tương ứng từ StomachDayData.
+	•	UI Canvas:
+	•	ATP_Counter: Hiển thị số lượng năng lượng hiện có.
+	•	Status_Bar: Hiển thị các buff/debuff đang hoạt động từ Scene 1.
+
+
+
+Tài liệu được chuẩn bị cho: Person Ngày phê duyệt: Date
