@@ -44,7 +44,7 @@ public class SetupScenarioExample : Editor
         string scene1Path = "Assets/_ScenesCallOurMyCell/Scene1_LifeSimulation.unity";
         var scene1 = EditorSceneManager.OpenScene(scene1Path, OpenSceneMode.Single);
         
-        Scene1Manager manager = GameObject.FindObjectOfType<Scene1Manager>();
+        ScenarioPlayer manager = GameObject.FindObjectOfType<ScenarioPlayer>();
         if (manager != null)
         {
             manager.currentScenario = data;
