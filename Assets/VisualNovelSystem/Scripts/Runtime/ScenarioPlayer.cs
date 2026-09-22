@@ -3,8 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System;
 
-public class Scene1Manager : MonoBehaviour
+public class ScenarioPlayer : MonoBehaviour
 {
     [Header("Data")]
     public ScenarioData currentScenario;
@@ -17,6 +18,8 @@ public class Scene1Manager : MonoBehaviour
     
     public Transform choicesContainer; // Nơi chứa các nút (Dùng Vertical Layout Group)
     public GameObject choiceButtonPrefab; // Prefab của một nút chọn
+
+    public Action<StatImpactType, float> onChoiceImpact;
 
     private int currentSituationIndex = 0;
     private List<GameObject> activeButtons = new List<GameObject>();
@@ -291,31 +294,11 @@ public class Scene1Manager : MonoBehaviour
             PlayVideo(choice.videoClip, false);
         }
 
-        if (StomachDayData.Instance != null)
+        if (onChoiceImpact != null)
         {
             foreach (var impact in choice.impacts)
             {
-                switch (impact.targetStat)
-                {
-                    case StatImpactType.AtpRecovery:
-                        StomachDayData.Instance.atpRecoveryMultiplier += impact.value;
-                        break;
-                    case StatImpactType.MucosaHp:
-                        StomachDayData.Instance.mucosaHpMultiplier += impact.value;
-                        break;
-                    case StatImpactType.CellDamage:
-                        StomachDayData.Instance.cellDamageMultiplier += impact.value;
-                        break;
-                    case StatImpactType.CellAttackSpeed:
-                        StomachDayData.Instance.cellAttackSpeedMultiplier += impact.value;
-                        break;
-                    case StatImpactType.GastricAcid:
-                        StomachDayData.Instance.gastricAcidLevel += impact.value;
-                        break;
-                    case StatImpactType.ToxinObstacles:
-                        StomachDayData.Instance.toxinObstaclesCount += (int)impact.value;
-                        break;
-                }
+                onChoiceImpact.Invoke(impact.targetStat, impact.value);
             }
         }
 
