@@ -30,16 +30,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
-    - _Softness: 0.2
+    - _Softness: 0.33
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _Threshold: 0.5
+    - _Threshold: 0.321
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _KeyColor1: {r: 0.9607843, g: 0.96862745, b: 0.9647059, a: 1}
+    - _KeyColor1: {r: 1, g: 1, b: 1, a: 1}
     - _KeyColor2: {r: 0, g: 0, b: 0, a: 0}
     - _KeyColor3: {r: 0, g: 0, b: 0, a: 0}
     - _KeyColor4: {r: 0, g: 0, b: 0, a: 0}
