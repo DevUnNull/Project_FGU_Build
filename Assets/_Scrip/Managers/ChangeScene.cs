@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
     public SceneUIController musicController;
+    
+    [Header("Settings")]
+    public float delayBeforeLoad = 0.1f;
 
     // Hàm đổi scene theo tên
     public void ChangeScener(string sceneName)
@@ -23,9 +26,9 @@ public class ChangeScene : MonoBehaviour
      private IEnumerator ChangeSceneWithFade(string sceneName )
     {
         if (musicController != null)
-            musicController.FadeOutAndStop(1f); // 1 second fade-out
+            musicController.FadeOutAndStop(delayBeforeLoad); // fade-out
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(delayBeforeLoad);
         SceneManager.LoadScene(sceneName);
     }
 }
