@@ -1,0 +1,282 @@
+fileFormatVersion: 2
+guid: 44980692f1db84e9ca22974c56a52c5e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1262072550796382414
+    second: D_HongCau_0
+  - first:
+      213: -859853114886562434
+    second: D_HongCau_1
+  - first:
+      213: 8760343521957142451
+    second: D_HongCau_2
+  - first:
+      213: -5556965128348718593
+    second: D_HongCau_3
+  - first:
+      213: -4995240894359562615
+    second: D_HongCau_4
+  - first:
+      213: -5134641733011748502
+    second: D_HongCau_5
+  - first:
+      213: -1745850436999627946
+    second: D_HongCau_6
+  - first:
+      213: -8687334306072025414
+    second: D_HongCau_7
+  - first:
+      213: -5493411541379983476
+    second: D_HongCau_8
+  - first:
+      213: 1598146833065222649
+    second: D_HongCau_9
+  - first:
+      213: -7086203614490086931
+    second: D_HongCau_10
+  - first:
+      213: 2407259849049424719
+    second: D_HongCau_11
+  - first:
+      213: -9126052579218635519
+    second: D_HongCau_12
+  - first:
+      213: -3268011053831060664
+    second: D_HongCau_13
+  - first:
+      213: 9111417411694078132
+    second: D_HongCau_14
+  - first:
+      213: -7403799322950736205
+    second: D_HongCau_15
+  - first:
+      213: -2485223353547750971
+    second: D_HongCau_16
+  - first:
+      213: 8731226622206323862
+    second: D_HongCau_17
+  - first:
+      213: -2249257843984497912
+    second: D_HongCau_18
+  - first:
+      213: 3585941183357604118
+    second: D_HongCau_19
+  - first:
+      213: -5398182055852766316
+    second: D_HongCau_20
+  - first:
+      213: -2029568664477456990
+    second: D_HongCau_21
+  - first:
+      213: -614583746969689844
+    second: D_HongCau_22
+  - first:
+      213: -5418719808303127239
+    second: D_HongCau_23
+  - first:
+      213: 372428203888830264
+    second: D_HongCau_24
+  - first:
+      213: 9156986392703652422
+    second: D_HongCau_25
+  - first:
+      213: -540610356987117548
+    second: D_HongCau_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: D_HongCau_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 87
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a5ae828d0685d3e0800000000000000
+      internalID: -2029568664477456990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: D_HongCau_0
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 133
+        width: 819
+        height: 803
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab48a129d68cc46e99187c51fa3e1559
+      internalID: 1262072550796382414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ea1668395fd10434bbcb4e1b65aa134f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      D_HongCau_0: 1262072550796382414
+      D_HongCau_1: -859853114886562434
+      D_HongCau_10: -7086203614490086931
+      D_HongCau_11: 2407259849049424719
+      D_HongCau_12: -9126052579218635519
+      D_HongCau_13: -3268011053831060664
+      D_HongCau_14: 9111417411694078132
+      D_HongCau_15: -7403799322950736205
+      D_HongCau_16: -2485223353547750971
+      D_HongCau_17: 8731226622206323862
+      D_HongCau_18: -2249257843984497912
+      D_HongCau_19: 3585941183357604118
+      D_HongCau_2: 8760343521957142451
+      D_HongCau_20: -5398182055852766316
+      D_HongCau_21: -2029568664477456990
+      D_HongCau_22: -614583746969689844
+      D_HongCau_23: -5418719808303127239
+      D_HongCau_24: 372428203888830264
+      D_HongCau_25: 9156986392703652422
+      D_HongCau_26: -540610356987117548
+      D_HongCau_3: -5556965128348718593
+      D_HongCau_4: -4995240894359562615
+      D_HongCau_5: -5134641733011748502
+      D_HongCau_6: -1745850436999627946
+      D_HongCau_7: -8687334306072025414
+      D_HongCau_8: -5493411541379983476
+      D_HongCau_9: 1598146833065222649
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

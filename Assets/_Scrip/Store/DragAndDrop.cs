@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
     // 🎯 Kéo thả
+    [Header("Căn chỉnh vị trí")]
+    [Tooltip("Điều chỉnh số này để nhân vật đứng chính giữa ô. X xê dịch trái/phải, Y xê dịch lên/xuống")]
+    public Vector3 placementOffset = new Vector3(-1.03f, 0.54f, 0f); // Giá trị mặc định hoàn hảo
     private Vector3 offset;               // Khoảng cách giữa chuột và quân cờ
     private bool isDragging = false;      // Đang kéo hay không
     private Vector2 previousPosition;     // Vị trí trước đó (dùng để hoàn tác)
@@ -63,7 +66,8 @@ public class DragAndDrop : MonoBehaviour
             if (isBuy)
             {
                 Debug.Log("🗑️ Tướng bị huỷ do thả vào vùng huỷ - Hoàn tiền: " + price);
-                GoldManager.Instance.AddGold(price);
+                DestroyUnitTrigger.isOverDestroyZone = false;
+                TrashSellAnimation.Play(transform.position, price);
                 Destroy(gameObject);
                 return;
             }
@@ -117,9 +121,12 @@ public class DragAndDrop : MonoBehaviour
             return;
         }
 
-        // ✅ Đặt thành công
-        transform.position = closestTile.position;
-        previousPosition = closestTile.position;
+        // ✅ Lấy vị trí của Tile và cộng thêm độ lệch để căn vào giữa ô
+        Vector3 targetPos = closestTile.position + placementOffset;
+
+        targetPos.z = 0;
+        transform.position = targetPos;
+        previousPosition = targetPos;
         isPlacedOnBoard = true;
 
         // Nếu vừa mua → trừ tiền

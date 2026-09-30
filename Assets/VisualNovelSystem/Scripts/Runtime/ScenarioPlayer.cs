@@ -15,6 +15,11 @@ public class ScenarioPlayer : MonoBehaviour
     public TextMeshProUGUI descriptionTextUI;
     public Image illustrationImage;
     public UnityEngine.Video.VideoPlayer bgVideoPlayer;
+
+    [Header("Character UI References")]
+    public Image characterPoseImage;
+    public Image characterExpressionImage;
+    public Image characterHairImage;
     
     public Transform choicesContainer; // Nơi chứa các nút (Dùng Vertical Layout Group)
     public GameObject choiceButtonPrefab; // Prefab của một nút chọn
@@ -25,8 +30,33 @@ public class ScenarioPlayer : MonoBehaviour
     private List<GameObject> activeButtons = new List<GameObject>();
     private Dictionary<string, SituationData> situationLookup = new Dictionary<string, SituationData>();
     private Coroutine playSituationRoutine;
+    private Coroutine videoTransitionRoutine;
+
+    private UnityEngine.Video.VideoPlayer activeVideoPlayer;
+    private UnityEngine.Video.VideoPlayer standbyVideoPlayer;
 
     private bool advanceConsumedThisFrame = false;
+
+    private void UpdateCharacterDisplay(Sprite pose, Sprite expression, Sprite hair)
+    {
+        if (characterPoseImage != null && pose != null)
+        {
+            characterPoseImage.sprite = pose;
+            characterPoseImage.gameObject.SetActive(true);
+        }
+
+        if (characterExpressionImage != null && expression != null)
+        {
+            characterExpressionImage.sprite = expression;
+            characterExpressionImage.gameObject.SetActive(true);
+        }
+
+        if (characterHairImage != null && hair != null)
+        {
+            characterHairImage.sprite = hair;
+            characterHairImage.gameObject.SetActive(true);
+        }
+    }
 
     private void Update()
     {
@@ -44,9 +74,10 @@ public class ScenarioPlayer : MonoBehaviour
         advanceConsumedThisFrame = true;
     }
 
-    private void Start()
+    private void InitVideoPlayers()
     {
-        // Tự động tạo Video Player nếu chưa gán
+        if (activeVideoPlayer != null && standbyVideoPlayer != null) return;
+
         if (bgVideoPlayer == null)
         {
             GameObject vpObj = new GameObject("AutoVideoPlayer");
@@ -60,9 +91,38 @@ public class ScenarioPlayer : MonoBehaviour
             }
         }
 
-        if (bgVideoPlayer != null)
+        activeVideoPlayer = bgVideoPlayer;
+        activeVideoPlayer.waitForFirstFrame = true;
+        activeVideoPlayer.skipOnDrop = true;
+
+        if (standbyVideoPlayer == null)
         {
-            bgVideoPlayer.gameObject.SetActive(false);
+            GameObject standbyObj = Instantiate(activeVideoPlayer.gameObject, activeVideoPlayer.transform.parent);
+            standbyObj.name = activeVideoPlayer.gameObject.name + "_Standby";
+            
+            // Giữ vị trí Canvas Hierarchy ngay sau activeVideoPlayer (trước TimeText/DescText/ChoicesContainer)
+            int activeIndex = activeVideoPlayer.transform.GetSiblingIndex();
+            standbyObj.transform.SetSiblingIndex(activeIndex + 1);
+
+            standbyVideoPlayer = standbyObj.GetComponent<UnityEngine.Video.VideoPlayer>();
+            if (standbyVideoPlayer == null)
+            {
+                standbyVideoPlayer = standbyObj.AddComponent<UnityEngine.Video.VideoPlayer>();
+            }
+            standbyVideoPlayer.playOnAwake = false;
+            standbyVideoPlayer.waitForFirstFrame = true;
+            standbyVideoPlayer.skipOnDrop = true;
+            standbyVideoPlayer.gameObject.SetActive(false);
+        }
+    }
+
+    private void Start()
+    {
+        InitVideoPlayers();
+
+        if (activeVideoPlayer != null)
+        {
+            activeVideoPlayer.gameObject.SetActive(false);
         }
 
         if (StomachDayData.Instance != null)
@@ -125,6 +185,9 @@ public class ScenarioPlayer : MonoBehaviour
                 }
             }
 
+            // Cập nhật Biểu cảm/Tư thế nhân vật mặc định của Tình huống
+            UpdateCharacterDisplay(sit.characterPose, sit.characterExpression, sit.characterHair);
+
             // Cập nhật Text
             if(timeTextUI != null) timeTextUI.text = sit.timeText;
 
@@ -146,34 +209,81 @@ public class ScenarioPlayer : MonoBehaviour
         }
     }
 
-    private void PlayVideo(UnityEngine.Video.VideoClip clip, bool loop)
+    private System.Collections.IEnumerator PlayVideoCoroutine(UnityEngine.Video.VideoClip clip, bool loop)
     {
-        if (bgVideoPlayer == null) return;
+        if (clip == null) yield break;
 
-        if (clip == null)
+        InitVideoPlayers();
+
+        // 1. If active player is already playing this exact clip, just update looping and continue seamlessly!
+        if (activeVideoPlayer != null && activeVideoPlayer.clip == clip && activeVideoPlayer.isPlaying)
         {
-            // Do NOT stop the video if clip is null.
-            // This maintains continuous video architecture across situations.
-            return;
+            activeVideoPlayer.isLooping = loop;
+            yield break;
         }
 
-        bgVideoPlayer.gameObject.SetActive(true);
-        if (bgVideoPlayer.clip != clip || !bgVideoPlayer.isPlaying)
+        // 2. Prepare new clip on standby player in the background
+        if (standbyVideoPlayer == null) yield break;
+
+        // Đảm bảo vị trí Canvas sibling luôn nằm ngay dưới activeVideoPlayer (trước TimeText/DescText/ChoicesContainer)
+        if (activeVideoPlayer != null)
         {
-            bgVideoPlayer.clip = clip;
-            bgVideoPlayer.isLooping = loop;
-            bgVideoPlayer.Play();
+            standbyVideoPlayer.transform.SetSiblingIndex(activeVideoPlayer.transform.GetSiblingIndex() + 1);
+        }
+
+        standbyVideoPlayer.gameObject.SetActive(true);
+        standbyVideoPlayer.clip = clip;
+        standbyVideoPlayer.isLooping = loop;
+        standbyVideoPlayer.waitForFirstFrame = true;
+        standbyVideoPlayer.Prepare();
+
+        // Wait until standby player finishes preparing (with a 3-second safety timeout)
+        float timeout = 3.0f;
+        float elapsed = 0f;
+        while (!standbyVideoPlayer.isPrepared && elapsed < timeout)
+        {
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // 3. Play standby player once prepared
+        standbyVideoPlayer.Play();
+
+        // Overlap buffer: Keep old video playing for 0.2 seconds while standby video warms up to ensure zero stutter
+        if (activeVideoPlayer != null && activeVideoPlayer.isPlaying)
+        {
+            yield return new WaitForSeconds(0.2f);
         }
         else
         {
-            bgVideoPlayer.isLooping = loop;
+            yield return null;
         }
+
+        // 4. Stop old active player and hide it
+        if (activeVideoPlayer != null && activeVideoPlayer != standbyVideoPlayer)
+        {
+            activeVideoPlayer.Stop();
+            activeVideoPlayer.gameObject.SetActive(false);
+        }
+
+        // 5. Swap active and standby player references
+        var temp = activeVideoPlayer;
+        activeVideoPlayer = standbyVideoPlayer;
+        standbyVideoPlayer = temp;
+        bgVideoPlayer = activeVideoPlayer;
+    }
+
+    private void PlayVideo(UnityEngine.Video.VideoClip clip, bool loop)
+    {
+        if (clip == null) return;
+        if (videoTransitionRoutine != null) StopCoroutine(videoTransitionRoutine);
+        videoTransitionRoutine = StartCoroutine(PlayVideoCoroutine(clip, loop));
     }
 
     private System.Collections.IEnumerator PlaySituationCoroutine(SituationData sit)
     {
-        // 1. Play Dialogue Video (Continues if clip is null or unchanged)
-        PlayVideo(sit.dialogueVideo, sit.loopDialogueVideo);
+        // 1. Play Dialogue Video (Continues if clip is null or unchanged, prepares asynchronously without white flash)
+        yield return StartCoroutine(PlayVideoCoroutine(sit.dialogueVideo, sit.loopDialogueVideo));
 
         // 2. Play Dialogues
         List<DialogueLineData> lines = sit.dialogueLines;
@@ -275,8 +385,16 @@ public class ScenarioPlayer : MonoBehaviour
         isProcessingChoice = true;
         if (choicesContainer != null) choicesContainer.gameObject.SetActive(false);
 
-        // Đợi theo cài đặt delay
-        yield return new WaitForSeconds(sit.autoTransitionDelay);
+        // Bắt đầu bật video sau trước khoảng 0.2s trước khi kết thúc delay
+        float delay = sit.autoTransitionDelay;
+        if (delay > 0.2f)
+        {
+            yield return new WaitForSeconds(delay - 0.2f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(delay);
+        }
 
         isProcessingChoice = false;
         ExecuteTransition(sit.autoTargetType, sit.autoTargetGuid);
@@ -288,10 +406,13 @@ public class ScenarioPlayer : MonoBehaviour
 
         if (choicesContainer != null) choicesContainer.gameObject.SetActive(false);
 
-        // Play old animation video (if any)
+        // Cập nhật biểu cảm/tư thế nhân vật tương ứng với lựa chọn này (nếu có gán)
+        UpdateCharacterDisplay(choice.characterPose, choice.characterExpression, choice.characterHair);
+
+        // Play animation video (if any)
         if (choice.videoClip != null)
         {
-            PlayVideo(choice.videoClip, false);
+            yield return StartCoroutine(PlayVideoCoroutine(choice.videoClip, false));
         }
 
         if (onChoiceImpact != null)
@@ -302,8 +423,16 @@ public class ScenarioPlayer : MonoBehaviour
             }
         }
 
-        // Đợi một khoảng thời gian trước khi tải câu hỏi tiếp theo
-        yield return new WaitForSeconds(choice.delayAfterChoice);
+        // Đợi theo delay sau lựa chọn (bật cảnh sau sớm 0.2s)
+        float delay = choice.delayAfterChoice;
+        if (delay > 0.2f)
+        {
+            yield return new WaitForSeconds(delay - 0.2f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(delay);
+        }
 
         isProcessingChoice = false;
         ExecuteTransition(choice.targetType, choice.targetGuid);

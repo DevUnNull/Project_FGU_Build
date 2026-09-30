@@ -42,11 +42,16 @@ public class ScenarioEditor : Editor
         for (int i = 0; i < situationsProp.arraySize; i++)
         {
             SerializedProperty sitProp = situationsProp.GetArrayElementAtIndex(i);
-            
             EditorGUILayout.BeginVertical("box");
             
             EditorGUILayout.BeginHorizontal();
-            sitProp.isExpanded = EditorGUILayout.Foldout(sitProp.isExpanded, $"Situation {i + 1}: {sitProp.FindPropertyRelative("timeText").stringValue}", true);
+            string sitId = sitProp.FindPropertyRelative("situationId").stringValue;
+            string timeStr = sitProp.FindPropertyRelative("timeText").stringValue;
+            string headerText = !string.IsNullOrEmpty(sitId)
+                ? $"Situation {i + 1}: {sitId}" + (!string.IsNullOrEmpty(timeStr) ? $" [{timeStr}]" : "")
+                : $"Situation {i + 1}: {timeStr}";
+
+            sitProp.isExpanded = EditorGUILayout.Foldout(sitProp.isExpanded, headerText, true);
             if (GUILayout.Button("X", GUILayout.Width(20)))
             {
                 situationsProp.DeleteArrayElementAtIndex(i);
@@ -63,6 +68,7 @@ public class ScenarioEditor : Editor
                 EditorGUI.EndDisabledGroup();
                 
                 EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("situationId"), new GUIContent("Situation ID"));
+                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("timeText"), new GUIContent("Time Text (e.g. 07:30)"));
 
                 EditorGUILayout.LabelField("Background / Media", EditorStyles.boldLabel);
                 EditorGUILayout.BeginVertical("box");
@@ -77,6 +83,14 @@ public class ScenarioEditor : Editor
                 {
                     EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("loopChoiceVideo"), new GUIContent("Loop Choice Video"));
                 }
+                EditorGUILayout.EndVertical();
+
+                EditorGUILayout.Space(5);
+                EditorGUILayout.LabelField("Character Sprites (Situation Default)", EditorStyles.boldLabel);
+                EditorGUILayout.BeginVertical("box");
+                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterPose"), new GUIContent("Pose (Body)"));
+                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterExpression"), new GUIContent("Expression (Face/Eyes)"));
+                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterHair"), new GUIContent("Hair (Optional)"));
                 EditorGUILayout.EndVertical();
 
                 EditorGUILayout.Space();
@@ -158,6 +172,12 @@ public class ScenarioEditor : Editor
                             EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("targetGuid"), new GUIContent("Target GUID"));
                         }
 
+                        EditorGUILayout.Space(5);
+                        EditorGUILayout.LabelField("Character Expression On Choice", EditorStyles.boldLabel);
+                        EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterPose"), new GUIContent("Choice Pose"));
+                        EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterExpression"), new GUIContent("Choice Expression"));
+                        EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterHair"), new GUIContent("Choice Hair (Optional)"));
+
                         SerializedProperty impactsProp = choiceProp.FindPropertyRelative("impacts");
                         for (int k = 0; k < impactsProp.arraySize; k++)
                         {
@@ -212,6 +232,9 @@ public class ScenarioEditor : Editor
             newSit.FindPropertyRelative("loopDialogueVideo").boolValue = false;
             newSit.FindPropertyRelative("choiceVideo").objectReferenceValue = null;
             newSit.FindPropertyRelative("loopChoiceVideo").boolValue = true;
+            newSit.FindPropertyRelative("characterPose").objectReferenceValue = null;
+            newSit.FindPropertyRelative("characterExpression").objectReferenceValue = null;
+            newSit.FindPropertyRelative("characterHair").objectReferenceValue = null;
             newSit.FindPropertyRelative("autoTargetGuid").stringValue = "";
             newSit.FindPropertyRelative("autoTargetType").enumValueIndex = (int)TargetType.Situation;
             newSit.FindPropertyRelative("autoTransitionDelay").floatValue = 3.0f;

@@ -47,6 +47,12 @@ public class ChoiceData
     public string choiceText;
     public float delayAfterChoice = 2.0f;
     public UnityEngine.Video.VideoClip videoClip;
+    
+    [Header("Character Expression / Pose")]
+    public Sprite characterExpression; // Biểu cảm (VD: e1, e2, e3, e4)
+    public Sprite characterPose;       // Tư thế (VD: pose 1, pose 2)
+    public Sprite characterHair;       // Mái tóc (VD: mái.png)
+
     public TargetType targetType = TargetType.Situation;
     public string targetGuid; // Trỏ tới Scene tiếp theo
     public List<ImpactData> impacts = new List<ImpactData>();
@@ -67,6 +73,11 @@ public class SituationData
     public bool loopDialogueVideo = false;
     public UnityEngine.Video.VideoClip choiceVideo;
     public bool loopChoiceVideo = true;
+
+    [Header("Character Default Sprites")]
+    public Sprite characterExpression; // Biểu cảm khuôn mặt
+    public Sprite characterPose;       // Tư thế nhân vật
+    public Sprite characterHair;       // Mái tóc
 
     [Header("Dialogues")]
     [HideInInspector]

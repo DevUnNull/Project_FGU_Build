@@ -1,0 +1,812 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dade200f2769e438aaae3b11f362ba1b, type: 3}
+  m_Name: Day1_v1
+  m_EditorClassIdentifier: Assembly-CSharp::ScenarioData
+  entryGuid: 274d48dc-bf00-4296-9c60-aec0a5a6ee68
+  situations:
+  - guid: 26c6e180-e099-4179-a75c-69408c7dca75
+    situationId: "C\u1EA2NH 1: 06:30 S\xC1NG \u2013 TI\u1EBENG CHU\xD4NG QU\xC1I
+      \xC1C"
+    editorPosition: {x: -275.5, y: -66}
+    timeText: 6:30
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 32900000, guid: 483593db8960d479eaf5d75d65e9f5f4, type: 3}
+    loopDialogueVideo: 1
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "M\u1EDBi 6 r\u01B0\u1EE1i th\xF4i \xE1? Th\u1EC1, c\u1EA3m gi\xE1c nh\u01B0
+        m\u1EDBi nh\u1EAFm m\u1EAFt \u0111\u01B0\u1EE3c 5 ph\xFAt... \u0110\u1EA7u
+        n\u1EB7ng nh\u01B0 \u0111eo \u0111\xE1"
+      advanceMode: 0
+      displayDuration: 1
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "B\u1EADt d\u1EADy lu\xF4n, v\u1EB7n ng\u01B0\u1EDDi t\u1EADp v\xE0i
+        \u0111\u1ED9ng t\xE1c d\xE3n c\u01A1"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: -8674146233321178474, guid: 97481dada74994a01992453a703988de, type: 3}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: aad16d19-bcb0-4b78-a96c-1babbbab5e2b
+      impacts: []
+    - choiceText: "T\u1EAFt chu\xF4ng, tr\xF9m ch\u0103n ng\u1EE7 ti\u1EBFp: \"Th\xEAm
+        10 ph\xFAt n\u1EEFa th\xF4i...\""
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 2dbefcc2-0b56-4347-9185-599e039147d5
+      impacts: []
+    - choiceText: "C\u1EA3 \u0111\xEAm qua c\xE0y deadline th\u1EE9c tr\u1EAFng,
+        gi\u1EDD kh\xF4ng ng\u1EE7 n\u1ED5i n\u1EEFa"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 57114a41-4866-4b84-a34e-c0a854b12c66
+      impacts: []
+  - guid: abcfe83e-d035-44e9-b6b7-c1b66049b035
+    situationId: "NH\xC1NH 2A (N\u1EBFu ch\u1ECDn 1A - D\u1EADy s\u1EDBm)"
+    editorPosition: {x: 425, y: -347.5}
+    timeText: 7:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "C\xF2n s\u1EDBm ch\xE1n. N\u1EA1p c\xE1i g\xEC v\xE0o b\u1EE5ng \u0111\xE3
+        r\u1ED3i t\xEDnh ti\u1EBFp."
+      advanceMode: 0
+      displayDuration: 1
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "Gh\xE9 qu\xE1n ph\u1EDF \u0111\u1EA7u h\u1EBBm, g\u1ECDi b\xE1t
+        ph\u1EDF t\xE1i + u\u1ED1ng c\u1ED1c tr\xE0 \u0111\xE1"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 54d75d55-6d15-406f-a0f9-390cb80037aa
+      impacts: []
+    - choiceText: "T\u1EA1t v\xE0o qu\xE1n c\xE0 ph\xEA l\xE0m ly b\u1EA1c x\u1EC9u
+        + g\u1EB7m c\xE1i b\xE1nh m\xEC"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 4cd68dce-3ed0-4fe2-9f15-acf7baa9df3f
+      impacts: []
+    - choiceText: "\u0110i b\u1ED9 th\u1EB3ng t\u1EDBi tr\u01B0\u1EDDng, v\u1EEBa
+        \u0111i v\u1EEBa t\u1EADn h\u01B0\u1EDFng kh\xF4ng kh\xED"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 8e9ae33a-4fda-4a10-93f2-82501f3bd1db
+      impacts: []
+  - guid: aad16d19-bcb0-4b78-a96c-1babbbab5e2b
+    situationId: "1A: tho\u1EA1i"
+    editorPosition: {x: 194, y: -143}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Th\xF4i d\u1EADy! N\u1EB1m r\xE1ng t\xED n\u1EEFa l\xE0 tr\u1EC5 m\u1EB9
+        bu\u1ED5i thuy\u1EBFt tr\xECnh."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: abcfe83e-d035-44e9-b6b7-c1b66049b035
+    choices: []
+  - guid: 2dbefcc2-0b56-4347-9185-599e039147d5
+    situationId: "1B : Tho\u1EA1i"
+    editorPosition: {x: 194, y: -40}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 32900000, guid: 49b6fbb0cb7ed48dcbd9bec75a13b737, type: 3}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Ng\u1EE7 th\xEAm 10 ph\xFAt n\u1EEFa th\xF4i, ch\u1EA3 ch\u1EBFt ai
+        \u0111\xE2u.."
+      advanceMode: 0
+      displayDuration: 4
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 983d212d-a24f-4e92-ab1b-183a15464b83
+    choices: []
+  - guid: 57114a41-4866-4b84-a34e-c0a854b12c66
+    situationId: "1C : tho\u1EA1i"
+    editorPosition: {x: 194, y: 67.5}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Th\u1EE9c t\u1EDBi 5h s\xE1ng r\u1ED3i ng\u1EE7 l\xE0m qu\xE1i g\xEC
+        n\u1EEFa... D\u1EADy lu\xF4n cho xong."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 3d760291-ad05-4094-ad62-e2672f141bd1
+    choices: []
+  - guid: 54d75d55-6d15-406f-a0f9-390cb80037aa
+    situationId: "2.A.A : tho\u1EA1i"
+    editorPosition: {x: 908, y: -472}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "C\xF4 \u01A1i, cho con b\xE1t t\xE1i n\u1EA1m nhi\u1EC1u h\xE0nh, th\xEAm
+        c\u1ED1c tr\xE0 \u0111\xE1 b\u1EF1 nha!"
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 326a2527-93de-4ff1-9c07-4751f62b272a
+    choices: []
+  - guid: 4cd68dce-3ed0-4fe2-9f15-acf7baa9df3f
+    situationId: "2.A.B : tho\u1EA1i"
+    editorPosition: {x: 908, y: -371.5}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Cho em ly b\u1EA1c x\u1EC9u nhi\u1EC1u s\u1EEFa nh\xE9 anh \u01A1i,
+        th\u1EE9c t\u1EC9nh t\xE2m h\u1ED3n c\xE1i."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 326a2527-93de-4ff1-9c07-4751f62b272a
+    choices: []
+  - guid: 8e9ae33a-4fda-4a10-93f2-82501f3bd1db
+    situationId: "2.A.C : tho\u1EA1i"
+    editorPosition: {x: 908, y: -270.5}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "\u0110i b\u1ED9 cho gi\xE3n g\xE2n gi\xE3n c\u1ED1t, \u0111\u1EE1 t\u1ED1n
+        ti\u1EC1n g\u1EEDi xe."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 326a2527-93de-4ff1-9c07-4751f62b272a
+    choices: []
+  - guid: fe098776-276a-4894-8da7-b85fb72daa29
+    situationId: "NH\xC1NH 2B (N\u1EBFu ch\u1ECDn 1B - Ng\u1EE7 n\u01B0\u1EDBng tr\u1EC5
+      gi\u1EDD)"
+    editorPosition: {x: 519.5, y: -116.5}
+    timeText: 7:15
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 32900000, guid: d0ef6c7aac0154b7b85fddf8b0977779, type: 3}
+    loopDialogueVideo: 1
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "m\xECnh c\xF3 n\xEAn \u0103n n\u1EEFa kh\xF4ng nh\u1EC9 ?"
+      advanceMode: 0
+      displayDuration: 0
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "Nh\u1ECBn \u0103n s\xE1ng, v\u1ECDt xe ch\u1EA1y b\xE1n s\u1ED1ng
+        b\xE1n ch\u1EBFt"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 4460cf6f-c76f-4b4e-95ef-6db71247d943
+      impacts: []
+    - choiceText: "Mua v\u1ED9i \u1ED5 b\xE1nh m\xEC kh\xF4 kh\u1ED1c l\u1EC1 \u0111\u01B0\u1EDDng,
+        v\u1EEBa ch\u1EA1y xe v\u1EEBa g\u1EB7m"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 2b07c457-ab11-4a1e-8812-c87c29fa3390
+      impacts: []
+  - guid: 4460cf6f-c76f-4b4e-95ef-6db71247d943
+    situationId: 2.B.A
+    editorPosition: {x: 908, y: -155}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "\u0102n u\u1ED1ng g\xEC n\u1EEFa! "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Tr\u1EC5 5 ph\xFAt l\xE0 \xF4ng th\u1EA7y g\u1EA1ch t\xEAn kh\u1ECFi
+        danh s\xE1ch li\u1EC1n!"
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 326a2527-93de-4ff1-9c07-4751f62b272a
+    choices: []
+  - guid: 2b07c457-ab11-4a1e-8812-c87c29fa3390
+    situationId: 2.B.B
+    editorPosition: {x: 908, y: -50.5}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Ch\xFA \u01A1i v\u1EE9t con \u1ED5 b\xE1nh m\xEC tr\u1EE9ng nhanh v\u1EDBi! "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "V\u1EEBa \u0111i v\u1EEBa g\u1EB7m t\u1EA1m v\u1EADy."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 326a2527-93de-4ff1-9c07-4751f62b272a
+    choices: []
+  - guid: 3d760291-ad05-4094-ad62-e2672f141bd1
+    situationId: "NH\xC1NH 2C (N\u1EBFu ch\u1ECDn 1C - Th\u1EE9c tr\u1EAFng \u0111\xEAm)"
+    editorPosition: {x: 425, y: 77}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "\u0110\u1EA7u b\u1EE9t r\u1EE9t v\xE3i... M\u1EAFt c\u1EE9 ra d\u1EA1i"
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Gi\u1EDD m\xE0 kh\xF4ng n\u1EA1p ch\u1EA5t k\xEDch th\xEDch th\xEC g\u1EE5c
+        t\u1EA1i ch\u1ED7 m\u1EA5t."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "N\u1ED1c ngay 1 lon N\u01B0\u1EDBc T\u0103ng L\u1EF1c l\u1EA1nh
+        ng\u1EAFt ng\u1EE5m l\u1EDBn"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: aeccf406-d1c1-4f21-aa6a-10ab6badeeab
+      impacts: []
+    - choiceText: "L\xE0m c\u1ED1c C\xE0 Ph\xEA \u0110en \u0110\xE1 kh\xF4ng \u0111\u01B0\u1EDDng
+        th\u1EADt \u0111\u1EADm"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 22d3fb54-3003-4cf3-a19e-fcb859f9a121
+      impacts: []
+  - guid: aeccf406-d1c1-4f21-aa6a-10ab6badeeab
+    situationId: 2.C.A
+    editorPosition: {x: 908, y: 77}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "L\xE0m lon Coca n\xF3 l\u1EA1i l\xE0 ngon lu\xF4n ."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 326a2527-93de-4ff1-9c07-4751f62b272a
+    choices: []
+  - guid: 22d3fb54-3003-4cf3-a19e-fcb859f9a121
+    situationId: 2.C.B
+    editorPosition: {x: 908, y: 167}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "L\xE0m C\u1ED1c C\xE0 ph\xEA \u0111i ."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 326a2527-93de-4ff1-9c07-4751f62b272a
+    choices: []
+  - guid: 326a2527-93de-4ff1-9c07-4751f62b272a
+    situationId: "C\u1EA2NH 3: 11:30 TR\u01AFA \u2013 L\u1EDAP H\u1ECCC & C\u1EA2NH
+      B\xC1O D\u1ECACH B\u1EC6NH"
+    editorPosition: {x: 1193.5, y: -66}
+    timeText: 11:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Ho\xE0ng: \"A l\xF4 con gi\u1EDDi! Nh\xECn m\u1EB7t m\xE0y r\u0169 r\u01B0\u1EE3i
+        nh\u01B0 c\xE1i m\u1EC1n r\xE1ch v\u1EADy? T\u1ED1i qua l\u1EA1i c\xE0y x\u1EBFp
+        h\u1EA1ng \xE0?"
+      advanceMode: 0
+      displayDuration: 5
+    - text: "T\xF4i : C\xE0y deadline ch\u1EE9 c\xE0y g\xEC "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "T\xF4i : M\xE0 sao h\xF4m nay l\u1EDBp v\u1EAFng th\u1EBF?"
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Ho\xE0ng: \"M\xE0y kh\xF4ng bi\u1EBFt \xE0? "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Ho\xE0ng: M\u1EA5y ph\xF2ng tr\u1ECD khu x\xF3m ch\xF9a \u0111ang b\xF9ng
+        d\u1ECBch C\xFAm A v\u1EDBi vi khu\u1EA9n \u0111\u01B0\u1EDDng h\xF4 h\u1EA5p
+        k\xECa! "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Ho\xE0ng: \"Th\u1EB1ng Tu\u1EA5n v\u1EDBi th\u1EB1ng H\xF9ng g\u1EE5c
+        t\u1EEB s\xE1ng nay, s\u1ED1t cao \u0111\xF9ng \u0111\xF9ng ph\u1EA3i nh\u1EADp
+        vi\u1EC7n r\u1ED3i \u0111\u1EA5y."
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Ho\xE0ng: Nghe b\u1EA3o con virus \u0111\u1EE3t n\xE0y bi\u1EBFn d\u1ECB
+        g\u1EAFt l\u1EAFm!\""
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "\u0110eo kh\u1EA9u trang v\xE0o ngay, t\xF2 m\xF2 h\u1ECFi k\u1EF9
+        tri\u1EC7u ch\u1EE9ng \u0111\u1EC3 \u0111\u1EC1 ph\xF2ng"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 7c866e15-c6c8-4b0a-814f-0a4455f70b82
+      impacts: []
+    - choiceText: "C\u01B0\u1EDDi g\u1EA1t \u0111i, th\xE1o c\xFAc \xE1o cho tho\xE1ng"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: c791a9bf-4942-4ec7-b3a7-4f98de3c7120
+      impacts: []
+  - guid: 7c866e15-c6c8-4b0a-814f-0a4455f70b82
+    situationId: 3.A
+    editorPosition: {x: 1677.5, y: -115.5}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "T\xF4i: \"Gh\xEA v\u1EADy? Tri\u1EC7u ch\u1EE9ng sao m\xE0y? "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "T\xF4i: C\xF3 s\u1ED1t r\xE9t hay ho \u0111\u1EDDm g\xEC kh\xF4ng \u0111\u1EC3
+        tao bi\u1EBFt \u0111\u01B0\u1EDDng tr\xE1nh?"
+      advanceMode: 0
+      displayDuration: 3
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: cdcf2333-efdd-48df-873d-5c7e494ff8f7
+    choices: []
+  - guid: c791a9bf-4942-4ec7-b3a7-4f98de3c7120
+    situationId: 3.B
+    editorPosition: {x: 1677.5, y: -12}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "T\xF4i: G\xEC m\xE0 nghi\xEAm tr\u1ECDng h\xF3a. "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "T\xF4i: Tao \u0111\u1EC1 kh\xE1ng tr\xE2u b\xF2 quen r\u1ED3i, ba c\xE1i
+        c\xFAm xo\xE0ng n\xE0y tu\u1ED5i g\xEC!"
+      advanceMode: 0
+      displayDuration: 3
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: cdcf2333-efdd-48df-873d-5c7e494ff8f7
+    choices: []
+  - guid: cdcf2333-efdd-48df-873d-5c7e494ff8f7
+    situationId: "C\u1EA2NH 4: 18:30 CHI\u1EC0U \u2013 T\xCDCH T\u1EE4 \u0110\u1ED8C
+      T\u1ED0 & L\u1EF0A CH\u1ECCN B\u1EEEA T\u1ED0I"
+    editorPosition: {x: 1903, y: -66}
+    timeText: 18:30
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Xong m\u1ED9t ng\xE0y... C\u01A1 th\u1EC3 m\u1ECFi \u1EEB h\u1EEB. "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "B\u1EE5ng m\xECnh h\u01A1i \u0111au sao \u1EA5y nh\u1EC9 ?"
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Tin nh\u1EAFn: T\u1ED1i nay \u0111i \u0103n l\u1EA9u n\u01B0\u1EDBng
+        bia h\u01A1i m\u1EEBng \u0111\u1ED3 \xE1n xong kh\xF4ng m\xE0y \u01A1i?"
+      advanceMode: 0
+      displayDuration: 4
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: "T\u1EEB ch\u1ED1i nh\u1EADu, t\u1EF1 n\u1EA5u c\u01A1m nh\xE0
+        \u0103n nhi\u1EC1u rau + u\u1ED1ng nhi\u1EC1u n\u01B0\u1EDBc r\u1ED3i ng\u1EE7
+        s\u1EDBm"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: b26c1501-c4c0-47a3-8c14-6e01dd1e0ab7
+      impacts: []
+    - choiceText: "X\xE1ch xe \u0111i \u0103n \u0111\u1ED3 n\u01B0\u1EDBng l\u1EC1
+        \u0111\u01B0\u1EDDng + n\u1ED1c bia/n\u01B0\u1EDBc ng\u1ECDt c\xF3 gas t\u1EDBi
+        khuya"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 1e39bf40-1d0e-4201-823f-1c4a82489c48
+      impacts: []
+    - choiceText: "T\u1EEB ch\u1ED1i + B\u1ECF b\u1EEFa t\u1ED1i, ti\u1EBFp t\u1EE5c
+        th\u1EE9c c\xE0y game / l\xE0m d\u1EF1 \xE1n xuy\xEAn \u0111\xEAm"
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      targetType: 0
+      targetGuid: 6ef969e5-dc98-4821-895b-bcbc77737c66
+      impacts: []
+  - guid: b26c1501-c4c0-47a3-8c14-6e01dd1e0ab7
+    situationId: 4.A
+    editorPosition: {x: 2442, y: -127.5}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "T\xF4i: \"Th\xF4i t\u1EE5i bay \u0111i \u0111i, tao m\u1EC7t qu\xE1."
+      advanceMode: 0
+      displayDuration: 2
+    - text: "T\xF4i: T\u1EF1 lu\u1ED9c \xEDt rau \u0103n r\u1ED3i \u0111i ng\u1EE7
+        s\u1EDBm ph\u1EE5c h\u1ED3i s\u1EE9c kh\u1ECFe."
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Tin nh\u1EAFn : c\xE1i th\u1EB1ng chuy\xEAn b\xF9ng k\xE8o n\xE0y."
+      advanceMode: 0
+      displayDuration: 2
+    - text: "T\xF4i : HAHA . Th\xF4i nh\xE9 b\u1ECDn m \u0111i \u0103n \u0111i ."
+      advanceMode: 0
+      displayDuration: 2
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 3faad3eb-69ff-40e6-9ebe-77c80a0c1d99
+    choices: []
+  - guid: 1e39bf40-1d0e-4201-823f-1c4a82489c48
+    situationId: 4.B
+    editorPosition: {x: 2442, y: -12}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Nam: \u0110i ch\u1EE9."
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Nam: X\xF5a \u0111i! L\xE0m v\xE0i ly bia v\u1EDBi d\u0129a d\u1ED3i
+        n\u01B0\u1EDBng cho \u1EA5m b\u1EE5ng r\u1ED3i t\xEDnh ti\u1EBFp!"
+      advanceMode: 0
+      displayDuration: 3
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 3faad3eb-69ff-40e6-9ebe-77c80a0c1d99
+    choices: []
+  - guid: 6ef969e5-dc98-4821-895b-bcbc77737c66
+    situationId: 4.C
+    editorPosition: {x: 2442, y: 90}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "T\xF4i : Th\xF4i !"
+      advanceMode: 0
+      displayDuration: 2
+    - text: "T\xF4i : \u0110ang d\u1EDF nay l\xE0m n\u1ED1t c\xE1i n\xE0y "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "Tin nh\u1EAFn : L\u1EA1i l\xFD do r\u1ED3i "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "T\xF4i : Th\xF4i b\u1ECDn m \u0103n \u0111i nh\xE9 ... x\xEDu t n\u1EA5u
+        m\xEC \u0103n."
+      advanceMode: 0
+      displayDuration: 3
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 3faad3eb-69ff-40e6-9ebe-77c80a0c1d99
+    choices: []
+  - guid: 3faad3eb-69ff-40e6-9ebe-77c80a0c1d99
+    situationId: "C\u1EA2NH 5: 23:30 \u0110\xCAM \u2013 B\xC1O \u0110\u1ED8NG SINH
+      H\u1ECCC"
+    editorPosition: {x: 2726, y: -66}
+    timeText: 23:30
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "Kh\u1EE5... C\xE1i o\xE1i g\xEC th\u1EBF n\xE0y?"
+      advanceMode: 0
+      displayDuration: 2
+    - text: "H\u1ECDng r\xE1t qu\xE1 v\u1EADy... "
+      advanceMode: 0
+      displayDuration: 2
+    - text: "\u0110\u1EA7u n\xF3ng nh\u01B0 ph\xE1t s\u1ED1t... M\u1EAFt kh\xF4ng
+        m\u1EDF n\u1ED5i n\u1EEFa r\u1ED3i..."
+      advanceMode: 0
+      displayDuration: 3
+    autoTransitionDelay: 0
+    autoTargetType: 1
+    autoTargetGuid: 
+    choices: []
+  - guid: 274d48dc-bf00-4296-9c60-aec0a5a6ee68
+    situationId: "Video_m\u1EDF c\u1EA3nh 1"
+    editorPosition: {x: -469.5, y: -66}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 32900000, guid: 8fe4b78a88d2f44baa61e609cd971c44, type: 3}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines: []
+    autoTransitionDelay: 7
+    autoTargetType: 0
+    autoTargetGuid: 26c6e180-e099-4179-a75c-69408c7dca75
+    choices: []
+  - guid: 983d212d-a24f-4e92-ab1b-183a15464b83
+    situationId: "2B: tho\u1EA1i"
+    editorPosition: {x: 342, y: -78}
+    timeText: 00:00
+    illustration: {fileID: 0}
+    dialogueVideo: {fileID: 32900000, guid: 94cfc44b2974f4835812b0423d207c22, type: 3}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - text: "M\xE1 n\xF3! 7h15 r\u1ED3i?! Xong phim tao r\u1ED3i!"
+      advanceMode: 0
+      displayDuration: 0
+    autoTransitionDelay: 3.7
+    autoTargetType: 0
+    autoTargetGuid: fe098776-276a-4894-8da7-b85fb72daa29
+    choices: []

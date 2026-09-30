@@ -26,11 +26,13 @@ public class HeroBase : MonoBehaviour
         // Base values
         float dmgMult = 1f;
         float hpMult = 1f;
+        float atkSpeedMult = 1f;
         
         if (StomachDayData.Instance != null)
         {
             dmgMult = StomachDayData.Instance.cellDamageMultiplier;
             hpMult = StomachDayData.Instance.mucosaHpMultiplier;
+            atkSpeedMult = StomachDayData.Instance.cellAttackSpeedMultiplier;
         }
 
         damage = Mathf.RoundToInt(heroData.damage * dmgMult);
@@ -40,6 +42,13 @@ public class HeroBase : MonoBehaviour
         speed = heroData.speed;
         price = heroData.price;
         
+        // Áp dụng Attack Speed vào Animator
+        Animator anim = GetComponent<Animator>();
+        if (anim != null)
+        {
+            anim.speed = atkSpeedMult;
+        }
+
         // Update UI khi vừa khởi tạo
         OnHealthChanged?.Invoke(health, maxHealth);
     }

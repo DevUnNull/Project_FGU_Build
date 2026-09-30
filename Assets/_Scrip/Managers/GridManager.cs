@@ -24,6 +24,12 @@ public class GridManager : MonoBehaviour
     private void Start()
     {
         SpawnToxinObstacles();
+
+        // Tự động gắn và hiển thị báo cáo ngày
+        if (gameObject.GetComponent<DayReportUI>() == null)
+        {
+            gameObject.AddComponent<DayReportUI>();
+        }
     }
 
     private void SpawnToxinObstacles()
