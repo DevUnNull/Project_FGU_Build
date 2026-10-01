@@ -13,6 +13,12 @@ public class LogicSpawner : MonoBehaviour
         {
             startGameButton.gameObject.SetActive(true); // hiện nút lúc đầu
             startGameButton.onClick.AddListener(OnStartGameClicked); // gán sự kiện click
+
+            // Tự động gắn hiệu ứng animation thở & nảy khi click cho nút StartGame
+            if (startGameButton.GetComponent<WaveButtonAnimation>() == null)
+            {
+                startGameButton.gameObject.AddComponent<WaveButtonAnimation>();
+            }
         }
         else
         {

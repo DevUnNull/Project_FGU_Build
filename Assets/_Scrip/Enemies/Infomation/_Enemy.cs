@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,7 +15,7 @@ public class _Enemy : EnemyBase
     private void Awake()
     {
         // Set dữ liệu từ enemyData
-        SetFromData(enemyData);
+        if (enemyData != null) SetFromData(enemyData);
         
         // Lấy EnemyPopUp component (có thể không có nếu chưa gắn)
         enemyPopUp = GetComponent<EnemyPopUp>();
@@ -24,6 +24,26 @@ public class _Enemy : EnemyBase
         if (rewardGold > 0)
         {
             currencyWorth = rewardGold;
+        }
+
+        // Auto-attach virus mechanics based on GameObject/Enemy Name
+        AutoAttachVirusMechanics();
+    }
+
+    private void AutoAttachVirusMechanics()
+    {
+        string n = gameObject.name.ToLower();
+        if (n.Contains("cuma") || n.Contains("cum"))
+        {
+            if (GetComponent<EnemyCumA>() == null) gameObject.AddComponent<EnemyCumA>();
+        }
+        else if (n.Contains("phecau") || n.Contains("phe"))
+        {
+            if (GetComponent<EnemyPheCau>() == null) gameObject.AddComponent<EnemyPheCau>();
+        }
+        else if (n.Contains("ecoli"))
+        {
+            if (GetComponent<EnemyEcoli>() == null) gameObject.AddComponent<EnemyEcoli>();
         }
     }
     
@@ -42,6 +62,13 @@ public class _Enemy : EnemyBase
         // Nếu máu <= 0 thì enemy chết
         if (health <= 0)
         {
+            // Nếu là Ecoli bị đánh bại -> Nổ tại chỗ
+            EnemyEcoli ecoli = GetComponent<EnemyEcoli>();
+            if (ecoli != null)
+            {
+                ecoli.ExplodeOnSpot();
+            }
+
             // Gọi hàm Die để xử lý khi enemy chết
             Die();
         }

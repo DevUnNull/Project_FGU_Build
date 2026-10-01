@@ -416,8 +416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroData: {fileID: 11400000, guid: b06e2c9e000ae408b83b82dff85842a0, type: 2}
   enemyName: 
-  damage: 0
-  health: 0
+  damage: 10
+  health: 100
   maxHealth: 0
   speed: 0
   price: 0
@@ -511,12 +511,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   detectionRange: 5
-  attackRange: 3.01
+  attackRange: 1.2
   attackRate: 1
   showRanges: 1
-  detectionType: 1
-  checkDirection: {x: 1, y: 0}
+  detectionType: 0
+  checkDirection: {x: 1.19, y: 0}
   checkHeight: 0.9
+  cooldownTimer: 0
 --- !u!114 &5989110381545470203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,6 +545,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1079149003832208284, guid: 04295723316409346bb62af418e3d72d, type: 3}
   firePoint: {fileID: 3067899023933404685}
   projectileSpeed: 10
+  allowFallbackBullet: 1
 --- !u!114 &610896071965483043
 MonoBehaviour:
   m_ObjectHideFlags: 0

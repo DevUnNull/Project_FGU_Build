@@ -55,6 +55,9 @@ public class HeroBase : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
+        // Nếu tướng chưa được mua/chưa đặt lên bàn (đang trong shop) -> Không thể bị mất máu/bị đánh
+        if (!DragAndDrop.IsUnitActiveOnBoard(gameObject)) return;
+
         health -= damageAmount;
         OnHealthChanged?.Invoke(health, maxHealth);
 

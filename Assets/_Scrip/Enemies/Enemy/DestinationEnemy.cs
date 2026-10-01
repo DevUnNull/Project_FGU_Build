@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 /// <summary>
 /// Xử lý khi enemy đến đích (Destination Point)
@@ -11,8 +11,15 @@ public class DestinationEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.GetComponent<_Enemy>() != null)
         {
+            // Nếu là E.coli -> Xử lý nổ để lại vũng Axit
+            var ecoli = other.GetComponent<EnemyEcoli>();
+            if (ecoli != null)
+            {
+                ecoli.ExplodeAndCreateAcid(other.transform.position);
+            }
+
             // Lấy WaypointMovement của enemy vừa chạm
             WaypointMovement enemyMovement = other.GetComponent<WaypointMovement>();
             if (enemyMovement != null)
@@ -20,7 +27,7 @@ public class DestinationEnemy : MonoBehaviour
                 enemyMovement.setCurrentIndex();
             }
 
-            // Trừ máu khi enemy đến đích (Single Responsibility - chỉ làm 1 việc)
+            // Trừ máu khi enemy đến đích
             if (LifeManager.Instance != null)
             {
                 LifeManager.Instance.TakeDamage(damagePerEnemy);
@@ -30,9 +37,11 @@ public class DestinationEnemy : MonoBehaviour
                 Debug.LogWarning("LifeManager.Instance is null! Không thể trừ máu.");
             }
 
-            // Sau đó return enemy về pool
-            // (Tracking đã được thực hiện trong MultiEnemyPool.ReturnToPool)
-            MultiEnemyPool.Instance.ReturnToPool(other.gameObject);
+            // Sau đó return enemy về pool nếu chưa bị return ở Ecoli
+            if (other.gameObject.activeInHierarchy)
+            {
+                MultiEnemyPool.Instance?.ReturnToPool(other.gameObject);
+            }
         }
     }
 }

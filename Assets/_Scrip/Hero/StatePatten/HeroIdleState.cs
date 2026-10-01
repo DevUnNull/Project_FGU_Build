@@ -35,7 +35,14 @@ public class HeroIdleState : IHeroState
     // Hàm được gọi mỗi frame khi đang ở Idle State
     public void UpdateState()
     {
-        // Tìm kiếm enemy gần nhất trong phạm vi nhìn thấy (detectionRange)
+        // 1. Nếu đang trong thời gian nạp đạn (cooldownTimer > 0) -> Tiếp tục ở lại Idle state và đếm ngược
+        if (stateMachine.cooldownTimer > 0f)
+        {
+            stateMachine.cooldownTimer -= Time.deltaTime;
+            return;
+        }
+
+        // 2. Nạp đạn xong -> Tìm kiếm enemy gần nhất trong phạm vi
         GameObject enemy = stateMachine.FindTarget();
 
         if (enemy != null)
@@ -43,11 +50,16 @@ public class HeroIdleState : IHeroState
             // Đã thấy địch -> Quay mặt về phía địch chuẩn bị
             stateMachine.FaceTowards(enemy.transform.position);
 
-            // Kiểm tra xem địch đã vào tầm đánh (attackRange) chưa
+            // Kiểm tra xem địch đã vào tầm đánh chưa
             float distance = Vector2.Distance(hero.transform.position, enemy.transform.position);
-            if (distance <= stateMachine.attackRange)
+            var launcher = hero.GetComponent<ProjectileLauncher>();
+            float effectiveRange = (launcher != null && launcher.CanLaunch) 
+                ? Mathf.Max(stateMachine.attackRange, stateMachine.detectionRange) 
+                : stateMachine.attackRange;
+
+            if (distance <= effectiveRange)
             {
-                // Địch đã vào tầm đánh -> Chuyển sang trạng thái tấn công
+                // Địch đã vào tầm đánh và đã nạp đạn xong -> Chuyển sang trạng thái tấn công
                 stateMachine.ChangeState(stateMachine.attackState);
             }
         }

@@ -293,10 +293,10 @@ GameObject:
   - component: {fileID: 6263144744879095207}
   - component: {fileID: 6778947396692271322}
   - component: {fileID: -6810463913481139703}
-  - component: {fileID: 5172910156449677594}
   - component: {fileID: 5989110381545470203}
   - component: {fileID: 5962605782853128782}
   - component: {fileID: 610896071965483043}
+  - component: {fileID: 3218870086257670386}
   m_Layer: 0
   m_Name: CellHongCau
   m_TagString: Player
@@ -313,8 +313,8 @@ Transform:
   m_GameObject: {fileID: 5605593753993760622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7602015, y: 0.5143, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: -1.7604, y: 0.51907, z: 0}
+  m_LocalScale: {x: 0.27878702, y: 0.27878702, z: 0.92929}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3067899023933404685}
@@ -494,29 +494,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.852295, y: 3.7276814}
   m_EdgeRadius: 0
---- !u!114 &5172910156449677594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5605593753993760622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2587b46845edef4db51ddd261216b54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originalLocalScale: {x: 0, y: 0, z: 0}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  detectionRange: 5
-  attackRange: 3.01
-  attackRate: 1
-  showRanges: 1
-  detectionType: 1
-  checkDirection: {x: 1, y: 0}
-  checkHeight: 0.9
 --- !u!114 &5989110381545470203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,6 +521,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1079149003832208284, guid: 04295723316409346bb62af418e3d72d, type: 3}
   firePoint: {fileID: 3067899023933404685}
   projectileSpeed: 10
+  allowFallbackBullet: 1
 --- !u!114 &610896071965483043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +535,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroHealthUI
   healthSlider: {fileID: 3504982912186870460}
+--- !u!114 &3218870086257670386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5605593753993760622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 114aafdf811264327b4eebeb791d23d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LineHeroStateMachine
+  originalLocalScale: {x: 0, y: 0, z: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  detectionRange: 3
+  attackRange: 1.5
+  attackRate: 1
+  showRanges: 1
+  detectionType: 0
+  checkDirection: {x: 1, y: 0}
+  checkHeight: 1
+  cooldownTimer: 0
 --- !u!1 &6417925868874994401
 GameObject:
   m_ObjectHideFlags: 0

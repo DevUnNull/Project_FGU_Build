@@ -238,6 +238,7 @@ MonoBehaviour:
   detectionType: 1
   checkDirection: {x: 1, y: 0}
   checkHeight: 1
+  cooldownTimer: 0
 --- !u!114 &2407374064440444553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,9 +263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10430f583fcb39246ba48db107a2f473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 440367542604560181, guid: d3c86b32972592d4998af840545d8a1d, type: 3}
+  projectilePrefab: {fileID: 8046331225123439052, guid: 93636ca0a809e4f16880d1516a395153, type: 3}
   firePoint: {fileID: 2389637952604656656}
   projectileSpeed: 10
+  allowFallbackBullet: 1
 --- !u!114 &5789587975103595584
 MonoBehaviour:
   m_ObjectHideFlags: 0

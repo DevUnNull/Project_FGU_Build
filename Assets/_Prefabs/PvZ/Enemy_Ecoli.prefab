@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 9170833397634316817}
   - component: {fileID: 2914691642526325155}
   - component: {fileID: 8883088975993911184}
+  - component: {fileID: 2817871621965396326}
   m_Layer: 3
   m_Name: Enemy_Ecoli
   m_TagString: Enemy
@@ -159,7 +160,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.43250284, y: 0.4738072}
-    oldSize: {x: 14.3, y: 6.7}
+    oldSize: {x: 4.0857143, y: 1.9142857}
     newSize: {x: 0.54, y: 0.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -209,6 +210,7 @@ MonoBehaviour:
   waypoints: []
   speed: 2
   loop: 1
+  isStopped: 0
   enemy: {fileID: 0}
 --- !u!114 &9170833397634316817
 MonoBehaviour:
@@ -263,6 +265,26 @@ MonoBehaviour:
   offset: {x: 0, y: 30, z: 0}
   goldOffset: {x: 0, y: 50, z: 0}
   randomOffsetRange: 20
+--- !u!114 &2817871621965396326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2698530195585558081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53793ae1c999c447e8e156d6baf906a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyEcoli
+  explosionRadius: 1.8
+  instantExplosionDamage: 25
+  acidPuddleDuration: 8
+  acidPuddleRadius: 1.5
+  acidDps: 5
+  acidPuddlePrefab: {fileID: 4665746021189302668, guid: 0f903a50da5ab4b9395183c020ccd9aa, type: 3}
+  acidPuddleSprite: {fileID: -6175522030265976835, guid: 492bb61f97f78451297461eff8d0f670, type: 3}
+  explosionSprite: {fileID: 0}
 --- !u!1 &6523769219054081721
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,21 +2,19 @@ using UnityEngine;
 
 public class LineHeroStateMachine : HeroStateMachine
 {
-    [Header("Line Detection Settings")]
-    public Vector2 checkDirection = Vector2.right;
-    public float checkHeight = 1f;
-
     public override GameObject FindTarget()
     {
-        // Dùng BoxCast để tìm enemy trên một đường thẳng (theo hướng checkDirection)
-        // BoxCast giúp check một khoảng có độ rộng (checkHeight) chứ không chỉ 1 tia mỏng
+        if (!DragAndDrop.IsUnitActiveOnBoard(gameObject)) return null;
+
+        LayerMask mask = (enemyLayer.value != 0) ? enemyLayer : ~0;
+
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
             transform.position,
-            new Vector2(checkHeight, checkHeight), // Kích thước box
-            0f,                                    // Góc quay
-            checkDirection.normalized,             // Hướng check
-            detectionRange,                        // Tầm xa
-            enemyLayer                             // Chỉ check layer Enemy
+            new Vector2(checkHeight, checkHeight),
+            0f,
+            checkDirection.normalized,
+            detectionRange,
+            mask
         );
 
         GameObject nearestEnemy = null;
@@ -24,12 +22,21 @@ public class LineHeroStateMachine : HeroStateMachine
 
         foreach (RaycastHit2D hit in hits)
         {
-            float distance = Vector2.Distance(transform.position, hit.transform.position);
+            if (hit.collider == null || hit.collider.gameObject == gameObject) continue;
+            _Enemy enemyComp = hit.collider.GetComponent<_Enemy>() ?? hit.collider.GetComponentInParent<_Enemy>();
+            if (enemyComp == null || enemyComp.health <= 0) continue;
+
+            float distance = Vector2.Distance(transform.position, hit.collider.transform.position);
             if (distance < nearestDistance)
             {
                 nearestDistance = distance;
                 nearestEnemy = hit.collider.gameObject;
             }
+        }
+
+        if (nearestEnemy == null)
+        {
+            return base.FindTarget();
         }
 
         return nearestEnemy;

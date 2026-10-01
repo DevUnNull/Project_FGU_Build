@@ -1,44 +1,91 @@
 using UnityEngine;
 
+/// <summary>
+/// Cơ chế Kéo & Đặt Tế Bào (Cell) chuẩn PvZ:
+/// - Đặt Tế bào CHÍNH XÁC VÀO TÂM CHÍNH GIỮA ô Tile (transform.position = tile.CenterPosition).
+/// - Hiệu ứng Hover Highlight thực thời (Xanh lá = Đặt được, Đỏ = Ô bận/không hợp lệ).
+/// - Quản lý chiếm giữ ô (Occupied State), ngăn không cho đặt chồng nhiều tướng lên 1 ô.
+/// - Hoàn tác vị trí cũ an toàn nếu kéo thả sai hoặc không đủ tiền.
+/// </summary>
 public class DragAndDrop : MonoBehaviour
 {
-    // 🎯 Kéo thả
-    [Header("Căn chỉnh vị trí")]
-    [Tooltip("Điều chỉnh số này để nhân vật đứng chính giữa ô. X xê dịch trái/phải, Y xê dịch lên/xuống")]
-    public Vector3 placementOffset = new Vector3(-1.03f, 0.54f, 0f); // Giá trị mặc định hoàn hảo
-    private Vector3 offset;               // Khoảng cách giữa chuột và quân cờ
+    private Vector3 offset;               // Khoảng cách giữa con trỏ và nhân vật
     private bool isDragging = false;      // Đang kéo hay không
-    private Vector2 previousPosition;     // Vị trí trước đó (dùng để hoàn tác)
+    private Vector3 previousPosition;     // Vị trí cũ (để hoàn tác khi thả sai)
 
-    // 💰 Mua & đặt
-    private bool isPlacedOnBoard = false; // Đã đặt vào bàn chưa
-    public bool isBuy = false;            // Đã mua chưa (mặc định: chưa mua)
-    private Transform originalParent;
+    // 💰 Mua & Đặt
+    private bool isPlacedOnBoard = false; // Đã đặt trên bàn cờ chưa
+    public bool isBuy = false;            // Đã thanh toán mua chưa
+    public bool IsPlacedOnBoard => isPlacedOnBoard;
 
-    // 💵 Dữ liệu giá
+    private TileCell currentTile;         // Ô TileCell hiện tại đang đứng
+    public TileCell CurrentTile => currentTile;
+
     private _Hero priceData;
     private int price;
+    private Vector3 originalScale;
+
+    /// <summary>
+    /// Kiểm tra xem Tướng này đã được mua và đặt hợp lệ trên bàn cờ chưa.
+    /// </summary>
+    public static bool IsUnitActiveOnBoard(GameObject go)
+    {
+        if (go == null || !go.activeInHierarchy) return false;
+        DragAndDrop drag = go.GetComponent<DragAndDrop>();
+        if (drag != null)
+        {
+            return drag.isBuy && drag.IsPlacedOnBoard;
+        }
+        return true;
+    }
 
     private void Start()
     {
         previousPosition = transform.position;
+        originalScale = transform.localScale;
 
         priceData = GetComponent<_Hero>();
         price = priceData != null ? priceData.price : 0;
+
+        // Auto-attach HongCauCoinSpawner nếu là tướng Hồng Cầu
+        if (gameObject.name.Contains("HongCau") || gameObject.name.Contains("Hồng Cầu"))
+        {
+            if (GetComponent<HongCauCoinSpawner>() == null)
+            {
+                gameObject.AddComponent<HongCauCoinSpawner>();
+            }
+        }
     }
 
     private void OnMouseDown()
     {
         if (!enabled) return;
 
-        // Tắt Animator khi kéo
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorld.z = 0f;
+
+        // 🥇 ƯU TIÊN #1: Nếu nhấp trúng Coin, thu thập Coin ngay lập tức và KHÔNG kéo tướng
+        Collider2D hitCol = Physics2D.OverlapCircle(mouseWorld, 0.6f);
+        if (hitCol != null)
+        {
+            HongCauDroppedCoinItem coinItem = hitCol.GetComponent<HongCauDroppedCoinItem>();
+            if (coinItem != null)
+            {
+                coinItem.CollectCoin();
+                return;
+            }
+        }
+
+        // Tắt Animator khi bắt đầu kéo
         Animator anim = GetComponent<Animator>();
         if (anim) anim.enabled = false;
 
-        originalParent = transform.parent;
-        transform.SetParent(null);
+        // Tạm thời giải phóng ô Tile cũ nếu tướng đã ở trên bàn
+        if (currentTile != null && GridManager.Instance != null)
+        {
+            GridManager.Instance.FreeTile(currentTile);
+        }
 
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         offset = transform.position - mouseWorld;
         offset.z = 0;
 
@@ -53,123 +100,142 @@ public class DragAndDrop : MonoBehaviour
         Vector3 newPosition = mouseWorld + offset;
         newPosition.z = 0;
         transform.position = newPosition;
+
+        // 🌟 Hiệu ứng Hover Highlight làm sáng ô Tile đang ngắm tới
+        if (GridManager.Instance != null)
+        {
+            GridManager.Instance.ClearAllHighlights();
+
+            TileCell hoverTile = GridManager.Instance.GetTileAtWorldPosition(mouseWorld);
+            if (hoverTile != null)
+            {
+                bool canPlace = GridManager.Instance.IsTileFree(hoverTile);
+                if (!isBuy && GoldManager.Instance != null && !GoldManager.Instance.HasEnoughGold(price))
+                {
+                    canPlace = false;
+                }
+
+                // Xanh lá = Đặt được vào giữa ô, Đỏ = Không hợp lệ
+                Color highlightColor = canPlace ? new Color(0.3f, 1f, 0.3f, 0.8f) : new Color(1f, 0.3f, 0.3f, 0.8f);
+                hoverTile.SetHighlight(highlightColor);
+            }
+        }
     }
 
     private void OnMouseUp()
     {
         isDragging = false;
 
-        // 🧩 Kiểm tra vùng huỷ trước
+        // Reset toàn bộ màu Highlight của các ô Tile
+        if (GridManager.Instance != null)
+        {
+            GridManager.Instance.ClearAllHighlights();
+        }
+
+        // 🧩 1. Kiểm tra Vùng Bán / Thùng Rác
         if (DestroyUnitTrigger.isOverDestroyZone)
         {
-            // ✅ Chỉ bán nếu đã mua
             if (isBuy)
             {
-                Debug.Log("🗑️ Tướng bị huỷ do thả vào vùng huỷ - Hoàn tiền: " + price);
+                Debug.Log("🗑️ Đã bán tướng - Hoàn tiền: " + price);
                 DestroyUnitTrigger.isOverDestroyZone = false;
+                if (currentTile != null && GridManager.Instance != null)
+                {
+                    GridManager.Instance.FreeTile(currentTile);
+                }
                 TrashSellAnimation.Play(transform.position, price);
                 Destroy(gameObject);
                 return;
             }
             else
             {
-                // ❌ Chưa mua, không cho bán
                 Debug.Log("❌ Chưa mua tướng, không thể bán!");
-                transform.position = previousPosition;
+                RevertToPreviousPosition();
                 return;
             }
         }
 
-        // 🔍 Tìm Tile gần nhất
-        Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
-        Transform closestTile = null;
-        float shortestDistance = Mathf.Infinity;
+        // 🔍 2. Tìm ô TileCell mục tiêu ngay tại vị trí thả chuột
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorld.z = 0f;
 
-        foreach (var col in nearbyColliders)
+        TileCell targetTile = null;
+        if (GridManager.Instance != null)
         {
-            if (col == null || col.gameObject == null) continue;
-            if (!col.CompareTag("Tile") && !col.CompareTag("TileEdge")) continue;
+            targetTile = GridManager.Instance.GetTileAtWorldPosition(mouseWorld);
+        }
 
-            float distance = Vector2.Distance(transform.position, col.transform.position);
-            if (distance < shortestDistance)
+        // 🚫 3. Kiểm tra tính hợp lệ của ô Tile
+        bool isValidTile = targetTile != null && GridManager.Instance != null && GridManager.Instance.IsTileFree(targetTile);
+
+        // 💰 4. Kiểm tra tiền nếu chưa mua
+        if (isValidTile && !isBuy)
+        {
+            if (GoldManager.Instance != null && !GoldManager.Instance.HasEnoughGold(price))
             {
-                shortestDistance = distance;
-                closestTile = col.transform;
+                Debug.Log($"❌ Không đủ tiền mua {gameObject.name}, cần {price}");
+                isValidTile = false;
             }
         }
 
-        // ⚠️ Không tìm thấy tile hợp lệ
-        if (closestTile == null)
+        // ✅ 5. ĐẶT THÀNH CÔNG VÀO CHÍNH GIỮA TÂM Ô TILE (Trực tiếp 100% không lệch)
+        if (isValidTile)
         {
-            HandleInvalidPlacement();
-            return;
-        }
+            Vector3 finalPos = targetTile.CenterPosition;
+            finalPos.z = -1f; // 🥈 ƯU TIÊN #2: Tướng đứng ở Z = -1f (Phía trước Tile Z=0f, đằng sau Coin Z=-5f)
 
-        // 🚫 Không cho đặt ở viền ngoài
-        if (closestTile.CompareTag("TileEdge"))
-        {
-            Debug.Log("⛔ Không thể đặt tướng ở viền ngoài");
-            transform.position = previousPosition;
-            return;
-        }
+            // Gỡ tướng khỏi ô Shop slot container cũ để không bị giật lắc khi bấm Roll
+            transform.SetParent(targetTile.transform);
 
-        // 💰 Kiểm tra tiền nếu chưa mua
-        if (!isBuy && !GoldManager.Instance.HasEnoughGold(price))
-        {
-            Debug.Log($"❌ Không đủ tiền mua {gameObject.name}, cần {price}");
-            transform.position = previousPosition;
-            return;
-        }
+            transform.position = finalPos;
+            previousPosition = finalPos;
 
-        // ✅ Lấy vị trí của Tile và cộng thêm độ lệch để căn vào giữa ô
-        Vector3 targetPos = closestTile.position + placementOffset;
+            // Cập nhật occupied state
+            currentTile = targetTile;
+            GridManager.Instance.OccupyTile(targetTile, gameObject);
+            isPlacedOnBoard = true;
 
-        targetPos.z = 0;
-        transform.position = targetPos;
-        previousPosition = targetPos;
-        isPlacedOnBoard = true;
+            // Trừ tiền nếu vừa mua từ shop
+            if (!isBuy)
+            {
+                isBuy = true;
+                if (GoldManager.Instance != null)
+                {
+                    GoldManager.Instance.SpendGold(price);
+                    Debug.Log($"💰 Đã mua {gameObject.name} giá {price} vàng");
+                }
+            }
 
-        // Nếu vừa mua → trừ tiền
-        bool justBought = false;
-        if (!isBuy) 
-        {
-            isBuy = true;
-            justBought = true;
-            GoldManager.Instance.SpendGold(price);
-            Debug.Log("ban da bi tru:" + price);
-        }
+            PlayHeroSpawnSound();
 
-        // Phát âm thanh khi đặt thành công (khi vừa mua hoặc di chuyển đến vị trí mới)
-        PlayHeroSpawnSound();
-
-        // Bật lại Animator
-        Animator animator = GetComponent<Animator>();
-        if (animator) animator.enabled = true;
-    }
-
-    /// <summary>
-    /// Xử lý khi thả sai vị trí (không có tile)
-    /// </summary>
-    private void HandleInvalidPlacement()
-    {
-        if (!isPlacedOnBoard)
-        {
-            Debug.Log("Kéo ra nhưng không thả vào bàn → huỷ / trả lại vị trí cũ");
-            transform.position = previousPosition;
+            Animator anim = GetComponent<Animator>();
+            if (anim) anim.enabled = true;
         }
         else
         {
-            // Đã từng được đặt → trở lại chỗ cũ
-            transform.position = previousPosition;
+            // ❌ Đặt không hợp lệ -> Trả về vị trí cũ
+            RevertToPreviousPosition();
         }
     }
 
     /// <summary>
-    /// Phát âm thanh khi hero được đặt thành công
+    /// Trả nhân vật về vị trí hợp lệ trước đó và chiếm giữ lại ô cũ.
     /// </summary>
+    private void RevertToPreviousPosition()
+    {
+        transform.position = previousPosition;
+
+        if (currentTile != null && GridManager.Instance != null)
+        {
+            GridManager.Instance.OccupyTile(currentTile, gameObject);
+        }
+
+        Animator anim = GetComponent<Animator>();
+        if (anim) anim.enabled = true;
+    }
+
     private void PlayHeroSpawnSound()
     {
-        // Cách 1: Dùng HeroAudio component nếu có
         HeroAudio heroAudio = GetComponent<HeroAudio>();
         if (heroAudio != null)
         {
@@ -177,7 +243,6 @@ public class DragAndDrop : MonoBehaviour
             return;
         }
 
-        // Cách 2: Lấy HeroData và play trực tiếp qua AudioManager
         _Hero hero = GetComponent<_Hero>();
         if (hero != null && hero.HeroData != null)
         {
@@ -186,29 +251,19 @@ public class DragAndDrop : MonoBehaviour
             {
                 if (AudioManager.Instance != null)
                 {
-                    AudioManager.Instance.PlaySFX(
-                        heroData.spawnSound,
-                        heroData.spawnSoundVolume,
-                        1f
-                    );
+                    AudioManager.Instance.PlaySFX(heroData.spawnSound, heroData.spawnSoundVolume, 1f);
                 }
                 else
                 {
-                    // Fallback nếu không có AudioManager
-                    AudioSource.PlayClipAtPoint(
-                        heroData.spawnSound,
-                        transform.position,
-                        heroData.spawnSoundVolume
-                    );
+                    AudioSource.PlayClipAtPoint(heroData.spawnSound, transform.position, heroData.spawnSoundVolume);
                 }
             }
         }
     }
 
-    // Debug hỗ trợ hiển thị vùng check tile
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, 0.4f);
     }
 }

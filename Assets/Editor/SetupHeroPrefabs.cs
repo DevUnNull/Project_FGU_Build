@@ -1,134 +1,127 @@
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
+/// <summary>
+/// Editor script tự động cấu hình tất cả các Tế bào Hero (Cell) và tạo Bullet Prefab tạm thời.
+/// </summary>
 public class SetupHeroPrefabs
 {
-    [MenuItem("Tools/Setup PvZ Hero and Health UI")]
-    public static void Setup() 
+    [MenuItem("Tools/Setup Hero Prefabs & Bullets")]
+    [InitializeOnLoadMethod]
+    public static void Setup()
     {
-        string[] guids = AssetDatabase.FindAssets("t:GameObject", new[] { "Assets/_Prefabs/Hero" });
-        
-        foreach (string guid in guids)
+        EnsureDirectories();
+
+        // 1. Tạo các Bullet Prefab tạm (Placeholder Bullets) cho các tướng
+        GameObject cellBBullet = CreatePlaceholderBullet("Bullet_CellB", new Color(0.2f, 0.7f, 1f));
+        GameObject genericHeroBullet = CreatePlaceholderBullet("Bullet_GenericHero", new Color(1f, 0.8f, 0.2f));
+
+        // 2. Cấu hình tất cả Hero Prefabs trong Assets/_Prefabs/PvZ/ và Assets/_Prefabs/Hero/
+        SetupHeroPrefab("Assets/_Prefabs/PvZ/CellB.prefab", cellBBullet);
+        SetupHeroPrefab("Assets/_Prefabs/PvZ/CellBachCau.prefab", null); // Melee
+        SetupHeroPrefab("Assets/_Prefabs/PvZ/CellDaiThucBao.prefab", null); // Melee
+        SetupHeroPrefab("Assets/_Prefabs/PvZ/CellHongCau.prefab", null); // Coin producer
+
+        // Tìm thêm các hero prefabs khác nếu có
+        string[] extraHeroPaths = new string[] {
+            "Assets/_Prefabs/Hero/Tris.prefab",
+            "Assets/_Prefabs/Hero/kai'sa.prefab",
+            "Assets/_Prefabs/Hero/Senna.prefab",
+            "Assets/_Prefabs/Hero/Zeri.prefab"
+        };
+
+        foreach (var path in extraHeroPaths)
         {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            if (prefab == null) continue;
+            SetupHeroPrefab(path, genericHeroBullet);
+        }
 
-            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        Debug.Log("✅ [Tools] Đã tự động cấu hình và tạo Bullet Prefab cho tất cả các Cell!");
+    }
 
-            // 1. Thêm Canvas UI máu
-            if (instance.GetComponentInChildren<HeroHealthUI>() == null)
+    private static void EnsureDirectories()
+    {
+        if (!AssetDatabase.IsValidFolder("Assets/_Prefabs/Bullets"))
+        {
+            AssetDatabase.CreateFolder("Assets/_Prefabs", "Bullets");
+        }
+    }
+
+    private static GameObject CreatePlaceholderBullet(string bulletName, Color color)
+    {
+        string path = $"Assets/_Prefabs/Bullets/{bulletName}.prefab";
+
+        GameObject existing = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        if (existing != null) return existing;
+
+        GameObject bulletObj = new GameObject(bulletName);
+
+        SpriteRenderer sr = bulletObj.AddComponent<SpriteRenderer>();
+        sr.sprite = CreateCircleSprite(color);
+        sr.sortingOrder = 10;
+
+        CircleCollider2D col = bulletObj.AddComponent<CircleCollider2D>();
+        col.isTrigger = true;
+        col.radius = 0.35f;
+
+        HomingProjectile proj = bulletObj.AddComponent<HomingProjectile>();
+        bulletObj.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
+
+        GameObject savedPrefab = PrefabUtility.SaveAsPrefabAsset(bulletObj, path);
+        Object.DestroyImmediate(bulletObj);
+        return savedPrefab;
+    }
+
+    private static void SetupHeroPrefab(string prefabPath, GameObject bulletPrefab)
+    {
+        GameObject heroPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+        if (heroPrefab == null) return;
+
+        GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(heroPrefab);
+
+        if (instance.GetComponent<HeroBase>() == null) instance.AddComponent<HeroBase>();
+
+        HeroStateMachine sm = instance.GetComponent<HeroStateMachine>();
+        if (sm == null) sm = instance.AddComponent<LineHeroStateMachine>();
+
+        // Nếu là tướng bắn đạn (có bulletPrefab hoặc không phải Melee)
+        if (!prefabPath.Contains("BachCau") && !prefabPath.Contains("DaiThucBao") && !prefabPath.Contains("HongCau"))
+        {
+            ProjectileLauncher launcher = instance.GetComponent<ProjectileLauncher>();
+            if (launcher == null) launcher = instance.AddComponent<ProjectileLauncher>();
+
+            if (bulletPrefab != null)
             {
-                // Tạo Canvas
-                GameObject canvasObj = new GameObject("HealthCanvas");
-                canvasObj.transform.SetParent(instance.transform, false);
-                canvasObj.transform.localPosition = new Vector3(0, 1.5f, 0);
-                
-                Canvas canvas = canvasObj.AddComponent<Canvas>();
-                canvas.renderMode = RenderMode.WorldSpace;
-                
-                RectTransform canvasRect = canvasObj.GetComponent<RectTransform>();
-                canvasRect.sizeDelta = new Vector2(2f, 0.3f);
-                canvasRect.localScale = new Vector3(1, 1, 1);
-
-                // Thêm CanvasScaler
-                canvasObj.AddComponent<CanvasScaler>();
-
-                // Tạo Slider (Background)
-                GameObject sliderObj = new GameObject("HealthSlider");
-                sliderObj.transform.SetParent(canvasObj.transform, false);
-                Slider slider = sliderObj.AddComponent<Slider>();
-                slider.interactable = false;
-                slider.transition = Selectable.Transition.None;
-                
-                RectTransform sliderRect = sliderObj.GetComponent<RectTransform>();
-                sliderRect.anchorMin = new Vector2(0, 0);
-                sliderRect.anchorMax = new Vector2(1, 1);
-                sliderRect.offsetMin = Vector2.zero;
-                sliderRect.offsetMax = Vector2.zero;
-
-                // Tạo Background Image
-                GameObject bgObj = new GameObject("Background");
-                bgObj.transform.SetParent(sliderObj.transform, false);
-                Image bgImage = bgObj.AddComponent<Image>();
-                bgImage.color = Color.black;
-                RectTransform bgRect = bgObj.GetComponent<RectTransform>();
-                bgRect.anchorMin = new Vector2(0, 0);
-                bgRect.anchorMax = new Vector2(1, 1);
-                bgRect.offsetMin = Vector2.zero;
-                bgRect.offsetMax = Vector2.zero;
-
-                // Tạo Fill Area
-                GameObject fillAreaObj = new GameObject("Fill Area");
-                fillAreaObj.transform.SetParent(sliderObj.transform, false);
-                RectTransform fillAreaRect = fillAreaObj.AddComponent<RectTransform>();
-                fillAreaRect.anchorMin = new Vector2(0, 0);
-                fillAreaRect.anchorMax = new Vector2(1, 1);
-                fillAreaRect.offsetMin = Vector2.zero;
-                fillAreaRect.offsetMax = Vector2.zero;
-
-                // Tạo Fill Image
-                GameObject fillObj = new GameObject("Fill");
-                fillObj.transform.SetParent(fillAreaObj.transform, false);
-                Image fillImage = fillObj.AddComponent<Image>();
-                fillImage.color = Color.green;
-                RectTransform fillRect = fillObj.GetComponent<RectTransform>();
-                fillRect.anchorMin = new Vector2(0, 0);
-                fillRect.anchorMax = new Vector2(1, 1);
-                fillRect.offsetMin = Vector2.zero;
-                fillRect.offsetMax = Vector2.zero;
-
-                // Assign to slider
-                slider.fillRect = fillRect;
-                slider.value = 1;
-
-                // Add HeroHealthUI script
-                HeroHealthUI healthUI = instance.AddComponent<HeroHealthUI>();
-                healthUI.healthSlider = slider;
+                SerializedObject so = new SerializedObject(launcher);
+                SerializedProperty prop = so.FindProperty("projectilePrefab");
+                if (prop != null)
+                {
+                    prop.objectReferenceValue = bulletPrefab.GetComponent<HomingProjectile>();
+                    so.ApplyModifiedProperties();
+                }
             }
-
-            PrefabUtility.SaveAsPrefabAsset(instance, path);
-            GameObject.DestroyImmediate(instance);
         }
 
-        // 2. Tạo một PvZ Hero từ Yasuo
-        string sourcePath = "Assets/_Prefabs/Hero/Yasuo.prefab";
-        string destPath = "Assets/_Prefabs/Hero/PvZHero.prefab";
-        
-        if (!AssetDatabase.LoadAssetAtPath<GameObject>(destPath))
-        {
-            AssetDatabase.CopyAsset(sourcePath, destPath);
-        }
+        PrefabUtility.SaveAsPrefabAsset(instance, prefabPath);
+        Object.DestroyImmediate(instance);
+    }
 
-        GameObject pvzPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(destPath);
-        if (pvzPrefab != null)
+    private static Sprite CreateCircleSprite(Color color)
+    {
+        Texture2D tex = new Texture2D(32, 32);
+        for (int x = 0; x < 32; x++)
         {
-            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(pvzPrefab);
-            
-            HeroStateMachine oldState = instance.GetComponent<HeroStateMachine>();
-            if (oldState != null && oldState.GetType() == typeof(HeroStateMachine))
+            for (int y = 0; y < 32; y++)
             {
-                LayerMask enemyLayer = oldState.enemyLayer;
-                float detRange = oldState.detectionRange;
-                float attRange = oldState.attackRange;
-                float attRate = oldState.attackRate;
-
-                GameObject.DestroyImmediate(oldState, true);
-                
-                LineHeroStateMachine newState = instance.AddComponent<LineHeroStateMachine>();
-                newState.enemyLayer = enemyLayer;
-                newState.detectionRange = detRange;
-                newState.attackRange = attRange;
-                newState.attackRate = attRate;
-                newState.checkDirection = Vector2.right;
-                newState.checkHeight = 1f;
-
-                PrefabUtility.SaveAsPrefabAsset(instance, destPath);
+                float dist = Vector2.Distance(new Vector2(x, y), new Vector2(15.5f, 15.5f));
+                if (dist <= 14f)
+                    tex.SetPixel(x, y, color);
+                else
+                    tex.SetPixel(x, y, Color.clear);
             }
-            GameObject.DestroyImmediate(instance);
         }
-
-        Debug.Log("Hero Prefabs Setup Completed!");
+        tex.Apply();
+        return Sprite.Create(tex, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
     }
 }

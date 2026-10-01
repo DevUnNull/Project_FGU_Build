@@ -29,8 +29,8 @@ public class TrashSellAnimation : MonoBehaviour
         }
     }
 
-    [Header("Target & References (Kéo thả điểm ĐÍCH tại đây)")]
-    [Tooltip("Kéo đối tượng Thùng rác vào đây (Mặc định tự tìm 'Destroy')")]
+    [Header("Target & References (Điểm Bắt Đầu & Điểm Đích)")]
+    [Tooltip("🚀 ĐIỂM BẮT ĐẦU / NGUỒN TẠO TIỀN: Đối tượng sẽ rung nhẹ và sinh ra tiền (Mặc định là Thùng Rác 'Destroy', hoặc bất kỳ GameObject/Nhà/Quái nào bạn muốn)")]
     public Transform trashBinTransform;
 
     [Tooltip("🎯 VỊ TRÍ ĐÍCH: Kéo thả Object con (hoặc bất kỳ GameObject nào bạn tạo) vào đây để tiền bay về đúng vị trí đó!")]
@@ -189,15 +189,15 @@ public class TrashSellAnimation : MonoBehaviour
             SetTargetDestination(customTarget);
         }
 
-        // 1. Rung thùng rác
-        if (trashBinTransform != null)
+        // 1. Rung thùng rác nếu vị trí bắt đầu nằm ở gần thùng rác (Ví dụ khi Bán tướng)
+        if (trashBinTransform != null && Vector3.Distance(startPos, trashBinTransform.position) < 2.5f)
         {
             if (trashShakeRoutine != null) StopCoroutine(trashShakeRoutine);
             trashShakeRoutine = StartCoroutine(ShakeTrashBinRoutine(trashBinTransform));
         }
 
-        // 2. Tính toán điểm bắt đầu và điểm kết thúc
-        Vector3 spawnCenter = (trashBinTransform != null) ? trashBinTransform.position : startPos;
+        // 2. Điểm xuất phát chính xác là vị trí đồng xu vừa biến mất (startPos)
+        Vector3 spawnCenter = startPos;
         spawnCenter.z = 0f;
 
         Vector3 targetPos = spawnCenter + new Vector3(3f, 3f, 0f);
@@ -211,7 +211,7 @@ public class TrashSellAnimation : MonoBehaviour
         }
         targetPos.z = 0f;
 
-        // 3. Bắn tiền
+        // 3. Bắn tiền xuất phát từ chính vị trí đồng coin vừa biến mất về vị trí đích
         int coinCount = Mathf.Clamp(totalGold, minCoins, maxCoins);
         StartCoroutine(SpawnAndFlyCoinsRoutine(spawnCenter, targetPos, totalGold, coinCount));
     }

@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class WaypointMovement : MonoBehaviour
 {
     public Transform[] waypoints;
     public float speed;
     public bool loop = true;
+    public bool isStopped = false; // Bật true khi Enemy dừng lại tấn công Tế bào
 
     private int currentIndex = 0;
     private bool isForward = true;
@@ -16,13 +17,16 @@ public class WaypointMovement : MonoBehaviour
     public void Start()
     {
         enemy = GetComponent<_Enemy>();
-        speed = enemy.speed;
+        if (enemy != null && enemy.speed > 0) speed = enemy.speed;
         lastPosition = transform.position;
         Debug.Log("Speed " + speed);
     }
 
     public void UpdateMovement()
     {
+        // 🚫 Nếu đang dừng lại để tấn công -> Không di chuyển
+        if (isStopped) return;
+
         if (waypoints == null || waypoints.Length == 0)
             return;
 

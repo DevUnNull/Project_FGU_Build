@@ -103,6 +103,8 @@ public class HeroStateMachine : MonoBehaviour
         currentState.EnterState();
     }
 
+    [HideInInspector] public float cooldownTimer = 0f;
+
     // Hàm được gọi từ Animation Event để thực hiện tấn công
     // Hàm này sẽ được Animation Event trong animation tấn công gọi khi đến frame đánh
     public void OnAnimationAttack()
@@ -114,17 +116,38 @@ public class HeroStateMachine : MonoBehaviour
         }
     }
 
-    // Hàm tìm target (sẽ được override ở các class con)
+    public void OnAttackEvent() => OnAnimationAttack();
+    public void Shoot() => OnAnimationAttack();
+    public void FireBullet() => OnAnimationAttack();
+
+    // Hàm tìm target (kết hợp Physics detection + Vector Projection search + Fallback)
     public virtual GameObject FindTarget()
     {
+        // 1. Nếu tướng chưa được mua/chưa đặt lên bàn (đang ở trong shop) -> Không tìm mục tiêu
+        if (!DragAndDrop.IsUnitActiveOnBoard(gameObject)) return null;
+
         GameObject nearestEnemy = null;
         float nearestDistance = float.MaxValue;
 
+        // Tính khoảng cách hiệu lực (tính theo độ dài Check Direction nếu > 1, ngược lại dùng Detection Range)
+        float absRange = Mathf.Abs(detectionRange);
+        float effectiveRange = (checkDirection.magnitude > 1.001f) ? checkDirection.magnitude : (absRange > 0.1f ? absRange : 7f);
+
+        // Chuẩn hóa hướng checkDirection (ví dụ: (24.2, 0) -> hướng (1, 0) với chiều dài 24.2)
+        Vector2 dir = checkDirection != Vector2.zero ? checkDirection.normalized : Vector2.right;
+
+        // 2. Physics Detection (Radial hoặc Line theo cấu hình Inspector)
+        LayerMask mask = (enemyLayer.value != 0) ? enemyLayer : ~0;
+
         if (detectionType == DetectionType.Radial)
         {
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, detectionRange, enemyLayer);
+            Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, effectiveRange, mask);
             foreach (Collider2D enemyCollider in enemies)
             {
+                if (enemyCollider == null || enemyCollider.gameObject == gameObject) continue;
+                _Enemy enemyComp = enemyCollider.GetComponent<_Enemy>() ?? enemyCollider.GetComponentInParent<_Enemy>();
+                if (enemyComp == null || enemyComp.health <= 0) continue;
+
                 float distance = Vector2.Distance(transform.position, enemyCollider.transform.position);
                 if (distance < nearestDistance)
                 {
@@ -135,18 +158,23 @@ public class HeroStateMachine : MonoBehaviour
         }
         else if (detectionType == DetectionType.Line)
         {
+            float boxSize = checkHeight > 0f ? checkHeight : 1f;
             RaycastHit2D[] hits = Physics2D.BoxCastAll(
                 transform.position,
-                new Vector2(checkHeight, checkHeight), // Kích thước box
-                0f,                                    // Góc quay
-                checkDirection.normalized,             // Hướng check
-                detectionRange,                        // Tầm xa
-                enemyLayer                             // Chỉ check layer Enemy
+                new Vector2(boxSize, boxSize),
+                0f,
+                dir,
+                effectiveRange,
+                mask
             );
 
             foreach (RaycastHit2D hit in hits)
             {
-                float distance = Vector2.Distance(transform.position, hit.transform.position);
+                if (hit.collider == null || hit.collider.gameObject == gameObject) continue;
+                _Enemy enemyComp = hit.collider.GetComponent<_Enemy>() ?? hit.collider.GetComponentInParent<_Enemy>();
+                if (enemyComp == null || enemyComp.health <= 0) continue;
+
+                float distance = Vector2.Distance(transform.position, hit.collider.transform.position);
                 if (distance < nearestDistance)
                 {
                     nearestDistance = distance;
@@ -155,19 +183,67 @@ public class HeroStateMachine : MonoBehaviour
             }
         }
 
+        // 3. Fallback: Tìm trực tiếp tất cả _Enemy bằng phép chiếu Vector (Hỗ trợ 100% mọi hướng Check Direction & Layer)
+        if (nearestEnemy == null)
+        {
+            _Enemy[] allEnemies = FindObjectsOfType<_Enemy>();
+            Vector3 heroPos = transform.position;
+            Vector2 perp = new Vector2(-dir.y, dir.x);
+
+            foreach (var enemy in allEnemies)
+            {
+                if (enemy == null || !enemy.gameObject.activeInHierarchy || enemy.health <= 0) continue;
+
+                Vector2 offset = (Vector2)enemy.transform.position - (Vector2)heroPos;
+
+                if (detectionType == DetectionType.Radial)
+                {
+                    float dist = offset.magnitude;
+                    if (dist <= effectiveRange && dist < nearestDistance)
+                    {
+                        nearestDistance = dist;
+                        nearestEnemy = enemy.gameObject;
+                    }
+                }
+                else // Line detection fallback
+                {
+                    // Khoảng cách tiến tới theo đúng hướng checkDirection
+                    float forwardDist = Vector2.Dot(offset, dir);
+                    if (forwardDist < -0.3f || forwardDist > effectiveRange) continue;
+
+                    // Khoảng cách vuông góc (chênh lệch hàng/làn)
+                    float sideDist = Mathf.Abs(Vector2.Dot(offset, perp));
+                    float maxSide = checkHeight > 0f ? (checkHeight * 0.8f) : 1.0f;
+                    if (sideDist > maxSide) continue;
+
+                    float dist = offset.magnitude;
+                    if (dist < nearestDistance)
+                    {
+                        nearestDistance = dist;
+                        nearestEnemy = enemy.gameObject;
+                    }
+                }
+            }
+        }
+
         return nearestEnemy;
     }
 
-    // Quay mặt hero về phía 1 điểm (2D): flip localScale X theo hướng deltaX
+    // Quay mặt hero về phía 1 điểm (2D): Sử dụng SpriteRenderer.flipX thay vì thay đổi transform.localScale
+    // Đảm bảo giữ nguyên 100% tỉ lệ kích thước (Aspect Ratio) của Tế bào và các UI con (không bị méo hình)
     public void FaceTowards(Vector3 targetPosition)
     {
-        float deltaX = targetPosition.x - transform.position.x;
-        if (Mathf.Approximately(deltaX, 0f)) return;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr == null) sr = GetComponentInChildren<SpriteRenderer>();
 
-        Vector3 scale = transform.localScale;
-        float absX = Mathf.Abs(originalLocalScale.x) > 0f ? Mathf.Abs(originalLocalScale.x) : Mathf.Abs(scale.x);
-        scale.x = deltaX > 0f ? absX : -absX; // nhìn phải nếu target ở bên phải, ngược lại nhìn trái
-        transform.localScale = scale;
+        if (sr != null)
+        {
+            float deltaX = targetPosition.x - transform.position.x;
+            if (!Mathf.Approximately(deltaX, 0f))
+            {
+                sr.flipX = (deltaX < 0f);
+            }
+        }
     }
 
     // Hàm vẽ Gizmos để hiển thị tầm trong Scene View của Unity Editor
@@ -176,23 +252,37 @@ public class HeroStateMachine : MonoBehaviour
         // Nếu tắt hiển thị range thì return
         if (!showRanges) return;
 
-        Gizmos.color = Color.yellow;
+        float absRange = Mathf.Abs(detectionRange);
+        float effectiveRange = (checkDirection.magnitude > 1.001f) ? checkDirection.magnitude : (absRange > 0.1f ? absRange : 7f);
+        Vector2 dir = checkDirection != Vector2.zero ? checkDirection.normalized : Vector2.right;
+
         if (detectionType == DetectionType.Radial)
         {
-            // Vẽ tầm phát hiện (màu vàng) - Sphere wireframe
-            Gizmos.DrawWireSphere(transform.position, detectionRange);
+            // Tầm phát hiện (màu vàng) - Hình tròn
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, effectiveRange);
+
+            // Tầm tấn công (màu đỏ) - Hình tròn
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
         }
         else if (detectionType == DetectionType.Line)
         {
-            // Vẽ tầm phát hiện (màu vàng) - Đường thẳng và box ở cuối
+            float boxSize = checkHeight > 0f ? checkHeight : 1f;
             Vector3 start = transform.position;
-            Vector3 end = start + (Vector3)checkDirection.normalized * detectionRange;
-            Gizmos.DrawLine(start, end);
-            Gizmos.DrawWireCube(end, new Vector3(checkHeight, checkHeight, 0));
-        }
 
-        // Vẽ tầm tấn công (màu đỏ) - Sphere wireframe
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+            // 1. Tầm phát hiện (màu vàng) - Khung hình chữ nhật đi thẳng
+            Vector3 endDetect = start + (Vector3)dir * effectiveRange;
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(start, endDetect);
+            Gizmos.DrawWireCube((start + endDetect) * 0.5f, new Vector3(effectiveRange, boxSize, 0f));
+
+            // 2. Tầm tấn công (màu đỏ) - Đường thẳng và khung hình chữ nhật đi thẳng
+            float effAttackRange = attackRange > 0.1f ? attackRange : effectiveRange;
+            Vector3 endAttack = start + (Vector3)dir * effAttackRange;
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(start, endAttack);
+            Gizmos.DrawWireCube((start + endAttack) * 0.5f, new Vector3(effAttackRange, boxSize, 0f));
+        }
     }
 }

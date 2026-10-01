@@ -12,6 +12,7 @@ public class WaveManager : MonoBehaviour
     private Dictionary<int, int> tuneWaveProgress = new();
 
     public System.Action<WaveConfig> OnWaveStart;
+    public System.Action<int, int> OnWaveProgressChanged; // (currentWave, totalWaves)
     public System.Action OnAllWavesCompleted; // Event khi tất cả wave đã hoàn thành (thắng)
 
     [Header("Delay giữa các wave (giây)")]
@@ -61,9 +62,18 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        // Ẩn tất cả button + text ban đầu
+        // Ẩn tất cả button + text ban đầu & tự động gắn WaveButtonAnimation
         foreach (var btn in skipButtons)
-            if (btn != null) btn.gameObject.SetActive(false);
+        {
+            if (btn != null)
+            {
+                if (btn.GetComponent<WaveButtonAnimation>() == null)
+                {
+                    btn.gameObject.AddComponent<WaveButtonAnimation>();
+                }
+                btn.gameObject.SetActive(false);
+            }
+        }
 
         foreach (var txt in countdownTexts)
             if (txt != null) txt.gameObject.SetActive(false);
@@ -180,7 +190,9 @@ public class WaveManager : MonoBehaviour
             }
 
             Debug.Log($"🎵 [Tune {tuneIdx}] Bắt đầu Wave {waveIdx + 1}");
+            RecordWaveStart(tuneIdx, waveIdx);
             OnWaveStart?.Invoke(wave);
+            OnWaveProgressChanged?.Invoke(GetCurrentGlobalWaveIndex(), GetTotalWaveCount());
 
             if (waveIdx == 1 && StomachDayData.Instance != null && StomachDayData.Instance.gastricAcidLevel > 30)
             {
@@ -629,5 +641,65 @@ public class WaveManager : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+    }
+
+    private HashSet<string> startedWaveKeys = new HashSet<string>();
+
+    public void RecordWaveStart(int tuneIdx, int waveIdx)
+    {
+        string key = $"{tuneIdx}_{waveIdx}";
+        startedWaveKeys.Add(key);
+    }
+
+    /// <summary>
+    /// Tính tổng tất cả số wave từ tất cả các TuneConfig (ví dụ: Tune1 (5) + Tune2 (3) + ...)
+    /// </summary>
+    public int GetTotalWaveCount()
+    {
+        if (tunes == null || tunes.Count == 0) return 0;
+        int total = 0;
+        foreach (var tune in tunes)
+        {
+            if (tune != null && tune.waves != null)
+                total += tune.waves.Count;
+        }
+        return total;
+    }
+
+    /// <summary>
+    /// Tính thứ tự Wave hiện tại (mỗi wave mới bắt đầu sẽ tăng lên 1)
+    /// </summary>
+    public int GetCurrentGlobalWaveIndex()
+    {
+        if (startedWaveKeys == null || startedWaveKeys.Count == 0)
+        {
+            int globalWaveIndex = 0;
+            int targetTuneIndex = Mathf.Max(0, currentTuneIndex);
+            for (int i = 0; i < tunes.Count; i++)
+            {
+                if (i < targetTuneIndex)
+                {
+                    if (tunes[i] != null && tunes[i].waves != null)
+                        globalWaveIndex += tunes[i].waves.Count;
+                }
+                else if (i == targetTuneIndex)
+                {
+                    globalWaveIndex += Mathf.Max(0, currentWaveIndex);
+                    break;
+                }
+            }
+            return globalWaveIndex + 1;
+        }
+        return startedWaveKeys.Count;
+    }
+
+    /// <summary>
+    /// Tính số wave còn lại trong ván chơi
+    /// </summary>
+    public int GetRemainingWaveCount()
+    {
+        int total = GetTotalWaveCount();
+        int current = GetCurrentGlobalWaveIndex();
+        return Mathf.Max(0, total - current);
     }
 }
