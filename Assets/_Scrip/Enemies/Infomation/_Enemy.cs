@@ -30,6 +30,15 @@ public class _Enemy : EnemyBase
         AutoAttachVirusMechanics();
     }
 
+    private void Start()
+    {
+        SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var sr in srs)
+        {
+            if (sr.sortingOrder < 5) sr.sortingOrder = 10;
+        }
+    }
+
     private void AutoAttachVirusMechanics()
     {
         string n = gameObject.name.ToLower();

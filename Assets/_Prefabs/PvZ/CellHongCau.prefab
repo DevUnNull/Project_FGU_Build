@@ -390,7 +390,7 @@ Animator:
   m_GameObject: {fileID: 5605593753993760622}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ab9e28fdcb6b4f5abf865c84a1832fb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -415,12 +415,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroData: {fileID: 11400000, guid: b06e2c9e000ae408b83b82dff85842a0, type: 2}
-  enemyName: 
-  damage: 0
-  health: 0
-  maxHealth: 0
+  enemyName: Cell
+  damage: 4
+  health: 30
+  maxHealth: 30
   speed: 0
-  price: 0
+  price: 10
 --- !u!50 &6778947396692271322
 Rigidbody2D:
   serializedVersion: 5
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114aafdf811264327b4eebeb791d23d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LineHeroStateMachine
-  originalLocalScale: {x: 0, y: 0, z: 0}
+  originalLocalScale: {x: 0.27878702, y: 0.27878702, z: 0.92929}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0

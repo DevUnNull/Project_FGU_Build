@@ -11,6 +11,7 @@ public enum DialogueAdvanceMode
 [System.Serializable]
 public class DialogueLineData
 {
+    public string speakerName;
     [TextArea(2, 5)]
     public string text;
     public DialogueAdvanceMode advanceMode = DialogueAdvanceMode.Auto;
@@ -20,12 +21,16 @@ public class DialogueLineData
 
 public enum StatImpactType
 {
-    AtpRecovery,
-    MucosaHp,
-    CellDamage,
-    CellAttackSpeed,
-    GastricAcid,
-    ToxinObstacles
+    [InspectorName("Immunity (Kháng thể)")]
+    Immunity,
+    [InspectorName("Energy (Thể lực)")]
+    Energy,
+    [InspectorName("Toxicity (Độc tố)")]
+    Toxicity,
+    [InspectorName("Hydration (Nước)")]
+    Hydration,
+    [InspectorName("Recovery (Hồi phục)")]
+    Recovery
 }
 
 public enum TargetType
@@ -53,9 +58,17 @@ public class ChoiceData
     public Sprite characterPose;       // Tư thế (VD: pose 1, pose 2)
     public Sprite characterHair;       // Mái tóc (VD: mái.png)
 
+    public Sprite choiceBgSprite;       // Ảnh nền tùy chỉnh cho nút lựa chọn này (Optional)
+
     public TargetType targetType = TargetType.Situation;
     public string targetGuid; // Trỏ tới Scene tiếp theo
     public List<ImpactData> impacts = new List<ImpactData>();
+}
+
+public enum BackgroundMediaType
+{
+    Image,
+    Video
 }
 
 [System.Serializable]
@@ -66,9 +79,12 @@ public class SituationData
     public Vector2 editorPosition; // Dành cho GraphView sau này
     
     public string timeText;
+    public string speakerName; // Tên nhân vật xưng danh mặc định cho tình huống (Optional)
     
     [Header("Background / Media")]
+    public BackgroundMediaType mediaType = BackgroundMediaType.Video;
     public Sprite illustration;
+    public Sprite descriptionBgSprite; // Ảnh nền tùy chỉnh cho khung thoại Description (Optional)
     public UnityEngine.Video.VideoClip dialogueVideo;
     public bool loopDialogueVideo = false;
     public UnityEngine.Video.VideoClip choiceVideo;

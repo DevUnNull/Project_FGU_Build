@@ -1,0 +1,278 @@
+fileFormatVersion: 2
+guid: 46ce4efdef77f48f99ccf5d02c7f7934
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7502096426334709936
+    second: idel_0
+  - first:
+      213: 6806767553635359298
+    second: idel_1
+  - first:
+      213: 743451694707045972
+    second: idel_2
+  - first:
+      213: 850272972160881996
+    second: idel_3
+  - first:
+      213: -5939233994074127048
+    second: idel_4
+  - first:
+      213: 5376959530386786080
+    second: idel_5
+  - first:
+      213: -3370219843708056501
+    second: idel_6
+  - first:
+      213: 6718222201267327412
+    second: idel_7
+  - first:
+      213: 3686386707144779852
+    second: idel_8
+  - first:
+      213: 5923387655585191135
+    second: idel_9
+  - first:
+      213: -8513410463965780975
+    second: idel_10
+  - first:
+      213: 81787472066791733
+    second: idel_11
+  - first:
+      213: 2230914938840102501
+    second: idel_12
+  - first:
+      213: -1245043709139066436
+    second: idel_13
+  - first:
+      213: 3475679811123018728
+    second: idel_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 150
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: idel_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 281
+        width: 430
+        height: 367
+      alignment: 9
+      pivot: {x: 0.4371916, y: 0.5192361}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b86862b3fccc1860800000000000000
+      internalID: 7502096426334709936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idel_1
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 283
+        width: 414
+        height: 365
+      alignment: 9
+      pivot: {x: 0.43639502, y: 0.5295972}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24a1717b60f767e50800000000000000
+      internalID: 6806767553635359298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idel_2
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 281
+        width: 404
+        height: 367
+      alignment: 9
+      pivot: {x: 0.43314928, y: 0.4576856}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 456fcaa9065415a00800000000000000
+      internalID: 743451694707045972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idel_3
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 281
+        width: 418
+        height: 366
+      alignment: 9
+      pivot: {x: 0.43865645, y: 0.5030461}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c45d3c363c6cccb00800000000000000
+      internalID: 850272972160881996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7c94e4f211494430fa3d52baac5e0501
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      idel_0: 7502096426334709936
+      idel_1: 6806767553635359298
+      idel_10: -8513410463965780975
+      idel_11: 81787472066791733
+      idel_12: 2230914938840102501
+      idel_13: -1245043709139066436
+      idel_14: 3475679811123018728
+      idel_2: 743451694707045972
+      idel_3: 850272972160881996
+      idel_4: -5939233994074127048
+      idel_5: 5376959530386786080
+      idel_6: -3370219843708056501
+      idel_7: 6718222201267327412
+      idel_8: 3686386707144779852
+      idel_9: 5923387655585191135
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

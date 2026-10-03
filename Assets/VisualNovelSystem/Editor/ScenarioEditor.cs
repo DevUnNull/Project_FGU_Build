@@ -52,7 +52,24 @@ public class ScenarioEditor : Editor
                 : $"Situation {i + 1}: {timeStr}";
 
             sitProp.isExpanded = EditorGUILayout.Foldout(sitProp.isExpanded, headerText, true);
-            if (GUILayout.Button("X", GUILayout.Width(20)))
+
+            EditorGUI.BeginDisabledGroup(i == 0);
+            if (GUILayout.Button("▲", GUILayout.Width(24)))
+            {
+                situationsProp.MoveArrayElement(i, i - 1);
+                break;
+            }
+            EditorGUI.EndDisabledGroup();
+
+            EditorGUI.BeginDisabledGroup(i == situationsProp.arraySize - 1);
+            if (GUILayout.Button("▼", GUILayout.Width(24)))
+            {
+                situationsProp.MoveArrayElement(i, i + 1);
+                break;
+            }
+            EditorGUI.EndDisabledGroup();
+
+            if (GUILayout.Button("X", GUILayout.Width(22)))
             {
                 situationsProp.DeleteArrayElementAtIndex(i);
                 break; // Break to avoid index out of bounds
@@ -69,20 +86,32 @@ public class ScenarioEditor : Editor
                 
                 EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("situationId"), new GUIContent("Situation ID"));
                 EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("timeText"), new GUIContent("Time Text (e.g. 07:30)"));
+                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("speakerName"), new GUIContent("Default Speaker Name (Optional)"));
 
                 EditorGUILayout.LabelField("Background / Media", EditorStyles.boldLabel);
                 EditorGUILayout.BeginVertical("box");
-                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("illustration"), new GUIContent("Illustration Image"));
-                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("dialogueVideo"), new GUIContent("Dialogue Video"));
-                if (sitProp.FindPropertyRelative("dialogueVideo").objectReferenceValue != null)
+                
+                SerializedProperty mediaTypeProp = sitProp.FindPropertyRelative("mediaType");
+                EditorGUILayout.PropertyField(mediaTypeProp, new GUIContent("Media Type"));
+
+                if (mediaTypeProp.enumValueIndex == (int)BackgroundMediaType.Image)
                 {
-                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("loopDialogueVideo"), new GUIContent("Loop Dialogue Video"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("illustration"), new GUIContent("Illustration Image"));
                 }
-                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("choiceVideo"), new GUIContent("Choice Video"));
-                if (sitProp.FindPropertyRelative("choiceVideo").objectReferenceValue != null)
+                else
                 {
-                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("loopChoiceVideo"), new GUIContent("Loop Choice Video"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("dialogueVideo"), new GUIContent("Dialogue Video"));
+                    if (sitProp.FindPropertyRelative("dialogueVideo").objectReferenceValue != null)
+                    {
+                        EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("loopDialogueVideo"), new GUIContent("Loop Dialogue Video"));
+                    }
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("choiceVideo"), new GUIContent("Choice Video"));
+                    if (sitProp.FindPropertyRelative("choiceVideo").objectReferenceValue != null)
+                    {
+                        EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("loopChoiceVideo"), new GUIContent("Loop Choice Video"));
+                    }
                 }
+                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("descriptionBgSprite"), new GUIContent("Description Background (Optional)"));
                 EditorGUILayout.EndVertical();
 
                 EditorGUILayout.Space(5);
@@ -105,13 +134,31 @@ public class ScenarioEditor : Editor
                     
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField($"Line {d + 1}", EditorStyles.boldLabel);
-                    if (GUILayout.Button("X", GUILayout.Width(20)))
+
+                    EditorGUI.BeginDisabledGroup(d == 0);
+                    if (GUILayout.Button("▲", GUILayout.Width(24)))
+                    {
+                        dialogueLinesProp.MoveArrayElement(d, d - 1);
+                        break;
+                    }
+                    EditorGUI.EndDisabledGroup();
+
+                    EditorGUI.BeginDisabledGroup(d == dialogueLinesProp.arraySize - 1);
+                    if (GUILayout.Button("▼", GUILayout.Width(24)))
+                    {
+                        dialogueLinesProp.MoveArrayElement(d, d + 1);
+                        break;
+                    }
+                    EditorGUI.EndDisabledGroup();
+
+                    if (GUILayout.Button("X", GUILayout.Width(22)))
                     {
                         dialogueLinesProp.DeleteArrayElementAtIndex(d);
                         break;
                     }
                     EditorGUILayout.EndHorizontal();
 
+                    EditorGUILayout.PropertyField(lineProp.FindPropertyRelative("speakerName"), new GUIContent("Speaker Name (Who is speaking)"));
                     EditorGUILayout.PropertyField(lineProp.FindPropertyRelative("text"), new GUIContent("Text"));
                     
                     SerializedProperty advanceModeProp = lineProp.FindPropertyRelative("advanceMode");
@@ -156,7 +203,24 @@ public class ScenarioEditor : Editor
                         EditorGUILayout.BeginVertical("helpbox");
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("choiceText"), new GUIContent($"Choice {j + 1}"));
-                        if (GUILayout.Button("X", GUILayout.Width(20)))
+
+                        EditorGUI.BeginDisabledGroup(j == 0);
+                        if (GUILayout.Button("▲", GUILayout.Width(24)))
+                        {
+                            choicesProp.MoveArrayElement(j, j - 1);
+                            break;
+                        }
+                        EditorGUI.EndDisabledGroup();
+
+                        EditorGUI.BeginDisabledGroup(j == choicesProp.arraySize - 1);
+                        if (GUILayout.Button("▼", GUILayout.Width(24)))
+                        {
+                            choicesProp.MoveArrayElement(j, j + 1);
+                            break;
+                        }
+                        EditorGUI.EndDisabledGroup();
+
+                        if (GUILayout.Button("X", GUILayout.Width(22)))
                         {
                             choicesProp.DeleteArrayElementAtIndex(j);
                             break;
@@ -165,6 +229,7 @@ public class ScenarioEditor : Editor
 
                         EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("delayAfterChoice"), new GUIContent("Animation Delay (s)"));
                         EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("videoClip"), new GUIContent("Video (Optional)"));
+                        EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("choiceBgSprite"), new GUIContent("Choice Background (Optional)"));
                         EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("targetType"), new GUIContent("Target Type"));
                         
                         if (choiceProp.FindPropertyRelative("targetType").enumValueIndex == (int)TargetType.Situation)
@@ -183,7 +248,12 @@ public class ScenarioEditor : Editor
                         {
                             SerializedProperty impactProp = impactsProp.GetArrayElementAtIndex(k);
                             EditorGUILayout.BeginHorizontal();
-                            EditorGUILayout.PropertyField(impactProp.FindPropertyRelative("targetStat"), GUIContent.none, GUILayout.Width(130));
+                            
+                            SerializedProperty targetStatProp = impactProp.FindPropertyRelative("targetStat");
+                            StatImpactType currentType = (StatImpactType)Mathf.Clamp(targetStatProp.enumValueIndex, 0, System.Enum.GetValues(typeof(StatImpactType)).Length - 1);
+                            StatImpactType newType = (StatImpactType)EditorGUILayout.EnumPopup(currentType, GUILayout.Width(180));
+                            targetStatProp.enumValueIndex = (int)newType;
+
                             EditorGUILayout.PropertyField(impactProp.FindPropertyRelative("value"), GUIContent.none);
                             if (GUILayout.Button("-", GUILayout.Width(20)))
                             {
@@ -227,6 +297,7 @@ public class ScenarioEditor : Editor
             newSit.FindPropertyRelative("dialogues").arraySize = 0;
             newSit.FindPropertyRelative("dialogueLines").arraySize = 0;
             newSit.FindPropertyRelative("hasMigratedDialogues").boolValue = true;
+            newSit.FindPropertyRelative("mediaType").enumValueIndex = (int)BackgroundMediaType.Video;
             newSit.FindPropertyRelative("illustration").objectReferenceValue = null;
             newSit.FindPropertyRelative("dialogueVideo").objectReferenceValue = null;
             newSit.FindPropertyRelative("loopDialogueVideo").boolValue = false;

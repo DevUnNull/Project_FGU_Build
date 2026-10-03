@@ -390,7 +390,7 @@ Animator:
   m_GameObject: {fileID: 5605593753993760622}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4651e1f1d6dc4316b6648eae610e09c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -415,12 +415,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroData: {fileID: 11400000, guid: b06e2c9e000ae408b83b82dff85842a0, type: 2}
-  enemyName: 
-  damage: 10
-  health: 100
-  maxHealth: 0
+  enemyName: Cell
+  damage: 4
+  health: 30
+  maxHealth: 30
   speed: 0
-  price: 0
+  price: 10
 --- !u!50 &6778947396692271322
 Rigidbody2D:
   serializedVersion: 5
@@ -506,16 +506,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2587b46845edef4db51ddd261216b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalLocalScale: {x: 0, y: 0, z: 0}
+  originalLocalScale: {x: 0.3, y: 0.3, z: 1}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
   detectionRange: 5
-  attackRange: 1.2
+  attackRange: 2.25
   attackRate: 1
   showRanges: 1
-  detectionType: 0
-  checkDirection: {x: 1.19, y: 0}
+  detectionType: 1
+  checkDirection: {x: 2.25, y: 0}
   checkHeight: 0.9
   cooldownTimer: 0
 --- !u!114 &5989110381545470203

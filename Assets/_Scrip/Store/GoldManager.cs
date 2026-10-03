@@ -18,6 +18,11 @@ public class GoldManager : MonoBehaviour
 
     private void Start()
     {
+        // Energy (Thể lực): Quyết định lượng ATP khởi điểm khi vào trận
+        if (StomachDayData.Instance != null)
+        {
+            gold = Mathf.RoundToInt(gold * StomachDayData.Instance.energyMultiplier);
+        }
         UpdateGoldUI();
     }
 
@@ -31,7 +36,7 @@ public class GoldManager : MonoBehaviour
         float multiplier = 1.0f;
         if (StomachDayData.Instance != null)
         {
-            multiplier = StomachDayData.Instance.atpRecoveryMultiplier;
+            multiplier = StomachDayData.Instance.energyMultiplier;
         }
 
         // If multiplier is <= 0, don't generate or handle differently. We assume it's > 0.

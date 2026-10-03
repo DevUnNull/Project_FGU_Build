@@ -40,6 +40,11 @@ public class LifeManager : MonoBehaviour
 
     private void InitializeLife()
     {
+        // Recovery (Hồi phục): Quyết định lượng Máu Cơ Thể (Body HP - Trái Tim) khởi điểm
+        if (StomachDayData.Instance != null)
+        {
+            maxLife = Mathf.RoundToInt(maxLife * StomachDayData.Instance.recoveryMultiplier);
+        }
         currentLife = maxLife;
         NotifyLifeChanged();
     }

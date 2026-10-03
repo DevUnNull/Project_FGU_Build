@@ -415,12 +415,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroData: {fileID: 11400000, guid: b06e2c9e000ae408b83b82dff85842a0, type: 2}
-  enemyName: 
-  damage: 0
-  health: 0
-  maxHealth: 0
+  enemyName: Cell
+  damage: 4
+  health: 30
+  maxHealth: 30
   speed: 0
-  price: 0
+  price: 10
 --- !u!50 &6778947396692271322
 Rigidbody2D:
   serializedVersion: 5
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2587b46845edef4db51ddd261216b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalLocalScale: {x: 0, y: 0, z: 0}
+  originalLocalScale: {x: 0.3, y: 0.3, z: 1}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10430f583fcb39246ba48db107a2f473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 34831479124375203, guid: 3e78bbfb1c8274eb1bf08102da47ea9e, type: 3}
+  projectilePrefab: {fileID: 8010438034468120054, guid: 3e78bbfb1c8274eb1bf08102da47ea9e, type: 3}
   firePoint: {fileID: 3067899023933404685}
   projectileSpeed: 10
   allowFallbackBullet: 1

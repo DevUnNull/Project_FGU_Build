@@ -19,15 +19,15 @@ public class SetupScenarioExample : Editor
         ChoiceData c1a = new ChoiceData();
         c1a.choiceText = "Ăn Phở bò nóng + Nước ấm";
         ImpactData i1a = new ImpactData();
-        i1a.targetStat = StatImpactType.CellDamage;
+        i1a.targetStat = StatImpactType.Immunity;
         i1a.value = 0.2f;
         c1a.impacts.Add(i1a);
         
         ChoiceData c1b = new ChoiceData();
         c1b.choiceText = "Bỏ bữa sáng, lướt điện thoại";
         ImpactData i1b = new ImpactData();
-        i1b.targetStat = StatImpactType.GastricAcid;
-        i1b.value = 35.0f;
+        i1b.targetStat = StatImpactType.Energy;
+        i1b.value = -0.15f;
         c1b.impacts.Add(i1b);
         
         s1.choices.Add(c1a);

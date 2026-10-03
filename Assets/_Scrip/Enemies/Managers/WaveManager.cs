@@ -194,7 +194,7 @@ public class WaveManager : MonoBehaviour
             OnWaveStart?.Invoke(wave);
             OnWaveProgressChanged?.Invoke(GetCurrentGlobalWaveIndex(), GetTotalWaveCount());
 
-            if (waveIdx == 1 && StomachDayData.Instance != null && StomachDayData.Instance.gastricAcidLevel > 30)
+            if (waveIdx == 1 && StomachDayData.Instance != null && StomachDayData.Instance.toxicityLevel > 0)
             {
                 StartCoroutine(SpawnGastricAcidWave());
             }

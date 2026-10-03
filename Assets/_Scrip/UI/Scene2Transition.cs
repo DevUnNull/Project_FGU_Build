@@ -35,10 +35,11 @@ public class Scene2Transition : MonoBehaviour
         if (StomachDayData.Instance != null)
         {
             // Simple logic: if bad events happened or stats went down, it's a bad state
-            if (StomachDayData.Instance.gastricAcidLevel > 0 || 
-                StomachDayData.Instance.toxinObstaclesCount > 0 ||
-                StomachDayData.Instance.atpRecoveryMultiplier < 1.0f ||
-                StomachDayData.Instance.mucosaHpMultiplier < 1.0f)
+            if (StomachDayData.Instance.toxicityLevel > 0 || 
+                StomachDayData.Instance.immunityMultiplier < 1.0f ||
+                StomachDayData.Instance.energyMultiplier < 1.0f ||
+                StomachDayData.Instance.hydrationMultiplier < 1.0f ||
+                StomachDayData.Instance.recoveryMultiplier < 1.0f)
             {
                 isGoodState = false;
             }

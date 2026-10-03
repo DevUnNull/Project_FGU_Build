@@ -1,10 +1,11 @@
 using UnityEngine;
 
 /// <summary>
-/// Trạng thái Attack của Hero:
-/// Khi ở Attack State, Hero chuyển animation sang attack.
-/// Khi Animation Event ở frame chỉ định được gọi (hoặc safety timer trigger), đạn được bắn ra.
-/// Ngay sau khi bắn đạn xong, Hero lập tức quay về trạng thái Idle để nạp đạn (cooldownTimer).
+/// Trạng thái Attack của Hero (Tế bào):
+/// - Khi vào Attack State: Bật animator "IsAttack" = true.
+/// - Tại thời điểm chém (0.25s): Tự động/Animation Event gọi PerformAttack() để gây sát thương chuẩn xác.
+/// - Khi động tác hoàn tất (0.42s): Tự động gọi FinishAttackAndRest() để tắt "IsAttack",
+///   đặt cooldownTimer (1.2s+) và chuyển về Idle State đứng nghỉ.
 /// </summary>
 public class HeroAttackState : IHeroState
 {
@@ -45,6 +46,7 @@ public class HeroAttackState : IHeroState
 
         attackTimer += Time.deltaTime;
 
+        // 1. Kiểm tra mục tiêu hiện tại
         if (currentTarget != null)
         {
             if (!currentTarget.activeInHierarchy)
@@ -64,7 +66,7 @@ public class HeroAttackState : IHeroState
                 if (deltaY > 0.6f || distanceToTarget > effectiveRange)
                 {
                     currentTarget = null;
-                    stateMachine.ChangeState(stateMachine.idleState);
+                    FinishAttackAndRest();
                     return;
                 }
                 else
@@ -74,12 +76,13 @@ public class HeroAttackState : IHeroState
             }
         }
 
+        // 2. Nếu chưa có mục tiêu -> Tìm mục tiêu mới
         if (currentTarget == null)
         {
             GameObject nearestEnemy = stateMachine.FindTarget();
             if (nearestEnemy == null)
             {
-                stateMachine.ChangeState(stateMachine.idleState);
+                FinishAttackAndRest();
                 return;
             }
 
@@ -87,10 +90,16 @@ public class HeroAttackState : IHeroState
             stateMachine.FaceTowards(currentTarget.transform.position);
         }
 
-        // Safety Fallback: Nếu không có Animation Event được gọi sau 0.8s -> Tự động gọi PerformAttack
-        if (!hasFiredInThisAttack && attackTimer >= 0.8f)
+        // 🎯 3. Đảm bảo gây sát thương đúng frame chém (0.25f) nếu Animation Event bị bỏ qua
+        if (!hasFiredInThisAttack && attackTimer >= 0.25f)
         {
             PerformAttack();
+        }
+
+        // 🛑 4. ĐỘNG TÁC CHÉM HOÀN TẤT (0.42f) -> Bắt buộc kết thúc đợt đánh & về Idle nghỉ
+        if (attackTimer >= 0.42f)
+        {
+            FinishAttackAndRest();
         }
     }
 
@@ -103,9 +112,16 @@ public class HeroAttackState : IHeroState
         {
             animator.SetBool("IsAttack", false);
         }
+
+        // Đảm bảo sau BẤT KỲ đợt chém nào, Hero luôn có khoảng nghỉ ít nhất 1.2s
+        float reloadTime = stateMachine.attackRate > 0f ? (1f / stateMachine.attackRate) : 1.2f;
+        reloadTime = Mathf.Max(reloadTime, 1.2f);
+        stateMachine.cooldownTimer = reloadTime;
     }
 
-    // Hàm được gọi từ Animation Event để thực hiện bắn đạn
+    /// <summary>
+    /// Hàm thực hiện gây sát thương / bắn đạn (Gọi từ Animation Event hoặc tự động ở frame 0.25s)
+    /// </summary>
     public void PerformAttack()
     {
         if (hasFiredInThisAttack || !DragAndDrop.IsUnitActiveOnBoard(hero.gameObject)) return;
@@ -142,9 +158,20 @@ public class HeroAttackState : IHeroState
                 }
             }
         }
+    }
 
-        // ✅ Sau khi bắn đạn xong -> Chuyển sang thời gian nạp đạn (cooldownTimer) và về Idle ngay lập tức
-        float reloadTime = stateMachine.attackRate > 0f ? (1f / stateMachine.attackRate) : 1f;
+    /// <summary>
+    /// Hoàn tất lượt đánh và bắt buộc đưa Hero về trạng thái Idle nghỉ ngơi
+    /// </summary>
+    private void FinishAttackAndRest()
+    {
+        if (!hasFiredInThisAttack)
+        {
+            PerformAttack();
+        }
+
+        float reloadTime = stateMachine.attackRate > 0f ? (1f / stateMachine.attackRate) : 1.2f;
+        reloadTime = Mathf.Max(reloadTime, 1.2f);
         stateMachine.cooldownTimer = reloadTime;
         stateMachine.ChangeState(stateMachine.idleState);
     }

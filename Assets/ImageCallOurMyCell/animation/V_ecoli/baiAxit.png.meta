@@ -1,0 +1,294 @@
+fileFormatVersion: 2
+guid: cb0dba2ef625347ecaad987ae6931318
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6510531833356781463
+    second: baiAxit_0
+  - first:
+      213: -2860165530952092970
+    second: baiAxit_1
+  - first:
+      213: 1993438118421588828
+    second: baiAxit_2
+  - first:
+      213: 2983530244555603104
+    second: baiAxit_3
+  - first:
+      213: 501469283989688102
+    second: baiAxit_4
+  - first:
+      213: -3628040684139250901
+    second: baiAxit_5
+  - first:
+      213: -8155678178959467810
+    second: baiAxit_6
+  - first:
+      213: -267736391210009679
+    second: baiAxit_7
+  - first:
+      213: -4465771878471872157
+    second: baiAxit_8
+  - first:
+      213: 5946805335964749403
+    second: baiAxit_9
+  - first:
+      213: 5521321240085935865
+    second: baiAxit_10
+  - first:
+      213: 3971309837539731629
+    second: baiAxit_11
+  - first:
+      213: -7047347485467488030
+    second: baiAxit_12
+  - first:
+      213: -5954853789386870486
+    second: baiAxit_13
+  - first:
+      213: -7448551910497258236
+    second: baiAxit_14
+  - first:
+      213: 5415534721101247622
+    second: baiAxit_15
+  - first:
+      213: -5796368600804280151
+    second: baiAxit_16
+  - first:
+      213: -2507445591502655149
+    second: baiAxit_17
+  - first:
+      213: -5421477567752011518
+    second: baiAxit_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: baiAxit_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 104
+        width: 525
+        height: 482
+      alignment: 9
+      pivot: {x: 0.5456638, y: 0.33006343}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96875e5bac1f5a5a0800000000000000
+      internalID: -6510531833356781463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baiAxit_1
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 112
+        width: 574
+        height: 472
+      alignment: 9
+      pivot: {x: 0.4965194, y: 0.28270677}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d2b8c87a96ae48d0800000000000000
+      internalID: -2860165530952092970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baiAxit_2
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 104
+        width: 481
+        height: 480
+      alignment: 9
+      pivot: {x: 0.46261907, y: 0.30854505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5bed32386d1aab10800000000000000
+      internalID: 1993438118421588828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: baiAxit_3
+      rect:
+        serializedVersion: 2
+        x: 1660
+        y: 104
+        width: 481
+        height: 480
+      alignment: 9
+      pivot: {x: 0.5415341, y: 0.30854505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0acfe5333f0a76920800000000000000
+      internalID: 2983530244555603104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a6f348c62b2b44b3f809f98d99efeb40
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      baiAxit_0: -6510531833356781463
+      baiAxit_1: -2860165530952092970
+      baiAxit_10: 5521321240085935865
+      baiAxit_11: 3971309837539731629
+      baiAxit_12: -7047347485467488030
+      baiAxit_13: -5954853789386870486
+      baiAxit_14: -7448551910497258236
+      baiAxit_15: 5415534721101247622
+      baiAxit_16: -5796368600804280151
+      baiAxit_17: -2507445591502655149
+      baiAxit_18: -5421477567752011518
+      baiAxit_2: 1993438118421588828
+      baiAxit_3: 2983530244555603104
+      baiAxit_4: 501469283989688102
+      baiAxit_5: -3628040684139250901
+      baiAxit_6: -8155678178959467810
+      baiAxit_7: -267736391210009679
+      baiAxit_8: -4465771878471872157
+      baiAxit_9: 5946805335964749403
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

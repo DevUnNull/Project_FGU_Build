@@ -92,7 +92,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3667762128783509720, guid: 63e1c89aaec444b6c90ea1e24c5805e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.54, y: 0.43}
@@ -110,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 2698530195585558081}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1585a1a58ff8c444f84c643db0651642, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -238,12 +238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d031082399d0646baa05667d3205c18c, type: 2}
-  enemyName: 
-  damage: 0
-  health: 0
-  speed: 0
-  rewardGold: 0
-  currencyWorth: 50
+  enemyName: VirusCorona
+  damage: 5
+  health: 5
+  speed: 1
+  rewardGold: 10
+  currencyWorth: 10
 --- !u!114 &8883088975993911184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +282,8 @@ MonoBehaviour:
   acidPuddleDuration: 8
   acidPuddleRadius: 1.5
   acidDps: 5
-  acidPuddlePrefab: {fileID: 4665746021189302668, guid: 0f903a50da5ab4b9395183c020ccd9aa, type: 3}
-  acidPuddleSprite: {fileID: -6175522030265976835, guid: 492bb61f97f78451297461eff8d0f670, type: 3}
+  acidPuddlePrefab: {fileID: 1001991434293803943, guid: 0f903a50da5ab4b9395183c020ccd9aa, type: 3}
+  acidPuddleSprite: {fileID: 0}
   explosionSprite: {fileID: 0}
 --- !u!1 &6523769219054081721
 GameObject:

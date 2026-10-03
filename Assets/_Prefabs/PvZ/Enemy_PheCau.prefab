@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 9170833397634316817}
   - component: {fileID: 2914691642526325155}
   - component: {fileID: 8883088975993911184}
+  - component: {fileID: 8953057637334348351}
   m_Layer: 3
   m_Name: Enemy_PheCau
   m_TagString: Enemy
@@ -109,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 2698530195585558081}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bce0c100eea0245e3b327e14a8fe4492, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -209,6 +210,7 @@ MonoBehaviour:
   waypoints: []
   speed: 2
   loop: 1
+  isStopped: 0
   enemy: {fileID: 0}
 --- !u!114 &9170833397634316817
 MonoBehaviour:
@@ -236,12 +238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d031082399d0646baa05667d3205c18c, type: 2}
-  enemyName: 
-  damage: 0
-  health: 0
-  speed: 0
-  rewardGold: 0
-  currencyWorth: 50
+  enemyName: VirusCorona
+  damage: 5
+  health: 5
+  speed: 1
+  rewardGold: 10
+  currencyWorth: 10
 --- !u!114 &8883088975993911184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +265,23 @@ MonoBehaviour:
   offset: {x: 0, y: 30, z: 0}
   goldOffset: {x: 0, y: 50, z: 0}
   randomOffsetRange: 20
+--- !u!114 &8953057637334348351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2698530195585558081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5fb941648764c769ba36bca386963e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPheCau
+  attackRange: 1.2
+  attackInterval: 1
+  lungeDistance: 0.4
+  lungeForwardDuration: 0.15
+  lungeReturnDuration: 0.25
 --- !u!1 &6523769219054081721
 GameObject:
   m_ObjectHideFlags: 0

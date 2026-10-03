@@ -3,7 +3,7 @@ using System.Collections;
 
 /// <summary>
 /// Script gán cho tướng Hồng Cầu (CellHongCau).
-/// Cứ mỗi 5s sau khi ra sàn đấu, Hồng Cầu sẽ nảy ra 1 đồng tiền rơi ngẫu nhiên xung quanh.
+/// Cứ mỗi 5s sau khi ra sàn đấu, Hồng Cầu sẽ phát animation Spawn và nảy ra 1 đồng tiền rơi ngẫu nhiên xung quanh.
 /// khi click vào đồng tiền đó, nó biến mất mượt và kích hoạt TrashSellAnimation bắn tiền về pointNhanTien.
 /// </summary>
 public class HongCauCoinSpawner : MonoBehaviour
@@ -30,9 +30,11 @@ public class HongCauCoinSpawner : MonoBehaviour
 
     private float timer = 0f;
     private DragAndDrop dragComponent;
+    private Animator animator;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         dragComponent = GetComponent<DragAndDrop>();
         if (customCoinSprite == null)
         {
@@ -52,12 +54,31 @@ public class HongCauCoinSpawner : MonoBehaviour
         if (timer >= spawnInterval)
         {
             timer = 0f;
+            TriggerSpawnCoinAnimation();
+        }
+    }
+
+    /// <summary>
+    /// Kích hoạt animation Spawn. 
+    /// Mốc 0.35s của animation Spawn có Animation Event tự động gọi SpawnRandomCoin().
+    /// </summary>
+    public void TriggerSpawnCoinAnimation()
+    {
+        if (animator == null) animator = GetComponent<Animator>();
+
+        if (animator != null && animator.runtimeAnimatorController != null)
+        {
+            animator.Play("Spawn", 0, 0f);
+        }
+        else
+        {
+            // Fallback nếu không có animator hoặc controller
             SpawnRandomCoin();
         }
     }
 
     /// <summary>
-    /// Sinh 1 đồng coin nảy ra ngẫu nhiên từ người con Hồng Cầu
+    /// Sinh 1 đồng coin nảy ra ngẫu nhiên từ người con Hồng Cầu (Được gọi bởi Animation Event)
     /// </summary>
     public void SpawnRandomCoin()
     {

@@ -1,0 +1,262 @@
+fileFormatVersion: 2
+guid: fd67276dc9ca545108a9fb1157dd70c1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4760956739624720573
+    second: "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi
+      ma\u0300u pastel_0"
+  - first:
+      213: 2527210349915052878
+    second: "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi
+      ma\u0300u pastel_1"
+  - first:
+      213: -3291058429268588656
+    second: "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi
+      ma\u0300u pastel_2"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi
+        ma\u0300u pastel_0"
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 467
+        width: 1324
+        height: 284
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 347aaa7e11fadedb0800000000000000
+      internalID: -4760956739624720573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi
+        ma\u0300u pastel_1"
+      rect:
+        serializedVersion: 2
+        x: 1377
+        y: 501
+        width: 696
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4b906b6c64721320800000000000000
+      internalID: 2527210349915052878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi
+        ma\u0300u pastel_2"
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 28
+        width: 694
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 097046c9bcfc352d0800000000000000
+      internalID: -3291058429268588656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi
+        ma\u0300u pastel_3"
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 348
+        width: 699
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1741bb9200f649aca9cb6257e2a2504
+      internalID: -1144711818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi
+        ma\u0300u pastel_4"
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 190
+        width: 699
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e36822513473745ee889451609895560
+      internalID: -123472525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 98a04f531b8aa426f96e89e903724727
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi ma\u0300u pastel_0": -4760956739624720573
+      "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi ma\u0300u pastel_1": 2527210349915052878
+      "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi ma\u0300u pastel_2": -3291058429268588656
+      "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi ma\u0300u pastel_3": -1144711818
+      "Bo\u0323\u0302 giao die\u0323\u0302n ho\u0323\u0302i thoa\u0323i chibi ma\u0300u pastel_4": -123472525
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

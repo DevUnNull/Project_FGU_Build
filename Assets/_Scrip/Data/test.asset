@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dade200f2769e438aaae3b11f362ba1b, type: 3}
+  m_Name: test
+  m_EditorClassIdentifier: Assembly-CSharp::ScenarioData
+  entryGuid: 
+  situations:
+  - guid: 1f038b67-dba6-469d-911d-cfd70fc3bc72
+    situationId: Situation_0
+    editorPosition: {x: 0, y: 0}
+    timeText: 00:00
+    speakerName: 
+    mediaType: 1
+    illustration: {fileID: 0}
+    descriptionBgSprite: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: 0}
+    characterPose: {fileID: 0}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - speakerName: 
+      text: fd
+      advanceMode: 0
+      displayDuration: 0
+    autoTransitionDelay: 3
+    autoTargetType: 0
+    autoTargetGuid: 
+    choices:
+    - choiceText: fdsa
+      delayAfterChoice: 0
+      videoClip: {fileID: 0}
+      characterExpression: {fileID: 0}
+      characterPose: {fileID: 0}
+      characterHair: {fileID: 0}
+      choiceBgSprite: {fileID: 0}
+      targetType: 0
+      targetGuid: 
+      impacts:
+      - targetStat: 1
+        value: 56
+      - targetStat: 3
+        value: 65

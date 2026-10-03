@@ -390,7 +390,7 @@ Animator:
   m_GameObject: {fileID: 5605593753993760622}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 106635d61d5294ace89bbba46f29249a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -415,12 +415,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroData: {fileID: 11400000, guid: 6a5acf3f5050f4030b33949f14b98a55, type: 2}
-  enemyName: 
+  enemyName: CellThucBao
   damage: 0
-  health: 0
-  maxHealth: 0
+  health: 1000
+  maxHealth: 1000
   speed: 0
-  price: 0
+  price: 10
 --- !u!50 &6778947396692271322
 Rigidbody2D:
   serializedVersion: 5
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114aafdf811264327b4eebeb791d23d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LineHeroStateMachine
-  originalLocalScale: {x: 0, y: 0, z: 0}
+  originalLocalScale: {x: 0.3, y: 0.3, z: 1}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0

@@ -1,0 +1,314 @@
+fileFormatVersion: 2
+guid: 71066e21e31ab4a4fac8a28582c99318
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3610349052083122817
+    second: diee_0
+  - first:
+      213: -5954962299747302709
+    second: diee_1
+  - first:
+      213: -1008968597528972885
+    second: diee_2
+  - first:
+      213: -8199644617196958259
+    second: diee_3
+  - first:
+      213: -7211695571560458432
+    second: diee_4
+  - first:
+      213: -2518874711771079157
+    second: diee_5
+  - first:
+      213: 6154075675088897915
+    second: diee_6
+  - first:
+      213: -3794921618539451228
+    second: diee_7
+  - first:
+      213: 3993339246277035391
+    second: diee_8
+  - first:
+      213: 8678617069157720548
+    second: diee_9
+  - first:
+      213: 8214927811566846833
+    second: diee_10
+  - first:
+      213: 3372692680398776688
+    second: diee_11
+  - first:
+      213: -7066256475011947567
+    second: diee_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: diee_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 207
+        width: 233
+        height: 260
+      alignment: 9
+      pivot: {x: 0.409177, y: 0.45965248}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 182359c95598a1230800000000000000
+      internalID: 3610349052083122817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: diee_1
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 205
+        width: 295
+        height: 264
+      alignment: 9
+      pivot: {x: 0.36204875, y: 0.61772454}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc208b0d659bb5da0800000000000000
+      internalID: -5954962299747302709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: diee_2
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 205
+        width: 220
+        height: 252
+      alignment: 9
+      pivot: {x: 0.48520175, y: 0.26745313}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba1f2c2086c6ff1f0800000000000000
+      internalID: -1008968597528972885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: diee_3
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 205
+        width: 207
+        height: 213
+      alignment: 9
+      pivot: {x: 0.547184, y: 0.35479465}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcd088b0aa2053e80800000000000000
+      internalID: -8199644617196958259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: diee_4
+      rect:
+        serializedVersion: 2
+        x: 1714
+        y: 202
+        width: 215
+        height: 211
+      alignment: 9
+      pivot: {x: 0.515143, y: 0.30712935}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04791ec3619eaeb90800000000000000
+      internalID: -7211695571560458432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: diee_5
+      rect:
+        serializedVersion: 2
+        x: 1950
+        y: 203
+        width: 217
+        height: 220
+      alignment: 9
+      pivot: {x: 0.53000677, y: 0.32241878}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0e9b239bc82b0dd0800000000000000
+      internalID: -2518874711771079157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 67d277454fddd42babfb25d93ce276be
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      diee_0: 3610349052083122817
+      diee_1: -5954962299747302709
+      diee_10: 8214927811566846833
+      diee_11: 3372692680398776688
+      diee_12: -7066256475011947567
+      diee_2: -1008968597528972885
+      diee_3: -8199644617196958259
+      diee_4: -7211695571560458432
+      diee_5: -2518874711771079157
+      diee_6: 6154075675088897915
+      diee_7: -3794921618539451228
+      diee_8: 3993339246277035391
+      diee_9: 8678617069157720548
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

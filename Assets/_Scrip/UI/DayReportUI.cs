@@ -2,155 +2,311 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class DayReportUI : MonoBehaviour
 {
-    private GameObject reportPanel;
-    private TextMeshProUGUI reportText;
-    private Button closeButton;
+    [Header("UI References (Gán trong Inspector hoặc tự động tìm)")]
+    public GameObject reportPanel;
+    public CanvasGroup backgroundCanvasGroup;
+    public RectTransform dialogBoxContainer;
+    public Transform thongBaoHeader;
+    public TextMeshProUGUI reportText;
+    public Button closeButton;
+
+    [Header("Animation Settings")]
+    public bool useTypewriterEffect = true;
+    public float typewriterSpeed = 0.015f; // Tốc độ hiện từng chữ (giây/ký tự)
+    public bool enableButtonBreathing = true; // Hiệu ứng nhịp thở cho nút Đóng
+
+    private string fullReportText = "";
+    private bool isClosing = false;
+    private Coroutine buttonPulseCoroutine;
 
     private void Start()
     {
-        // Nếu không có dữ liệu StomachDayData, không cần hiện báo cáo
+        // 1. Tự động liên kết các thành phần UI nếu chưa gán thủ công
+        AutoFindOrBuildUI();
+
+        // Nếu không có dữ liệu StomachDayData, ẩn panel báo cáo
         if (StomachDayData.Instance == null)
         {
+            if (reportPanel != null) reportPanel.SetActive(false);
             return;
         }
 
-        // 1. Tự động khởi tạo toàn bộ giao diện (Canvas, Panel, Text, Button) bằng code
-        CreateUI();
-
-        // 2. Viết nội dung báo cáo
-        string report = "<b><size=120%>BÁO CÁO TÌNH TRẠNG CƠ THỂ</size></b>\n\n";
-
-        // Chỉ số có lợi (Buff / Debuff)
-        float atp = StomachDayData.Instance.atpRecoveryMultiplier;
-        report += FormatStat("- Tốc độ hồi ATP", atp);
-
-        float hp = StomachDayData.Instance.mucosaHpMultiplier;
-        report += FormatStat("- Sinh lực (HP) Tế bào", hp);
-
-        float dmg = StomachDayData.Instance.cellDamageMultiplier;
-        report += FormatStat("- Sát thương Tế bào", dmg);
-
-        float atkSpeed = StomachDayData.Instance.cellAttackSpeedMultiplier;
-        report += FormatStat("- Tốc độ đánh", atkSpeed);
-
-        report += "\n<b><size=120%>ẢNH HƯỞNG TIÊU CỰC</size></b>\n\n";
-        bool hasNegative = false;
-
-        // Chỉ số bất lợi (Event)
-        float acid = StomachDayData.Instance.gastricAcidLevel;
-        if (acid > 0)
+        if (reportPanel != null)
         {
-            report += $"- <color=#ff4444>Mức Axit dạ dày tăng mạnh (+{acid})!</color>\n";
-            hasNegative = true;
+            reportPanel.SetActive(true);
         }
 
-        int toxins = StomachDayData.Instance.toxinObstaclesCount;
-        if (toxins > 0)
+        // 2. Soạn nội dung báo cáo 5 chỉ số cơ thể
+        fullReportText = "<b><size=120%>BÁO CÁO TÌNH TRẠNG CƠ THỂ</size></b>\n\n";
+
+        float immunity = StomachDayData.Instance.immunityMultiplier;
+        fullReportText += FormatStat("- Kháng thể (Máu & Dmg Tế bào)", immunity);
+
+        float energy = StomachDayData.Instance.energyMultiplier;
+        fullReportText += FormatStat("- Thể lực (ATP Khởi điểm)", energy);
+
+        float hydration = StomachDayData.Instance.hydrationMultiplier;
+        fullReportText += FormatStat("- Nước (Cooldown Tế Bào B & Hồng Cầu)", hydration);
+
+        float recovery = StomachDayData.Instance.recoveryMultiplier;
+        fullReportText += FormatStat("- Hồi phục (Máu Cơ Thể Trái Tim)", recovery);
+
+        fullReportText += "\n<b><size=120%>ẢNH HƯỞNG TIÊU CỰC</size></b>\n\n";
+        float toxicity = StomachDayData.Instance.toxicityLevel;
+        if (toxicity > 0)
         {
-            report += $"- <color=#ff4444>Có {toxins} khối độc tố cản đường!</color>\n";
-            hasNegative = true;
+            int lockedCount = Mathf.RoundToInt(toxicity);
+            fullReportText += $"- <color=#ff4444>Độc tố cao (+{toxicity:0.#}) -> Xuất hiện {lockedCount} Ô Axit bị khóa!</color>\n";
+        }
+        else
+        {
+            fullReportText += "- <color=#44ff44>Độc tố an toàn (Không có ô bị khóa).</color>\n";
         }
 
-        if (!hasNegative)
+        if (closeButton != null)
         {
-            report += "- <color=#44ff44>Không có ảnh hưởng xấu nào.</color>\n";
+            closeButton.onClick.RemoveAllListeners();
+            closeButton.onClick.AddListener(CloseReport);
         }
 
-        reportText.text = report;
-        closeButton.onClick.AddListener(CloseReport);
+        // 3. Chạy animation mở bảng & gõ chữ
+        StartCoroutine(AnimateInRoutine());
     }
 
-    private void CreateUI()
+    private IEnumerator AnimateInRoutine()
     {
-        // Tạo Canvas độc lập cho báo cáo (nằm đè lên trên cùng)
-        GameObject canvasObj = new GameObject("DayReportCanvas");
-        Canvas canvas = canvasObj.AddComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = 9999; // Lớp trên cùng
-        
-        CanvasScaler scaler = canvasObj.AddComponent<CanvasScaler>();
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1920, 1080);
-        
-        canvasObj.AddComponent<GraphicRaycaster>();
+        // Ẩn ban đầu để làm animation pop-in
+        if (dialogBoxContainer != null) dialogBoxContainer.localScale = Vector3.zero;
+        if (backgroundCanvasGroup != null) backgroundCanvasGroup.alpha = 0f;
+        if (closeButton != null) closeButton.transform.localScale = Vector3.zero;
+        if (thongBaoHeader != null) thongBaoHeader.localScale = Vector3.zero;
 
-        // Đảm bảo có EventSystem để bấm được nút
-        if (FindObjectOfType<EventSystem>() == null)
+        // A. Fade nền đen & nảy bảng DialogBox (EaseOutBack)
+        float duration = 0.35f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
         {
-            GameObject esObj = new GameObject("EventSystem");
-            esObj.AddComponent<EventSystem>();
-            esObj.AddComponent<StandaloneInputModule>();
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            if (backgroundCanvasGroup != null) backgroundCanvasGroup.alpha = t;
+
+            float c1 = 1.70158f;
+            float c3 = c1 + 1f;
+            float easeBack = 1f + c3 * Mathf.Pow(t - 1f, 3) + c1 * Mathf.Pow(t - 1f, 2);
+
+            if (dialogBoxContainer != null)
+            {
+                dialogBoxContainer.localScale = Vector3.one * easeBack;
+            }
+
+            yield return null;
         }
 
-        // Tạo màn nền đen mờ
-        reportPanel = new GameObject("ReportPanel");
-        reportPanel.transform.SetParent(canvasObj.transform, false);
-        Image panelImage = reportPanel.AddComponent<Image>();
-        panelImage.color = new Color(0, 0, 0, 0.85f);
-        RectTransform panelRect = reportPanel.GetComponent<RectTransform>();
-        panelRect.anchorMin = Vector2.zero;
-        panelRect.anchorMax = Vector2.one;
-        panelRect.sizeDelta = Vector2.zero;
+        if (dialogBoxContainer != null) dialogBoxContainer.localScale = Vector3.one;
+        if (backgroundCanvasGroup != null) backgroundCanvasGroup.alpha = 1f;
 
-        // Tạo hộp thoại (Dialog Box) ở giữa
-        GameObject dialogBox = new GameObject("DialogBox");
-        dialogBox.transform.SetParent(reportPanel.transform, false);
-        Image dialogImage = dialogBox.AddComponent<Image>();
-        dialogImage.color = new Color(0.15f, 0.15f, 0.2f, 1f); // Màu xám xanh tối
-        RectTransform dialogRect = dialogBox.GetComponent<RectTransform>();
-        dialogRect.sizeDelta = new Vector2(800, 600);
+        // B. Bounce nảy Header "Tình Trạng Cơ Thể" (ThongBao)
+        if (thongBaoHeader != null)
+        {
+            elapsed = 0f;
+            float headerDuration = 0.25f;
+            while (elapsed < headerDuration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = Mathf.Clamp01(elapsed / headerDuration);
+                float c1 = 1.70158f;
+                float c3 = c1 + 1f;
+                float easeBack = 1f + c3 * Mathf.Pow(t - 1f, 3) + c1 * Mathf.Pow(t - 1f, 2);
+                thongBaoHeader.localScale = Vector3.one * easeBack;
+                yield return null;
+            }
+            thongBaoHeader.localScale = Vector3.one;
+        }
 
-        // Tạo Text hiển thị báo cáo
-        GameObject textObj = new GameObject("ReportText");
-        textObj.transform.SetParent(dialogBox.transform, false);
-        reportText = textObj.AddComponent<TextMeshProUGUI>();
-        reportText.color = Color.white;
-        reportText.fontSize = 32;
-        reportText.alignment = TextAlignmentOptions.TopLeft;
-        reportText.richText = true;
-        RectTransform textRect = textObj.GetComponent<RectTransform>();
-        textRect.anchorMin = Vector2.zero;
-        textRect.anchorMax = Vector2.one;
-        textRect.offsetMin = new Vector2(50, 100); 
-        textRect.offsetMax = new Vector2(-50, -50);
+        // C. Hiệu ứng gõ chữ Typewriter cho ReportText
+        if (reportText != null)
+        {
+            if (useTypewriterEffect)
+            {
+                yield return StartCoroutine(TypewriterTextRoutine(fullReportText));
+            }
+            else
+            {
+                reportText.text = fullReportText;
+            }
+        }
 
-        // Tạo Nút Đóng (Xác nhận)
-        GameObject btnObj = new GameObject("CloseButton");
-        btnObj.transform.SetParent(dialogBox.transform, false);
-        Image btnImage = btnObj.AddComponent<Image>();
-        btnImage.color = new Color(0.2f, 0.7f, 0.2f, 1f); // Màu xanh lá
-        closeButton = btnObj.AddComponent<Button>();
-        RectTransform btnRect = btnObj.GetComponent<RectTransform>();
-        btnRect.anchorMin = new Vector2(0.5f, 0);
-        btnRect.anchorMax = new Vector2(0.5f, 0);
-        btnRect.sizeDelta = new Vector2(250, 60);
-        btnRect.anchoredPosition = new Vector2(0, 50);
+        // D. Nút Đóng xuất hiện & bắt đầu nhịp thở (Pulse)
+        if (closeButton != null)
+        {
+            elapsed = 0f;
+            float btnDuration = 0.25f;
+            while (elapsed < btnDuration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = Mathf.Clamp01(elapsed / btnDuration);
+                float c1 = 1.70158f;
+                float c3 = c1 + 1f;
+                float easeBack = 1f + c3 * Mathf.Pow(t - 1f, 3) + c1 * Mathf.Pow(t - 1f, 2);
+                closeButton.transform.localScale = Vector3.one * easeBack;
+                yield return null;
+            }
+            closeButton.transform.localScale = Vector3.one;
 
-        // Chữ trong nút Đóng
-        GameObject btnTextObj = new GameObject("ButtonText");
-        btnTextObj.transform.SetParent(btnObj.transform, false);
-        TextMeshProUGUI btnText = btnTextObj.AddComponent<TextMeshProUGUI>();
-        btnText.text = "Xác nhận & Bắt đầu";
-        btnText.color = Color.white;
-        btnText.fontSize = 28;
-        btnText.alignment = TextAlignmentOptions.Center;
-        RectTransform btnTextRect = btnTextObj.GetComponent<RectTransform>();
-        btnTextRect.anchorMin = Vector2.zero;
-        btnTextRect.anchorMax = Vector2.one;
-        btnTextRect.sizeDelta = Vector2.zero;
+            if (enableButtonBreathing)
+            {
+                buttonPulseCoroutine = StartCoroutine(ButtonPulseRoutine());
+            }
+        }
+    }
+
+    private IEnumerator TypewriterTextRoutine(string fullText)
+    {
+        reportText.text = fullText;
+        reportText.ForceMeshUpdate();
+
+        int totalChars = reportText.textInfo.characterCount;
+        reportText.maxVisibleCharacters = 0;
+
+        for (int i = 0; i <= totalChars; i++)
+        {
+            reportText.maxVisibleCharacters = i;
+            yield return new WaitForSecondsRealtime(typewriterSpeed);
+        }
+
+        reportText.maxVisibleCharacters = 99999;
+    }
+
+    private IEnumerator ButtonPulseRoutine()
+    {
+        if (closeButton == null) yield break;
+        Vector3 baseScale = Vector3.one;
+
+        while (!isClosing)
+        {
+            float wave = Mathf.Sin(Time.unscaledTime * 4.5f) * 0.04f;
+            closeButton.transform.localScale = baseScale * (1.0f + wave);
+            yield return null;
+        }
+    }
+
+    private void CloseReport()
+    {
+        if (isClosing) return;
+        StartCoroutine(AnimateOutRoutine());
+    }
+
+    private IEnumerator AnimateOutRoutine()
+    {
+        isClosing = true;
+
+        if (buttonPulseCoroutine != null)
+        {
+            StopCoroutine(buttonPulseCoroutine);
+        }
+
+        // Bấm nút: Nút thu nhỏ lại 0.9x tạo cảm giác bấm sướng tay
+        if (closeButton != null)
+        {
+            closeButton.transform.localScale = Vector3.one * 0.9f;
+        }
+
+        yield return new WaitForSecondsRealtime(0.05f);
+
+        // Bảng DialogBox thu nhỏ & mờ dần mượt mà
+        float duration = 0.22f;
+        float elapsed = 0f;
+
+        Vector3 startScale = dialogBoxContainer != null ? dialogBoxContainer.localScale : Vector3.one;
+        float startAlpha = backgroundCanvasGroup != null ? backgroundCanvasGroup.alpha : 1f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            float c1 = 1.70158f;
+            float c3 = c1 + 1f;
+            float easeIn = c3 * t * t * t - c1 * t * t;
+            float scaleFactor = Mathf.Clamp01(1f - t);
+
+            if (dialogBoxContainer != null)
+            {
+                dialogBoxContainer.localScale = startScale * scaleFactor;
+            }
+
+            if (backgroundCanvasGroup != null)
+            {
+                backgroundCanvasGroup.alpha = Mathf.Lerp(startAlpha, 0f, t);
+            }
+
+            yield return null;
+        }
+
+        if (reportPanel != null)
+        {
+            reportPanel.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void AutoFindOrBuildUI()
+    {
+        if (reportPanel == null)
+        {
+            Transform panelTr = transform.Find("ReportPanel");
+            if (panelTr != null) reportPanel = panelTr.gameObject;
+            else reportPanel = gameObject;
+        }
+
+        if (backgroundCanvasGroup == null && reportPanel != null)
+        {
+            backgroundCanvasGroup = reportPanel.GetComponent<CanvasGroup>();
+            if (backgroundCanvasGroup == null)
+            {
+                backgroundCanvasGroup = reportPanel.AddComponent<CanvasGroup>();
+            }
+        }
+
+        if (dialogBoxContainer == null && reportPanel != null)
+        {
+            Transform dialogTr = reportPanel.transform.Find("DialogBox");
+            if (dialogTr != null) dialogBoxContainer = dialogTr.GetComponent<RectTransform>();
+        }
+
+        if (thongBaoHeader == null && dialogBoxContainer != null)
+        {
+            thongBaoHeader = dialogBoxContainer.Find("ThongBao");
+        }
+
+        if (reportText == null)
+        {
+            reportText = GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        if (closeButton == null)
+        {
+            closeButton = GetComponentInChildren<Button>();
+        }
     }
 
     private string FormatStat(string statName, float multiplier)
     {
-        float percent = multiplier * 100f;
-        if (multiplier > 1.0f)
+        float percent = Mathf.Round(multiplier * 100f);
+        if (multiplier > 1.001f)
         {
             return $"{statName}: <color=#44ff44>{percent}% (Tăng cường)</color>\n";
         }
-        else if (multiplier < 1.0f)
+        else if (multiplier < 0.999f)
         {
             return $"{statName}: <color=#ff4444>{percent}% (Suy giảm)</color>\n";
         }
@@ -158,11 +314,5 @@ public class DayReportUI : MonoBehaviour
         {
             return $"{statName}: <color=white>{percent}% (Bình thường)</color>\n";
         }
-    }
-
-    private void CloseReport()
-    {
-        // Khi bấm nút, xoá toàn bộ Canvas chứa giao diện báo cáo này
-        Destroy(reportPanel.transform.parent.gameObject);
     }
 }

@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
 /// Virus E.coli:
-/// Trường hợp 1: Va chạm vào bất kỳ Cell nào của Player (hoặc chạm tường) -> Nổ và để lại 1 bãi Axit gây sát thương theo giây.
-/// Trường hợp 2: Bị đánh bại trước khi va chạm -> Nổ ngay tại chỗ đứng gây sát thương lan (AoE).
+/// khi chết -> phát animation "die" 1 lần.
+/// Sau khi animation die chạy xong -> nổ gây sát thương AoE + để lại vũng Axit phát animation 4 frame (baiAxit).
 /// </summary>
 public class EnemyEcoli : MonoBehaviour
 {
@@ -17,33 +18,36 @@ public class EnemyEcoli : MonoBehaviour
     [SerializeField] private int acidDps = 5;
 
     [Header("Visual Customization")]
-    [Tooltip("Prefab Vũng Axit tùy chỉnh (kéo Prefab có script AcidPuddle vào đây)")]
+    [Tooltip("Prefab Vũng Axit tùy chỉnh")]
     [SerializeField] private AcidPuddle acidPuddlePrefab;
-    [Tooltip("Hình ảnh Sprite vũng Axit (kéo Sprite vũng axit vào đây nếu không dùng Prefab)")]
+    [Tooltip("Hình ảnh Sprite vũng Axit")]
     [SerializeField] private Sprite acidPuddleSprite;
     [Tooltip("Hình ảnh Sprite hiệu ứng nổ Ecoli")]
     [SerializeField] private Sprite explosionSprite;
 
     private _Enemy enemyBase;
+    private WaypointMovement waypointMovement;
+    private Animator animator;
     private bool hasExploded = false;
 
     private void Awake()
     {
         enemyBase = GetComponent<_Enemy>();
+        waypointMovement = GetComponent<WaypointMovement>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (hasExploded) return;
 
-        // Trường hợp 2: Kiểm tra nếu máu bị đánh về <= 0 bởi Player trước khi va chạm -> Nổ tại chỗ
+        // Trường hợp 2: Bị tiêu diệt trước khi chạm -> Nổ tại chỗ
         if (enemyBase != null && enemyBase.health <= 0)
         {
             ExplodeOnSpot();
             return;
         }
 
-        // Tự động kiểm tra va chạm gần với bất kỳ Tế bào Player nào trên bàn
         CheckProximityCollisionWithCell();
     }
 
@@ -69,28 +73,75 @@ public class EnemyEcoli : MonoBehaviour
     }
 
     /// <summary>
-    /// Trường hợp 1: Va chạm Cell hoặc Tường -> Nổ tức thời + Để lại bãi Axit dưới chân.
+    /// Trường hợp 1: Va chạm Cell hoặc Tường -> Phát animation die 1 lần -> Nổ + Để lại bãi Axit
     /// </summary>
     public void ExplodeAndCreateAcid(Vector3 hitPosition)
     {
         if (hasExploded) return;
         hasExploded = true;
 
-        Debug.Log("💥 E.coli va chạm Cell/Tường! Nổ và để lại bãi Axit!");
+        if (waypointMovement != null) waypointMovement.isStopped = true;
 
-        // Gây sát thương nổ tức thời xung quanh vị trí nổ
-        DealAoEDamage(hitPosition, instantExplosionDamage);
+        StartCoroutine(Co_DieSequence(hitPosition, spawnAcid: true));
+    }
 
-        // Tạo bãi Axit ngay tại chỗ nổ
+    /// <summary>
+    /// Trường hợp 2: Bị tiêu diệt trước khi chạm Cell -> Phát animation die 1 lần -> Nổ tại chỗ
+    /// </summary>
+    public void ExplodeOnSpot()
+    {
+        if (hasExploded) return;
+        hasExploded = true;
+
+        if (waypointMovement != null) waypointMovement.isStopped = true;
+
+        StartCoroutine(Co_DieSequence(transform.position, spawnAcid: false));
+    }
+
+    private IEnumerator Co_DieSequence(Vector3 position, bool spawnAcid)
+    {
+        // 1. Phát animation "die" 1 lần
+        float dieAnimDuration = 0.8f;
+        if (animator != null)
+        {
+            animator.Play("die", 0, 0f);
+
+            // Tìm độ dài clip die nếu có
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.length > 0)
+            {
+                dieAnimDuration = stateInfo.length;
+            }
+        }
+
+        // Chờ animation "die" chạy hết 1 lần
+        yield return new WaitForSeconds(dieAnimDuration);
+
+        // 2. Nổ gây sát thương AoE xung quanh
+        DealAoEDamage(position, instantExplosionDamage);
+        VisualExplosionEffect(position, new Color(0.2f, 0.9f, 0.1f, 0.8f));
+
+        // 3. Tạo bãi Axit hoạt họa nếu có yêu cầu
+        if (spawnAcid)
+        {
+            CreateAcidPuddle(position);
+        }
+
+        // 4. Biến mất / trả về Pool
+        Despawn();
+    }
+
+    private void CreateAcidPuddle(Vector3 position)
+    {
         AcidPuddle puddle = null;
         if (acidPuddlePrefab != null)
         {
-            puddle = Instantiate(acidPuddlePrefab, hitPosition, Quaternion.identity);
+            puddle = Instantiate(acidPuddlePrefab, position, Quaternion.identity);
         }
         else
         {
             GameObject acidObj = new GameObject("AcidPuddle_Ecoli");
-            acidObj.transform.position = hitPosition;
+            acidObj.transform.position = position;
             puddle = acidObj.AddComponent<AcidPuddle>();
         }
 
@@ -102,27 +153,6 @@ public class EnemyEcoli : MonoBehaviour
             }
             puddle.Init(acidPuddleDuration, acidPuddleRadius, acidDps);
         }
-
-        VisualExplosionEffect(hitPosition, new Color(0.2f, 0.9f, 0.1f, 0.8f));
-
-        Despawn();
-    }
-
-    /// <summary>
-    /// Trường hợp 2: Bị tiêu diệt trước khi chạm Cell -> Nổ ngay tại chỗ đứng.
-    /// </summary>
-    public void ExplodeOnSpot()
-    {
-        if (hasExploded) return;
-        hasExploded = true;
-
-        Debug.Log("💥 E.coli bị tiêu diệt! Nổ ngay tại chỗ!");
-
-        Vector3 pos = transform.position;
-        DealAoEDamage(pos, instantExplosionDamage);
-        VisualExplosionEffect(pos, Color.yellow);
-
-        Despawn();
     }
 
     private void Despawn()
@@ -189,7 +219,6 @@ public class EnemyEcoli : MonoBehaviour
     {
         if (hasExploded || other == null) return;
 
-        // 1. Va chạm với Cell của Player đã đặt trên bàn
         HeroBase hero = other.GetComponent<HeroBase>() ?? other.GetComponentInParent<HeroBase>();
         if (hero != null && hero.health > 0 && DragAndDrop.IsUnitActiveOnBoard(hero.gameObject))
         {
@@ -197,7 +226,6 @@ public class EnemyEcoli : MonoBehaviour
             return;
         }
 
-        // 2. Va chạm với Tường / Destination
         bool isWall = other.GetComponent<DestinationEnemy>() != null ||
                       other.name.ToLower().Contains("destination") ||
                       other.name.ToLower().Contains("wall") ||

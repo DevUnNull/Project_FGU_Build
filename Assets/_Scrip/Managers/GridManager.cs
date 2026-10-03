@@ -32,8 +32,8 @@ public class GridManager : MonoBehaviour
         RefreshTileCache();
         SpawnToxinObstacles();
 
-        // Tự động gắn và hiển thị báo cáo ngày
-        if (gameObject.GetComponent<DayReportUI>() == null)
+        // Tự động sử dụng DayReportUI đã có trong Scene (hoặc gắn thêm nếu chưa có)
+        if (FindObjectOfType<DayReportUI>() == null)
         {
             gameObject.AddComponent<DayReportUI>();
         }
@@ -135,7 +135,7 @@ public class GridManager : MonoBehaviour
     {
         if (StomachDayData.Instance == null || toxinObstaclePrefab == null) return;
 
-        int obstaclesToSpawn = StomachDayData.Instance.toxinObstaclesCount;
+        int obstaclesToSpawn = Mathf.RoundToInt(StomachDayData.Instance.toxicityLevel);
         List<Vector2Int> freeCells = new List<Vector2Int>();
 
         for (int r = 0; r < rows; r++)

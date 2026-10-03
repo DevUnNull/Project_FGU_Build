@@ -111,7 +111,7 @@ Animator:
   m_GameObject: {fileID: 2698530195585558081}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3088f970fe75a4d168519328badeb1c0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -239,12 +239,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: d031082399d0646baa05667d3205c18c, type: 2}
-  enemyName: 
-  damage: 0
-  health: 0
-  speed: 0
-  rewardGold: 0
-  currencyWorth: 50
+  enemyName: VirusCorona
+  damage: 5
+  health: 5
+  speed: 1
+  rewardGold: 10
+  currencyWorth: 10
 --- !u!114 &8883088975993911184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
   attackRange: 7
   attackInterval: 1.5
   projectileSpeed: 8
-  projectilePrefab: {fileID: 3619034159859738110, guid: c990d74750aa74294aec93f45601b6bb, type: 3}
+  projectilePrefab: {fileID: 2576301972864546151, guid: c990d74750aa74294aec93f45601b6bb, type: 3}
   bulletSprite: {fileID: 6662029848781932699, guid: 72adf38af0abd46e79323d15d8a33cb4, type: 3}
 --- !u!1 &6523769219054081721
 GameObject:

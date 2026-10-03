@@ -12,6 +12,10 @@ public class AcidPuddle : MonoBehaviour
     [SerializeField] private int damagePerSecond = 5;
     [SerializeField] private float tickInterval = 1.0f;
 
+    [Header("Visual Customization")]
+    [Tooltip("Sprite hình ảnh của vũng Axit (kéo Sprite vũng axit vào đây nếu không có Animator)")]
+    [SerializeField] private Sprite customPuddleSprite;
+
     private float tickTimer = 0f;
     private float lifeTimer = 0f;
 
@@ -23,10 +27,6 @@ public class AcidPuddle : MonoBehaviour
 
         EnsureVisuals();
     }
-
-    [Header("Visual Customization")]
-    [Tooltip("Sprite hình ảnh của vũng Axit (kéo Sprite vũng axit vào đây)")]
-    [SerializeField] private Sprite customPuddleSprite;
 
     public void SetCustomSprite(Sprite sprite)
     {
@@ -51,15 +51,19 @@ public class AcidPuddle : MonoBehaviour
             sr = gameObject.AddComponent<SpriteRenderer>();
         }
 
+        sr.sortingOrder = 1;
+
+        Animator anim = GetComponent<Animator>();
+
         if (customPuddleSprite != null)
         {
             sr.sprite = customPuddleSprite;
-            sr.sortingOrder = 1;
         }
-        else if (sr.sprite == null)
+        else if (anim == null && sr.sprite == null)
         {
+            // Fallback nếu không có sprite hoặc animator
             Texture2D texture = new Texture2D(32, 32);
-            Color acidColor = new Color(0.2f, 0.9f, 0.1f, 0.45f); // Axit xanh lá trong suốt
+            Color acidColor = new Color(0.2f, 0.9f, 0.1f, 0.45f);
             for (int x = 0; x < 32; x++)
             {
                 for (int y = 0; y < 32; y++)
@@ -73,10 +77,13 @@ public class AcidPuddle : MonoBehaviour
             }
             texture.Apply();
             sr.sprite = Sprite.Create(texture, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 16);
-            sr.sortingOrder = 1;
         }
 
-        transform.localScale = new Vector3(radius * 2f, radius * 2f, 1f);
+        // Đảm bảo kích thước vũng axit vừa vặn với ô bàn cờ (Scale ~ 0.35f cho sprite 500px)
+        if (anim != null || sr.sprite != null)
+        {
+            transform.localScale = new Vector3(0.35f, 0.35f, 1f);
+        }
     }
 
     private void Update()

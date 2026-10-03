@@ -18,6 +18,15 @@ public class HeroBase : MonoBehaviour
     // Property để HeroAudio có thể lấy HeroData
     public HeroData HeroData => heroData;
 
+    private void Start()
+    {
+        SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var sr in srs)
+        {
+            if (sr.sortingOrder < 5) sr.sortingOrder = 10;
+        }
+    }
+
     public void SetFromData(HeroData heroData)
     {
         this.heroData = heroData;
@@ -30,9 +39,16 @@ public class HeroBase : MonoBehaviour
         
         if (StomachDayData.Instance != null)
         {
-            dmgMult = StomachDayData.Instance.cellDamageMultiplier;
-            hpMult = StomachDayData.Instance.mucosaHpMultiplier;
-            atkSpeedMult = StomachDayData.Instance.cellAttackSpeedMultiplier;
+            // Immunity (Kháng thể): Quyết định Máu & Sát thương gốc của các Tế bào
+            dmgMult = StomachDayData.Instance.immunityMultiplier;
+            hpMult = StomachDayData.Instance.immunityMultiplier;
+
+            // Hydration (Nước): Quyết định tốc độ hồi chiêu (Cooldown/Tốc độ đánh) của Tế Bào B & Hồng Cầu
+            if (gameObject.name.Contains("CellB") || gameObject.name.Contains("Tế Bào B") || 
+                gameObject.name.Contains("HongCau") || gameObject.name.Contains("Hồng Cầu"))
+            {
+                atkSpeedMult = StomachDayData.Instance.hydrationMultiplier;
+            }
         }
 
         damage = Mathf.RoundToInt(heroData.damage * dmgMult);
