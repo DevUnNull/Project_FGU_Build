@@ -7,86 +7,49 @@ public class PauseMenu : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject pausePanel;       // Panel chứa menu pause
     [SerializeField] private Animator boardMenuAnimator;  // Animator của BoardMenu
-    [SerializeField] private float closeAnimTime = 0.3f;  // Thời gian animation đóng
+    [SerializeField] private float closeAnimTime = 0.25f; // Thời gian animation đóng
 
     private bool isPaused = false;
 
     private void Awake()
     {
-        // Đăng ký callback khi scene được load
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        // Tìm ngay lập tức nếu có thể
         TryFindReferences();
     }
 
     private void OnDestroy()
     {
-        // Hủy đăng ký callback
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Tìm lại references mỗi khi scene được load
         TryFindReferences();
     }
 
     private void TryFindReferences()
     {
-        // Tìm lại references nếu bị mất do DontDestroyOnLoad
         if (pausePanel == null)
         {
-            GameObject defeatObj = GameObject.Find("Defeat");
-            if (defeatObj != null)
-            {
-                pausePanel = defeatObj;
-                Debug.Log("✅ [PauseMenu] Đã tìm lại PausePanel reference từ GameObject 'Defeat'");
-            }
+            pausePanel = gameObject;
         }
 
         if (boardMenuAnimator == null)
         {
-            GameObject boardMenuObj = GameObject.Find("BoardMenu");
-            if (boardMenuObj != null)
+            Transform boardTF = transform.Find("BoardMenu");
+            if (boardTF != null)
             {
-                boardMenuAnimator = boardMenuObj.GetComponent<Animator>();
-                if (boardMenuAnimator != null)
-                {
-                    Debug.Log("✅ [PauseMenu] Đã tìm lại BoardMenuAnimator reference từ GameObject 'BoardMenu'");
-                }
+                boardMenuAnimator = boardTF.GetComponent<Animator>();
             }
         }
     }
 
     private void Start()
     {
-        // Tìm lại references nếu vẫn chưa tìm thấy (fallback)
-        if (pausePanel == null)
-        {
-            GameObject defeatObj = GameObject.Find("Defeat");
-            if (defeatObj != null)
-            {
-                pausePanel = defeatObj;
-                Debug.Log("✅ Đã tìm lại PausePanel reference từ GameObject 'Defeat'");
-            }
-        }
-
-        if (boardMenuAnimator == null)
-        {
-            GameObject boardMenuObj = GameObject.Find("BoardMenu");
-            if (boardMenuObj != null)
-            {
-                boardMenuAnimator = boardMenuObj.GetComponent<Animator>();
-                if (boardMenuAnimator != null)
-                {
-                    Debug.Log("✅ Đã tìm lại BoardMenuAnimator reference từ GameObject 'BoardMenu'");
-                }
-            }
-        }
+        TryFindReferences();
     }
 
-    // 🔁 Gọi hàm này khi nhấn nút pause (ví dụ gán vào button)
+    // 🔁 Gọi hàm này khi nhấn nút pause
     public void TogglePause()
     {
         if (isPaused)
@@ -106,7 +69,11 @@ public class PauseMenu : MonoBehaviour
         if (boardMenuAnimator != null)
         {
             boardMenuAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-            boardMenuAnimator.Play("BoardMenu"); // animation mở menu
+            try
+            {
+                boardMenuAnimator.Play("BoardMenu");
+            }
+            catch { }
         }
 
         Time.timeScale = 0f;
@@ -119,7 +86,11 @@ public class PauseMenu : MonoBehaviour
         if (boardMenuAnimator != null)
         {
             boardMenuAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-            boardMenuAnimator.Play("BoardMenuClouse");
+            try
+            {
+                boardMenuAnimator.Play("BoardMenuClouse");
+            }
+            catch { }
         }
 
         StartCoroutine(ResumeAfterAnim(closeAnimTime));
@@ -136,62 +107,23 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    // 🔁 Restart lại màn chơi (chạy animation đóng menu trước)
+    // 🔁 Restart lại màn chơi (Sử dụng SceneChuyenCanhManager để chạy Out_ChuyenCanh 3.7s)
     public void RestartLevel()
     {
-        StartCoroutine(RestartAfterAnim(closeAnimTime));
-    }
-
-    private IEnumerator RestartAfterAnim(float delay)
-    {
-        // ✅ Chạy animation đóng menu
-        if (boardMenuAnimator != null)
-        {
-            boardMenuAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-            boardMenuAnimator.Play("BoardMenuClouse");
-        }
-
-        yield return new WaitForSecondsRealtime(delay); // dùng thời gian unscaled
-
+        Debug.Log("🔄 [PauseMenu] RestartLevel called!");
         Time.timeScale = 1f;
-
-        if (MultiEnemyPool.Instance != null)
-            Destroy(MultiEnemyPool.Instance.gameObject);
-
-        // Xóa listeners cũ trước khi reload scene để tránh null reference
-        if (LifeManager.Instance != null)
-            LifeManager.Instance.ClearListeners();
-
         Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        if (!string.IsNullOrEmpty(currentScene.name))
+        {
+            SceneChuyenCanhManager.LoadScene(currentScene.name);
+        }
     }
 
-    // 🏠 Thoát về Home
+    // 🏠 Thoát về Home (Sử dụng SceneChuyenCanhManager để chạy Out_ChuyenCanh 3.7s)
     public void ExitToHome()
     {
-        StartCoroutine(ExitToHomeAfterAnim(closeAnimTime));      
-    }
-
-    private IEnumerator ExitToHomeAfterAnim(float delay)
-    {
-        if (boardMenuAnimator != null)
-        {
-            boardMenuAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-            boardMenuAnimator.Play("BoardMenuClouse");
-        }
-
-        yield return new WaitForSecondsRealtime(delay);
-
+        Debug.Log("🏠 [PauseMenu] ExitToHome called!");
         Time.timeScale = 1f;
-        
-
-        if (MultiEnemyPool.Instance != null)
-            Destroy(MultiEnemyPool.Instance.gameObject);
-
-        // Xóa listeners cũ trước khi load scene mới để tránh null reference
-        if (LifeManager.Instance != null)
-            LifeManager.Instance.ClearListeners();
-
-        SceneManager.LoadScene("AllMap");
+        SceneChuyenCanhManager.LoadScene("MainMap");
     }
 }

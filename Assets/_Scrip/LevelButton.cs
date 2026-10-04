@@ -12,7 +12,7 @@ public class LevelButton : MonoBehaviour, IPointerClickHandler
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadScene(sceneName);
+            SceneChuyenCanhManager.LoadScene(sceneName);
         }
         else
         {

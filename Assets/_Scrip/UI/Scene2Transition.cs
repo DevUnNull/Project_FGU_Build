@@ -80,6 +80,6 @@ public class Scene2Transition : MonoBehaviour
         canvasGroup.alpha = 0f;
 
         // Load next scene
-        SceneManager.LoadScene(nextSceneName);
+        SceneChuyenCanhManager.LoadScene(nextSceneName);
     }
 }

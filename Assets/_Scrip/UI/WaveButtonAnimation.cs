@@ -74,10 +74,20 @@ public class WaveButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerU
     private void CacheOriginalTransforms()
     {
         if (rectTransform == null) rectTransform = GetComponent<RectTransform>();
-        if (rectTransform != null && originalScale == Vector3.one)
+        if (rectTransform != null)
         {
-            originalScale = rectTransform.localScale;
-            originalAnchoredPosition = rectTransform.anchoredPosition;
+            if (rectTransform.localScale.sqrMagnitude > 0.1f)
+            {
+                originalScale = rectTransform.localScale;
+            }
+            else if (originalScale.sqrMagnitude < 0.1f)
+            {
+                originalScale = Vector3.one;
+            }
+
+            if (originalAnchoredPosition == Vector2.zero)
+                originalAnchoredPosition = rectTransform.anchoredPosition;
+
             originalRotation = rectTransform.localRotation;
         }
     }

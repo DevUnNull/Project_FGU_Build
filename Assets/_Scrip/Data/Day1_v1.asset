@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dade200f2769e438aaae3b11f362ba1b, type: 3}
   m_Name: Day1_v1
   m_EditorClassIdentifier: Assembly-CSharp::ScenarioData
-  entryGuid: 26c6e180-e099-4179-a75c-69408c7dca75
+  entryGuid: ac676c03-89e6-4adb-841c-a9bc8ef0ab35
   situations:
   - guid: 26c6e180-e099-4179-a75c-69408c7dca75
     situationId: "C\u1EA2NH 1: 06:30 S\xC1NG \u2013 TI\u1EBENG CHU\xD4NG QU\xC1I
@@ -28,7 +28,7 @@ MonoBehaviour:
     choiceVideo: {fileID: 0}
     loopChoiceVideo: 1
     characterExpression: {fileID: 4411433792686104643, guid: 0425dfdaf48c746099a97e44e1ddac10, type: 3}
-    characterPose: {fileID: 0}
+    characterPose: {fileID: -8914653933863600974, guid: 57844e1226c7e4e97b3f1a018840f237, type: 3}
     characterHair: {fileID: 0}
     description: 
     dialogues: []
@@ -1093,3 +1093,34 @@ MonoBehaviour:
       targetType: 1
       targetGuid: 
       impacts: []
+  - guid: ac676c03-89e6-4adb-841c-a9bc8ef0ab35
+    situationId: Start
+    editorPosition: {x: -458.5, y: -18}
+    timeText: 00:00
+    speakerName: 
+    mediaType: 0
+    illustration: {fileID: 5088316998373936774, guid: 83cf141dbb0954512b7d2d3aaab5f717, type: 3}
+    descriptionBgSprite: {fileID: 0}
+    dialogueVideo: {fileID: 0}
+    loopDialogueVideo: 0
+    choiceVideo: {fileID: 0}
+    loopChoiceVideo: 1
+    characterExpression: {fileID: -4001430064766718173, guid: 97481dada74994a01992453a703988de, type: 3}
+    characterPose: {fileID: -4001430064766718173, guid: 97481dada74994a01992453a703988de, type: 3}
+    characterHair: {fileID: 0}
+    description: 
+    dialogues: []
+    hasMigratedDialogues: 1
+    dialogueLines:
+    - speakerName: ...
+      text: "Ng\xE0y 1"
+      advanceMode: 0
+      displayDuration: 4
+    - speakerName: ...
+      text: "\u1EA4n \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u ng\xE0y"
+      advanceMode: 1
+      displayDuration: 3
+    autoTransitionDelay: 0
+    autoTargetType: 0
+    autoTargetGuid: 26c6e180-e099-4179-a75c-69408c7dca75
+    choices: []
