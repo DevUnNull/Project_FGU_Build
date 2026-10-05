@@ -30,8 +30,8 @@ public class HeroStateMachine : MonoBehaviour
     // Phạm vi tấn công (khoảng cách tối đa Hero có thể tấn công)
     public float attackRange = 1.5f;
     
-    // Tốc độ tấn công (số lần tấn công mỗi giây)
-    public float attackRate = 1f; // Attacks per second
+    [Tooltip("Khoảng thời gian giữa 2 lần đánh (tính bằng giây). Đặt 1 = sau 1s đánh lại, 2 = sau 2s đánh lại")]
+    public float attackInterval = 1f;
 
     // Cờ bật/tắt hiển thị tầm trong Scene View của Unity Editor
     public bool showRanges = true;
@@ -125,6 +125,9 @@ public class HeroStateMachine : MonoBehaviour
     {
         // 1. Nếu tướng chưa được mua/chưa đặt lên bàn (đang ở trong shop) -> Không tìm mục tiêu
         if (!DragAndDrop.IsUnitActiveOnBoard(gameObject)) return null;
+
+        // 2. Nếu người chơi chưa ấn nút GỌI WAVE (StartWave) -> Chưa tìm mục tiêu / chưa tấn công
+        if (WaveManager.Instance != null && !WaveManager.Instance.IsWaveStarted) return null;
 
         GameObject nearestEnemy = null;
         float nearestDistance = float.MaxValue;

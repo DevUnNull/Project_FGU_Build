@@ -34,6 +34,12 @@ public class LogicSpawner : MonoBehaviour
         if (startGameButton != null)
             startGameButton.gameObject.SetActive(false);
 
+        // Kích hoạt cờ đã bấm StartWave
+        if (WaveManager.Instance != null)
+        {
+            WaveManager.Instance.SetWaveStarted(true);
+        }
+
         // Bắt đầu tất cả các Tune (Path1 đến Path5)
         for (int i = 0; i < 5; i++)
         {

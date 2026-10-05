@@ -48,8 +48,18 @@ public class WaveManager : MonoBehaviour
     // default game 
     [SerializeField] public PauseMenu pauseMenu;
 
+    // Cờ đánh dấu đã bấm nút StartWave (GỌI WAVE) hay chưa
+    public bool IsWaveStarted { get; private set; } = false;
+
+    public void SetWaveStarted(bool started)
+    {
+        IsWaveStarted = started;
+        Debug.Log($"🎮 [WaveManager] IsWaveStarted = {IsWaveStarted}");
+    }
+
     void Awake()
     {
+        IsWaveStarted = false; // Reset cờ ban đầu
         pauseMenu = GetComponent<PauseMenu>();
         if (Instance == null)
         {
@@ -81,6 +91,7 @@ public class WaveManager : MonoBehaviour
 
     public void StartTune(int tuneIdx)
     {
+        IsWaveStarted = true; // Đã bắt đầu wave
         if (tuneIdx < 0 || tuneIdx >= tunes.Count)
         {
             Debug.LogWarning($"⚠️ Tune index {tuneIdx} không tồn tại! Số lượng tune: {tunes.Count}");
@@ -542,10 +553,12 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     private int CalculateTotalEnemyCount(WaveConfig wave)
     {
+        if (wave == null || wave.IsEmptyWave()) return 0;
         int total = 0;
         foreach (var group in wave.groups)
         {
-            total += group.count;
+            if (group.type != EnemyType.None && group.count > 0)
+                total += group.count;
         }
         return total;
     }
@@ -555,9 +568,11 @@ public class WaveManager : MonoBehaviour
     /// </summary>
     private float CalculateTotalSpawnTime(WaveConfig wave)
     {
+        if (wave == null || wave.IsEmptyWave()) return 0f;
         float totalTime = 0f;
         foreach (var group in wave.groups)
         {
+            if (group.type == EnemyType.None || group.count <= 0) continue;
             // Thời gian spawn = (số lượng - 1) * interval (vì enemy đầu spawn ngay)
             float groupTime = (group.count > 0) ? (group.count - 1) * group.interval : 0f;
             totalTime += groupTime;
@@ -647,12 +662,24 @@ public class WaveManager : MonoBehaviour
 
     public void RecordWaveStart(int tuneIdx, int waveIdx)
     {
+        if (tuneIdx >= 0 && tuneIdx < tunes.Count && tunes[tuneIdx] != null && tunes[tuneIdx].waves != null)
+        {
+            if (waveIdx >= 0 && waveIdx < tunes[tuneIdx].waves.Count)
+            {
+                var wave = tunes[tuneIdx].waves[waveIdx];
+                if (wave != null && wave.IsEmptyWave())
+                {
+                    // Lượt trống: không ghi nhận là 1 wave đã khởi chạy
+                    return;
+                }
+            }
+        }
         string key = $"{tuneIdx}_{waveIdx}";
         startedWaveKeys.Add(key);
     }
 
     /// <summary>
-    /// Tính tổng tất cả số wave từ tất cả các TuneConfig (ví dụ: Tune1 (5) + Tune2 (3) + ...)
+    /// Tính tổng tất cả số wave không trống từ tất cả các TuneConfig
     /// </summary>
     public int GetTotalWaveCount()
     {
@@ -661,13 +688,19 @@ public class WaveManager : MonoBehaviour
         foreach (var tune in tunes)
         {
             if (tune != null && tune.waves != null)
-                total += tune.waves.Count;
+            {
+                foreach (var wave in tune.waves)
+                {
+                    if (wave != null && !wave.IsEmptyWave())
+                        total++;
+                }
+            }
         }
         return total;
     }
 
     /// <summary>
-    /// Tính thứ tự Wave hiện tại (mỗi wave mới bắt đầu sẽ tăng lên 1)
+    /// Tính thứ tự Wave hiện tại (mỗi wave hợp lệ mới bắt đầu sẽ tăng lên 1)
     /// </summary>
     public int GetCurrentGlobalWaveIndex()
     {
@@ -677,18 +710,33 @@ public class WaveManager : MonoBehaviour
             int targetTuneIndex = Mathf.Max(0, currentTuneIndex);
             for (int i = 0; i < tunes.Count; i++)
             {
+                if (tunes[i] == null || tunes[i].waves == null) continue;
                 if (i < targetTuneIndex)
                 {
-                    if (tunes[i] != null && tunes[i].waves != null)
-                        globalWaveIndex += tunes[i].waves.Count;
+                    foreach (var w in tunes[i].waves)
+                    {
+                        if (w != null && !w.IsEmptyWave())
+                            globalWaveIndex++;
+                    }
                 }
                 else if (i == targetTuneIndex)
                 {
-                    globalWaveIndex += Mathf.Max(0, currentWaveIndex);
+                    for (int wIdx = 0; wIdx < Mathf.Min(currentWaveIndex, tunes[i].waves.Count); wIdx++)
+                    {
+                        var w = tunes[i].waves[wIdx];
+                        if (w != null && !w.IsEmptyWave())
+                            globalWaveIndex++;
+                    }
+                    if (currentWaveIndex >= 0 && currentWaveIndex < tunes[i].waves.Count)
+                    {
+                        var currentW = tunes[i].waves[currentWaveIndex];
+                        if (currentW != null && !currentW.IsEmptyWave())
+                            globalWaveIndex++;
+                    }
                     break;
                 }
             }
-            return globalWaveIndex + 1;
+            return globalWaveIndex;
         }
         return startedWaveKeys.Count;
     }

@@ -414,13 +414,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd106e890fa0c964db80e223652eb4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroData: {fileID: 11400000, guid: b06e2c9e000ae408b83b82dff85842a0, type: 2}
-  enemyName: Cell
-  damage: 4
-  health: 30
-  maxHealth: 30
+  heroData: {fileID: 11400000, guid: ebedc53a40c044e1f96f3ff50867fe5b, type: 2}
+  enemyName: Cell_B
+  damage: 15
+  health: 90
+  maxHealth: 90
   speed: 0
-  price: 10
+  price: 125
+  attackInterval: 0.45
 --- !u!50 &6778947396692271322
 Rigidbody2D:
   serializedVersion: 5
@@ -512,7 +513,7 @@ MonoBehaviour:
     m_Bits: 8
   detectionRange: -7.04
   attackRange: 24.6
-  attackRate: 1
+  attackInterval: 0.45
   showRanges: 1
   detectionType: 1
   checkDirection: {x: 24.5, y: 0}

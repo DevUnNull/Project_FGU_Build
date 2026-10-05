@@ -238,13 +238,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbc43671facfb4a9a043e32ce5152e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: d031082399d0646baa05667d3205c18c, type: 2}
-  enemyName: VirusCorona
-  damage: 5
-  health: 5
+  enemyData: {fileID: 11400000, guid: 04315d83d15654bdfab929ab5d82b71e, type: 2}
+  enemyName: VirusCumA
+  damage: 15
+  health: 150
   speed: 1
-  rewardGold: 10
-  currencyWorth: 10
+  attackInterval: 1
+  rewardGold: 30
+  currencyWorth: 30
 --- !u!114 &8883088975993911184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCumA
   attackRange: 7
-  attackInterval: 1.5
+  attackInterval: 1
   projectileSpeed: 8
   projectilePrefab: {fileID: 2576301972864546151, guid: c990d74750aa74294aec93f45601b6bb, type: 3}
   bulletSprite: {fileID: 6662029848781932699, guid: 72adf38af0abd46e79323d15d8a33cb4, type: 3}

@@ -27,8 +27,17 @@ public class EnemyPheCau : MonoBehaviour
     private void Awake()
     {
         enemyBase = GetComponent<_Enemy>();
+        if (enemyBase != null && enemyBase.attackInterval > 0f)
+        {
+            attackInterval = enemyBase.attackInterval;
+        }
         waypointMovement = GetComponent<WaypointMovement>();
         animator = GetComponent<Animator>();
+    }
+
+    public void SetAttackInterval(float interval)
+    {
+        if (interval > 0f) attackInterval = interval;
     }
 
     private void Update()

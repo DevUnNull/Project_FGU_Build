@@ -19,39 +19,25 @@ MonoBehaviour:
     editorPosition: {x: 0, y: 0}
     timeText: 00:00
     speakerName: 
-    mediaType: 1
-    illustration: {fileID: 0}
+    mediaType: 0
+    illustration: {fileID: 4130640169021434097, guid: eecee4ad6d1fd44db8c8958d863edecb, type: 3}
     descriptionBgSprite: {fileID: 0}
     dialogueVideo: {fileID: 0}
     loopDialogueVideo: 0
     choiceVideo: {fileID: 0}
     loopChoiceVideo: 1
-    characterExpression: {fileID: 0}
+    characterExpression: {fileID: 2095784869074111139, guid: 82cf6f89454da42d19be1379dd07aebe, type: 3}
     characterPose: {fileID: 0}
     characterHair: {fileID: 0}
     description: 
     dialogues: []
     hasMigratedDialogues: 1
     dialogueLines:
-    - speakerName: 
-      text: fd
+    - speakerName: ...
+      text: ...
       advanceMode: 0
-      displayDuration: 0
-    autoTransitionDelay: 3
+      displayDuration: 5
+    autoTransitionDelay: 0
     autoTargetType: 0
     autoTargetGuid: 
-    choices:
-    - choiceText: fdsa
-      delayAfterChoice: 0
-      videoClip: {fileID: 0}
-      characterExpression: {fileID: 0}
-      characterPose: {fileID: 0}
-      characterHair: {fileID: 0}
-      choiceBgSprite: {fileID: 0}
-      targetType: 0
-      targetGuid: 
-      impacts:
-      - targetStat: 1
-        value: 56
-      - targetStat: 3
-        value: 65
+    choices: []

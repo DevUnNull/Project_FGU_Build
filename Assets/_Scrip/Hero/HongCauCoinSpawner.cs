@@ -44,8 +44,14 @@ public class HongCauCoinSpawner : MonoBehaviour
 
     private void Update()
     {
-        // Chỉ sinh tiền khi đã mua và được đặt trên sàn đấu
+        // 1. Chỉ sinh tiền khi đã mua và được đặt trên sàn đấu
         if (dragComponent != null && !dragComponent.isBuy)
+        {
+            return;
+        }
+
+        // 2. Chỉ sinh tiền khi người chơi đã ấn nút GỌI WAVE (StartWave)
+        if (WaveManager.Instance != null && !WaveManager.Instance.IsWaveStarted)
         {
             return;
         }

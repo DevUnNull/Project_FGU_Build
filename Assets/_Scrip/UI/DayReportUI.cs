@@ -257,6 +257,12 @@ public class DayReportUI : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        // Tự động nối tiếp mở bảng Hướng Dẫn Tướng (HuonngDan) ngay khi tắt Báo Cáo Tình Trạng Cơ Thể
+        if (HeroTutorialManager.Instance != null)
+        {
+            HeroTutorialManager.Instance.OpenTutorial();
+        }
     }
 
     private void AutoFindOrBuildUI()

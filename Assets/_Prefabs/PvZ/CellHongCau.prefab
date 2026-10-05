@@ -415,12 +415,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroData: {fileID: 11400000, guid: b06e2c9e000ae408b83b82dff85842a0, type: 2}
-  enemyName: Cell
-  damage: 4
-  health: 30
-  maxHealth: 30
+  enemyName: Cell_HongCau
+  damage: 0
+  health: 100
+  maxHealth: 100
   speed: 0
-  price: 10
+  price: 75
+  attackInterval: 1
 --- !u!50 &6778947396692271322
 Rigidbody2D:
   serializedVersion: 5
@@ -553,7 +554,7 @@ MonoBehaviour:
     m_Bits: 0
   detectionRange: 3
   attackRange: 1.5
-  attackRate: 1
+  attackInterval: 1
   showRanges: 1
   detectionType: 0
   checkDirection: {x: 1, y: 0}

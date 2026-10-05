@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,6 +39,14 @@ public class WaveSpawner : MonoBehaviour
         if (wave.pathID == myPathID)
         {
             StopSpawning(); // Dừng coroutine cũ (nếu có)
+            
+            // Nếu wave được thiết lập là lượt trống (không cho ra con gì) -> bỏ qua không sinh quái
+            if (wave != null && wave.IsEmptyWave())
+            {
+                Debug.Log($"👻 [{name}] Wave {wave.name} là lượt trống (IsEmptyWave). Bỏ qua sinh quái.");
+                return;
+            }
+
             currentSpawnRoutine = StartCoroutine(SpawnWaveRoutine(wave.groups));
         }
     }
@@ -47,6 +55,8 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (var group in groups)
         {
+            if (group.type == EnemyType.None || group.count <= 0) continue;
+
             for (int i = 0; i < group.count; i++)
             {
                 SpawnSingleEnemy(group.type);
@@ -57,6 +67,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnSingleEnemy(EnemyType type)
     {
+        if (type == EnemyType.None) return;
+
         GameObject enemy = MultiEnemyPool.Instance.Get(type);
         if (enemy == null)
         {

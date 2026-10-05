@@ -12,11 +12,22 @@ public class HeroBase : MonoBehaviour
     public int damage;
     public int health;
     public int maxHealth;
-    public int speed;
+    public float speed;
     public int price;
+
+    [Tooltip("Thời gian giữa 2 lần đánh (tính bằng giây). Đặt 1 = sau 1 giây đánh lại, 2 = sau 2 giây đánh lại")]
+    public float attackInterval = 1f;
 
     // Property để HeroAudio có thể lấy HeroData
     public HeroData HeroData => heroData;
+
+    private EnemyPopUp popUpComponent;
+
+    private void Awake()
+    {
+        popUpComponent = GetComponent<EnemyPopUp>();
+        if (popUpComponent == null) popUpComponent = gameObject.AddComponent<EnemyPopUp>();
+    }
 
     private void Start()
     {
@@ -57,6 +68,14 @@ public class HeroBase : MonoBehaviour
         
         speed = heroData.speed;
         price = heroData.price;
+        attackInterval = (heroData.attackInterval > 0f) ? heroData.attackInterval : 1f;
+
+        // Đồng bộ Thời gian hồi chiêu (Attack Interval) sang HeroStateMachine
+        HeroStateMachine sm = GetComponent<HeroStateMachine>();
+        if (sm != null)
+        {
+            sm.attackInterval = attackInterval / Mathf.Max(0.1f, atkSpeedMult);
+        }
         
         // Áp dụng Attack Speed vào Animator
         Animator anim = GetComponent<Animator>();
@@ -76,6 +95,13 @@ public class HeroBase : MonoBehaviour
 
         health -= damageAmount;
         OnHealthChanged?.Invoke(health, maxHealth);
+
+        // Hiển thị popup sát thương nhận phải (Màu Cam Đỏ nổi bật cho Cell)
+        if (popUpComponent == null) popUpComponent = GetComponent<EnemyPopUp>() ?? gameObject.AddComponent<EnemyPopUp>();
+        if (popUpComponent != null)
+        {
+            popUpComponent.PopUpDame(damageAmount, new Color(1f, 0.35f, 0.1f));
+        }
 
         if (health <= 0)
         {

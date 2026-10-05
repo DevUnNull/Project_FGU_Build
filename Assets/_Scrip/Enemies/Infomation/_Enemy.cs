@@ -17,8 +17,9 @@ public class _Enemy : EnemyBase
         // Set dữ liệu từ enemyData
         if (enemyData != null) SetFromData(enemyData);
         
-        // Lấy EnemyPopUp component (có thể không có nếu chưa gắn)
+        // Lấy EnemyPopUp component (tự tạo nếu chưa gắn)
         enemyPopUp = GetComponent<EnemyPopUp>();
+        if (enemyPopUp == null) enemyPopUp = gameObject.AddComponent<EnemyPopUp>();
 
         // Đồng bộ reward từ EnemyData (fallback nếu asset chưa set)
         if (rewardGold > 0)

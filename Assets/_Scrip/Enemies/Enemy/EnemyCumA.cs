@@ -23,7 +23,16 @@ public class EnemyCumA : MonoBehaviour
     private void Awake()
     {
         enemyBase = GetComponent<_Enemy>();
+        if (enemyBase != null && enemyBase.attackInterval > 0f)
+        {
+            attackInterval = enemyBase.attackInterval;
+        }
         waypointMovement = GetComponent<WaypointMovement>();
+    }
+
+    public void SetAttackInterval(float interval)
+    {
+        if (interval > 0f) attackInterval = interval;
     }
 
     private void Update()

@@ -7,8 +7,11 @@ public class HeroData : ScriptableObject
     public string HeroName;
     public int damage;
     public int health;
-    public int speed;
+    public float speed;
     public int price;
+
+    [Tooltip("Thời gian giữa 2 lần đánh (tính bằng giây). Đặt 1 = sau 1s đánh lại, 2 = sau 2s đánh lại")]
+    public float attackInterval = 1f;
 
     [Header("Audio")]
     [Tooltip("Sound khi hero ra trận (spawn)")]

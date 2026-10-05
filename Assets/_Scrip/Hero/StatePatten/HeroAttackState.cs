@@ -113,9 +113,8 @@ public class HeroAttackState : IHeroState
             animator.SetBool("IsAttack", false);
         }
 
-        // Đảm bảo sau BẤT KỲ đợt chém nào, Hero luôn có khoảng nghỉ ít nhất 1.2s
-        float reloadTime = stateMachine.attackRate > 0f ? (1f / stateMachine.attackRate) : 1.2f;
-        reloadTime = Mathf.Max(reloadTime, 1.2f);
+        // Thời gian nạp đạn / khoảng nghỉ giữa 2 đợt đánh (tính bằng giây)
+        float reloadTime = stateMachine.attackInterval > 0f ? stateMachine.attackInterval : 1f;
         stateMachine.cooldownTimer = reloadTime;
     }
 
@@ -170,8 +169,7 @@ public class HeroAttackState : IHeroState
             PerformAttack();
         }
 
-        float reloadTime = stateMachine.attackRate > 0f ? (1f / stateMachine.attackRate) : 1.2f;
-        reloadTime = Mathf.Max(reloadTime, 1.2f);
+        float reloadTime = stateMachine.attackInterval > 0f ? stateMachine.attackInterval : 1f;
         stateMachine.cooldownTimer = reloadTime;
         stateMachine.ChangeState(stateMachine.idleState);
     }

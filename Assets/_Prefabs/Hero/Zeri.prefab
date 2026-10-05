@@ -421,6 +421,7 @@ MonoBehaviour:
   maxHealth: 30
   speed: 0
   price: 10
+  attackInterval: 1
 --- !u!50 &6778947396692271322
 Rigidbody2D:
   serializedVersion: 5
@@ -512,7 +513,7 @@ MonoBehaviour:
     m_Bits: 8
   detectionRange: 5
   attackRange: 3.01
-  attackRate: 1
+  attackInterval: 1
   showRanges: 1
   detectionType: 1
   checkDirection: {x: 1, y: 0}

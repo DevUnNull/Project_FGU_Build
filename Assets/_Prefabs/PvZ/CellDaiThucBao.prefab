@@ -414,13 +414,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd106e890fa0c964db80e223652eb4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroData: {fileID: 11400000, guid: 6a5acf3f5050f4030b33949f14b98a55, type: 2}
-  enemyName: CellThucBao
-  damage: 0
-  health: 1000
-  maxHealth: 1000
+  heroData: {fileID: 11400000, guid: 017d3f4b564ee4abb972e0c41b05541d, type: 2}
+  enemyName: Cell_ThucBao
+  damage: 5
+  health: 400
+  maxHealth: 400
   speed: 0
-  price: 10
+  price: 100
+  attackInterval: 1.5
 --- !u!50 &6778947396692271322
 Rigidbody2D:
   serializedVersion: 5
@@ -553,7 +554,7 @@ MonoBehaviour:
     m_Bits: 0
   detectionRange: 3
   attackRange: 1.5
-  attackRate: 1
+  attackInterval: 1.5
   showRanges: 1
   detectionType: 0
   checkDirection: {x: 1, y: 0}

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WaveConfig1_5
   m_EditorClassIdentifier: 
   pathID: 0
+  isEmptyWave: 0
   groups:
   - type: 8
-    count: 3
-    interval: 2
+    count: 2
+    interval: 5

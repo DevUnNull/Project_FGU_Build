@@ -27,19 +27,35 @@ public class GoldManager : MonoBehaviour
     }
 
     private float atpTimer = 0f;
-    public float baseAtpGenerationRate = 1f; // seconds per tick
+
+    [Header("=== Cấu Hình Tăng ATP/Tiền Theo Thời Gian ===")]
+    [Tooltip("Khoảng thời gian (tính bằng giây) giữa mỗi đợt nhận ATP (Mặc định: 1 giây)")]
+    public float baseAtpGenerationRate = 1f;
+
+    [Tooltip("Số tiền ATP nhận được mỗi đợt (Mặc định: 5 ATP)")]
     public int atpPerTick = 5;
+
+    [Tooltip("Tích chọn nếu chỉ bắt đầu tăng tiền khi người chơi ấn nút GỌI WAVE (StartWave)")]
+    public bool requireStartWave = true;
 
     private void Update()
     {
-        // Simple Coroutine-like behaviour in Update for passive generation
+        // 1. Nếu bật requireStartWave -> Chỉ tăng tiền khi WaveManager đã khởi chạy Wave!
+        if (requireStartWave)
+        {
+            if (WaveManager.Instance == null || !WaveManager.Instance.IsWaveStarted)
+            {
+                return; // Chưa ấn GỌI WAVE -> Chưa bắt đầu tăng ATP theo thời gian
+            }
+        }
+
+        // 2. Tính toán hệ số năng lượng và tăng tiền
         float multiplier = 1.0f;
         if (StomachDayData.Instance != null)
         {
             multiplier = StomachDayData.Instance.energyMultiplier;
         }
 
-        // If multiplier is <= 0, don't generate or handle differently. We assume it's > 0.
         if (multiplier > 0)
         {
             float actualRate = baseAtpGenerationRate / multiplier;

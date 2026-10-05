@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: TuneConfigMap1_2
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: acd9ac5197c117e4c86a4ba40bd8de5c, type: 2}
+  - {fileID: 11400000, guid: bbe4e02cb8c5f466dab64c86ae4222bb, type: 2}
   - {fileID: 11400000, guid: 10ac952d76db48a41bd2e13c6398faeb, type: 2}
-  - {fileID: 11400000, guid: 10ac952d76db48a41bd2e13c6398faeb, type: 2}
-  - {fileID: 11400000, guid: 10ac952d76db48a41bd2e13c6398faeb, type: 2}
-  - {fileID: 11400000, guid: 10ac952d76db48a41bd2e13c6398faeb, type: 2}
+  - {fileID: 11400000, guid: 3922ae042e5854481a532bba2a6735e1, type: 2}
+  - {fileID: 11400000, guid: 25113f3584ade4c3d8a1532f21f98d9c, type: 2}
+  - {fileID: 11400000, guid: b2b634a36fded4a92848996657872cd0, type: 2}
+  - {fileID: 11400000, guid: bbe4e02cb8c5f466dab64c86ae4222bb, type: 2}
+  - {fileID: 11400000, guid: a87f85ee6818d420c9973654177b3b88, type: 2}
