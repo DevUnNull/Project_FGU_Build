@@ -28,7 +28,7 @@ public class HomingProjectile : MonoBehaviour
 
     private void Update()
     {
-        if (target != null && target.gameObject.activeInHierarchy)
+        if (target != null && target && target.gameObject != null && target.gameObject.activeInHierarchy)
         {
             targetX = target.position.x;
         }

@@ -12,9 +12,21 @@ public class ChangeScene : MonoBehaviour
     // Hàm đổi scene theo tên
     public void ChangeScener(string sceneName)
     {
+        Time.timeScale = 1f;
         if (musicController != null)
             musicController.FadeOutAndStop(delayBeforeLoad);
 
         SceneVideoTransition.LoadScene(sceneName);
+    }
+
+    // Hàm chơi lại màn hiện tại
+    public void RestartCurrentScene()
+    {
+        Time.timeScale = 1f;
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (!string.IsNullOrEmpty(currentScene.name))
+        {
+            ChangeScener(currentScene.name);
+        }
     }
 }

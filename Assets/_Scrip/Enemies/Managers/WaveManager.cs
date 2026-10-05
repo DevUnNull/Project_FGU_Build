@@ -61,16 +61,7 @@ public class WaveManager : MonoBehaviour
     {
         IsWaveStarted = false; // Reset cờ ban đầu
         pauseMenu = GetComponent<PauseMenu>();
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        Instance = this;
 
         // Ẩn tất cả button + text ban đầu & tự động gắn WaveButtonAnimation
         foreach (var btn in skipButtons)
@@ -87,6 +78,14 @@ public class WaveManager : MonoBehaviour
 
         foreach (var txt in countdownTexts)
             if (txt != null) txt.gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
     public void StartTune(int tuneIdx)

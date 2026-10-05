@@ -148,7 +148,7 @@ public class EnemyPheCau : MonoBehaviour
 
         foreach (var hero in heroes)
         {
-            if (hero == null || !hero.gameObject.activeInHierarchy || hero.health <= 0) continue;
+            if (hero == null || !hero || hero.gameObject == null || !hero.gameObject.activeInHierarchy || hero.health <= 0) continue;
             if (!DragAndDrop.IsUnitActiveOnBoard(hero.gameObject)) continue;
 
             Vector3 heroPos = hero.transform.position;

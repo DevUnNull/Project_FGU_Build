@@ -18,12 +18,18 @@ public class PopUpsManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (_camera == null) _camera = Camera.main;
+            if (_camera == null) return;
+
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = -_camera.transform.position.z;
 
             Vector3 worldPos = _camera.ScreenToWorldPoint(mousePos);
             GameObject popUpObject = Instantiate(PopUp_Prefab, worldPos, new Quaternion());
-            popUpObject.GetComponent<PopUp>().text_Value = "succset";
+            if (popUpObject != null && popUpObject.TryGetComponent<PopUp>(out var popUp))
+            {
+                popUp.text_Value = "succset";
+            }
         }
     }
 }

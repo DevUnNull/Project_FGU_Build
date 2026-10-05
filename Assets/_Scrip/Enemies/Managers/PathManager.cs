@@ -9,14 +9,25 @@ public class PathManager : MonoBehaviour // thay WayPointManager static
 
     void Awake()
     {
-        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
-        else { Destroy(gameObject); return; }
+        Instance = this;
 
-        // Find all paths
+        // Find all paths in current scene
+        paths.Clear();
         WaypointPath[] allPaths = FindObjectsOfType<WaypointPath>();
         foreach (var path in allPaths)
-            paths[path.PathID] = path;
+        {
+            if (path != null)
+                paths[path.PathID] = path;
+        }
     }
 
-    public WaypointPath GetPath(PathID id) => paths.ContainsKey(id) ? paths[id] : null;
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+    }
+
+    public WaypointPath GetPath(PathID id) => (paths != null && paths.ContainsKey(id)) ? paths[id] : null;
 }

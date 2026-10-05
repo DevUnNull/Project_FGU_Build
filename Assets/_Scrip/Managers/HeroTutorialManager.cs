@@ -252,13 +252,26 @@ public class HeroTutorialManager : MonoBehaviour
             descriptionLegacyText.text = data.description;
         }
 
-        // 3. Cập nhật và phát Video giới thiệu tướng
+        // 3. Cập nhật và phát Video giới thiệu tướng (Tối ưu WebGL)
         if (videoPlayer != null)
         {
             videoPlayer.Stop();
             if (data.videoClip != null)
             {
+                videoPlayer.playOnAwake = false;
+                videoPlayer.renderMode = VideoRenderMode.RenderTexture;
+                videoPlayer.audioOutputMode = VideoAudioOutputMode.None; // Tránh browser Autoplay Policy chặn
+
+                #if UNITY_WEBGL && !UNITY_EDITOR
+                string fileName = data.videoClip.name + ".mp4";
+                string videoUrl = System.IO.Path.Combine(Application.streamingAssetsPath, fileName);
+                videoPlayer.source = VideoSource.Url;
+                videoPlayer.url = videoUrl;
+                #else
+                videoPlayer.source = VideoSource.VideoClip;
                 videoPlayer.clip = data.videoClip;
+                #endif
+
                 videoPlayer.isLooping = true;
                 videoPlayer.Play();
             }

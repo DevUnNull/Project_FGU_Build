@@ -109,11 +109,10 @@ public class WaveSpawner : MonoBehaviour
     }
     private void Start()
     {
-        // Nếu WaveManager chưa sẵn trong OnEnable, ta đăng ký lại ở đây
         if (WaveManager.Instance != null)
         {
+            WaveManager.Instance.OnWaveStart -= HandleWaveStart;
             WaveManager.Instance.OnWaveStart += HandleWaveStart;
-            Debug.Log($"{name}: Đăng ký lại WaveManager thành công trong Start()");
         }
         else
         {
@@ -124,8 +123,8 @@ public class WaveSpawner : MonoBehaviour
     private IEnumerator WaitForWaveManager()
     {
         yield return new WaitUntil(() => WaveManager.Instance != null);
+        WaveManager.Instance.OnWaveStart -= HandleWaveStart;
         WaveManager.Instance.OnWaveStart += HandleWaveStart;
-        Debug.Log($"{name}: WaveManager đã sẵn sàng, đăng ký thành công!");
     }
 
 }

@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c1946079d8c42e293d0649c8185427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scene1Manager
-  currentScenario: {fileID: 11400000, guid: 7a44057c3f4ac48e79f8057379503e31, type: 2}
+  currentScenario: {fileID: 11400000, guid: 3d89c70968aef4ef38a078faa2b71146, type: 2}
   timeTextUI: {fileID: 619803760}
   descriptionTextUI: {fileID: 1040316196}
   speakerNameTextUI: {fileID: 642402908}
@@ -892,10 +892,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

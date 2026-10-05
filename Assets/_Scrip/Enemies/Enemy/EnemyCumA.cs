@@ -69,7 +69,7 @@ public class EnemyCumA : MonoBehaviour
 
         foreach (var hero in heroes)
         {
-            if (hero == null || !hero.gameObject.activeInHierarchy || hero.health <= 0) continue;
+            if (hero == null || !hero || hero.gameObject == null || !hero.gameObject.activeInHierarchy || hero.health <= 0) continue;
 
             // 🚫 Bỏ qua các tướng chưa mua / đang ở trong shop
             if (!DragAndDrop.IsUnitActiveOnBoard(hero.gameObject)) continue;

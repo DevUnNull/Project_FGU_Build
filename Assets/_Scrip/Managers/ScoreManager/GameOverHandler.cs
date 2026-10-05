@@ -291,5 +291,30 @@ public class GameOverHandler : MonoBehaviour, IGameOverHandler, ILifeListener
     {
         this.starCalculator = calculator;
     }
+
+    // 🔁 Nút Chơi Lại (Restart Level)
+    public void RestartLevel()
+    {
+        Debug.Log("🔄 [GameOverHandler] RestartLevel called!");
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.Scene currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        if (!string.IsNullOrEmpty(currentScene.name))
+        {
+            SceneVideoTransition.LoadScene(currentScene.name);
+        }
+    }
+
+    public void Replay()
+    {
+        RestartLevel();
+    }
+
+    // 🏠 Nút Trở về Home (MainMap)
+    public void ExitToHome()
+    {
+        Debug.Log("🏠 [GameOverHandler] ExitToHome called!");
+        Time.timeScale = 1f;
+        SceneVideoTransition.LoadScene("MainMap");
+    }
 }
 

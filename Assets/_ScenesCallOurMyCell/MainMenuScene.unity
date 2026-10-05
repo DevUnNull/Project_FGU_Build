@@ -1624,6 +1624,7 @@ MonoBehaviour:
   inDuration: 3.25
   outDuration: 3.46
   inFadeOutDuration: 1
+  prepareTimeout: 5
 --- !u!84 &2075214422
 RenderTexture:
   m_ObjectHideFlags: 0

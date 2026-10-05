@@ -146,7 +146,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 3
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
   iconImage: {fileID: 1741255083662319305}
   textUI: {fileID: 8536782826084565561}
   canvasGroup: {fileID: 8183673402696694595}
-  floatDistance: 100
+  floatDistance: 40
   duration: 1.6
   fadeStartRatio: 2
 --- !u!1 &3034803930845888056

@@ -60,7 +60,7 @@ public class EnemyEcoli : MonoBehaviour
 
         foreach (var hero in heroes)
         {
-            if (hero == null || !hero.gameObject.activeInHierarchy || hero.health <= 0) continue;
+            if (hero == null || !hero || hero.gameObject == null || !hero.gameObject.activeInHierarchy || hero.health <= 0) continue;
             if (!DragAndDrop.IsUnitActiveOnBoard(hero.gameObject)) continue;
 
             float dist = Vector2.Distance(myPos, hero.transform.position);

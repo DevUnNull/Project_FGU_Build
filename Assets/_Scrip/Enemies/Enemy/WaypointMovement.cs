@@ -30,7 +30,11 @@ public class WaypointMovement : MonoBehaviour
         if (waypoints == null || waypoints.Length == 0)
             return;
 
+        if (currentIndex < 0 || currentIndex >= waypoints.Length)
+            currentIndex = 0;
+
         Transform targetPoint = waypoints[currentIndex];
+        if (targetPoint == null) return;
 
         // ✅ Xoay hướng ngay lập tức theo hướng di chuyển tới targetPoint
         Vector3 moveDir = (targetPoint.position - transform.position).normalized;
