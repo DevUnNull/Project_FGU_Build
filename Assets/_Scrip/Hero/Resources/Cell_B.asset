@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cell_B
   m_EditorClassIdentifier: 
   HeroName: B
-  damage: 15
+  damage: 25
   health: 90
   speed: 0
   price: 125

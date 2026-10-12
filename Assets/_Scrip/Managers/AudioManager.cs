@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource sfxSource;        // Cho sound effects
 
     [Header("Volume Settings")]
+    [Tooltip("Bật tùy chọn này để tắt toàn bộ âm thanh (dành cho bản Test)")]
+    [SerializeField] private bool disableAllAudioForTest = false;
     [Range(0f, 1f)]
     [SerializeField] private float masterVolume = 1f;
     [Range(0f, 1f)]
@@ -22,6 +24,11 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        if (disableAllAudioForTest)
+        {
+            AudioListener.volume = 0f;
+        }
+
         // Singleton Pattern
         if (Instance == null)
         {
