@@ -23,13 +23,17 @@ public class ScenarioEditor : Editor
         EditorGUILayout.Space();
 
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Generate/Migrate Scenario GUIDs", GUILayout.Height(30)))
+        if (GUILayout.Button("Generate/Migrate GUIDs", GUILayout.Height(28)))
         {
             MigrateGUIDs(data);
         }
-        if (GUILayout.Button("Migrate Legacy Dialogues", GUILayout.Height(30)))
+        if (GUILayout.Button("Migrate Legacy Dialogues", GUILayout.Height(28)))
         {
             MigrateLegacyDialogues(data);
+        }
+        if (GUILayout.Button("⚡ Setup Dual UI in Scene", GUILayout.Height(28)))
+        {
+            SetupDualCharacterUI.SetupScene();
         }
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.Space();
@@ -115,12 +119,45 @@ public class ScenarioEditor : Editor
                 EditorGUILayout.EndVertical();
 
                 EditorGUILayout.Space(5);
-                EditorGUILayout.LabelField("Character Sprites (Situation Default)", EditorStyles.boldLabel);
-                EditorGUILayout.BeginVertical("box");
-                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterPose"), new GUIContent("Pose (Body)"));
-                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterExpression"), new GUIContent("Expression (Face/Eyes)"));
-                EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterHair"), new GUIContent("Hair (Optional)"));
-                EditorGUILayout.EndVertical();
+                SerializedProperty hasSecondCharProp = sitProp.FindPropertyRelative("hasSecondCharacter");
+                SerializedProperty char1NameProp = sitProp.FindPropertyRelative("character1Name");
+                SerializedProperty char2NameProp = sitProp.FindPropertyRelative("character2Name");
+
+                EditorGUILayout.LabelField("Character Sprites Setup", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(hasSecondCharProp, new GUIContent("👥 Có 2 nhân vật (Two Characters)"));
+
+                if (!hasSecondCharProp.boolValue)
+                {
+                    EditorGUILayout.BeginVertical("box");
+                    EditorGUILayout.LabelField("Nhân vật hiển thị", EditorStyles.boldLabel);
+                    EditorGUILayout.PropertyField(char1NameProp, new GUIContent("Tên nhân vật (Name/ID)"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterPose"), new GUIContent("Pose (Body)"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterExpression"), new GUIContent("Expression (Face/Eyes)"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterHair"), new GUIContent("Hair (Optional)"));
+                    EditorGUILayout.EndVertical();
+                }
+                else
+                {
+                    EditorGUILayout.BeginVertical("box");
+                    GUI.color = new Color(0.85f, 0.95f, 1f);
+                    EditorGUILayout.LabelField("👤 Nhân vật 1 (Slot 1 - Trái / Chính)", EditorStyles.boldLabel);
+                    GUI.color = Color.white;
+                    EditorGUILayout.PropertyField(char1NameProp, new GUIContent("Tên nhân vật 1"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterPose"), new GUIContent("Pose NV1"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterExpression"), new GUIContent("Expression NV1"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("characterHair"), new GUIContent("Hair NV1"));
+                    EditorGUILayout.EndVertical();
+
+                    EditorGUILayout.BeginVertical("box");
+                    GUI.color = new Color(1f, 0.95f, 0.85f);
+                    EditorGUILayout.LabelField("👥 Nhân vật 2 (Slot 2 - Phải / Phụ)", EditorStyles.boldLabel);
+                    GUI.color = Color.white;
+                    EditorGUILayout.PropertyField(char2NameProp, new GUIContent("Tên nhân vật 2"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("character2Pose"), new GUIContent("Pose NV2"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("character2Expression"), new GUIContent("Expression NV2"));
+                    EditorGUILayout.PropertyField(sitProp.FindPropertyRelative("character2Hair"), new GUIContent("Hair NV2"));
+                    EditorGUILayout.EndVertical();
+                }
 
                 EditorGUILayout.Space();
                 EditorGUILayout.LabelField("Dialogues", EditorStyles.boldLabel);
@@ -158,7 +195,29 @@ public class ScenarioEditor : Editor
                     }
                     EditorGUILayout.EndHorizontal();
 
-                    EditorGUILayout.PropertyField(lineProp.FindPropertyRelative("speakerName"), new GUIContent("Speaker Name (Who is speaking)"));
+                    SerializedProperty speakerNameProp = lineProp.FindPropertyRelative("speakerName");
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.PropertyField(speakerNameProp, new GUIContent("Speaker Name"));
+                    if (hasSecondCharProp.boolValue)
+                    {
+                        string c1 = char1NameProp.stringValue;
+                        string c2 = char2NameProp.stringValue;
+                        if (!string.IsNullOrEmpty(c1) && GUILayout.Button(c1, GUILayout.Width(70)))
+                        {
+                            speakerNameProp.stringValue = c1;
+                        }
+                        if (!string.IsNullOrEmpty(c2) && GUILayout.Button(c2, GUILayout.Width(70)))
+                        {
+                            speakerNameProp.stringValue = c2;
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+                    if (hasSecondCharProp.boolValue)
+                    {
+                        EditorGUILayout.PropertyField(lineProp.FindPropertyRelative("speakerFocus"), new GUIContent("Focus Mode (Sáng/Tối)"));
+                    }
+
                     EditorGUILayout.PropertyField(lineProp.FindPropertyRelative("text"), new GUIContent("Text"));
                     
                     SerializedProperty advanceModeProp = lineProp.FindPropertyRelative("advanceMode");
@@ -238,10 +297,25 @@ public class ScenarioEditor : Editor
                         }
 
                         EditorGUILayout.Space(5);
-                        EditorGUILayout.LabelField("Character Expression On Choice", EditorStyles.boldLabel);
-                        EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterPose"), new GUIContent("Choice Pose"));
-                        EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterExpression"), new GUIContent("Choice Expression"));
-                        EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterHair"), new GUIContent("Choice Hair (Optional)"));
+                        if (!hasSecondCharProp.boolValue)
+                        {
+                            EditorGUILayout.LabelField("Character Expression On Choice", EditorStyles.boldLabel);
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterPose"), new GUIContent("Choice Pose"));
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterExpression"), new GUIContent("Choice Expression"));
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterHair"), new GUIContent("Choice Hair (Optional)"));
+                        }
+                        else
+                        {
+                            EditorGUILayout.LabelField("Character 1 Expression On Choice", EditorStyles.boldLabel);
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterPose"), new GUIContent("Choice Pose NV1"));
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterExpression"), new GUIContent("Choice Expression NV1"));
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("characterHair"), new GUIContent("Choice Hair NV1"));
+
+                            EditorGUILayout.LabelField("Character 2 Expression On Choice (Optional)", EditorStyles.boldLabel);
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("character2Pose"), new GUIContent("Choice Pose NV2"));
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("character2Expression"), new GUIContent("Choice Expression NV2"));
+                            EditorGUILayout.PropertyField(choiceProp.FindPropertyRelative("character2Hair"), new GUIContent("Choice Hair NV2"));
+                        }
 
                         SerializedProperty impactsProp = choiceProp.FindPropertyRelative("impacts");
                         for (int k = 0; k < impactsProp.arraySize; k++)
@@ -303,9 +377,15 @@ public class ScenarioEditor : Editor
             newSit.FindPropertyRelative("loopDialogueVideo").boolValue = false;
             newSit.FindPropertyRelative("choiceVideo").objectReferenceValue = null;
             newSit.FindPropertyRelative("loopChoiceVideo").boolValue = true;
+            newSit.FindPropertyRelative("character1Name").stringValue = "";
             newSit.FindPropertyRelative("characterPose").objectReferenceValue = null;
             newSit.FindPropertyRelative("characterExpression").objectReferenceValue = null;
             newSit.FindPropertyRelative("characterHair").objectReferenceValue = null;
+            newSit.FindPropertyRelative("hasSecondCharacter").boolValue = false;
+            newSit.FindPropertyRelative("character2Name").stringValue = "";
+            newSit.FindPropertyRelative("character2Pose").objectReferenceValue = null;
+            newSit.FindPropertyRelative("character2Expression").objectReferenceValue = null;
+            newSit.FindPropertyRelative("character2Hair").objectReferenceValue = null;
             newSit.FindPropertyRelative("autoTargetGuid").stringValue = "";
             newSit.FindPropertyRelative("autoTargetType").enumValueIndex = (int)TargetType.Situation;
             newSit.FindPropertyRelative("autoTransitionDelay").floatValue = 3.0f;

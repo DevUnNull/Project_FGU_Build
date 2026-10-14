@@ -39,15 +39,41 @@ public class ScenarioPlayer : MonoBehaviour
     [Tooltip("Kéo Component VideoPlayer phát video nền (Background2) vào đây.")]
     public UnityEngine.Video.VideoPlayer bgVideoPlayer;
 
-    [Header("Character UI References")]
-    [Tooltip("Kéo Component Image hiển thị tư thế/thân người nhân vật (MainCharter) vào đây.")]
+    [Header("Character 1 UI References")]
+    [Tooltip("Kéo GameObject cha chứa nhân vật 1 (ví dụ Charter) vào đây.")]
+    public GameObject character1Root;
+
+    [Tooltip("Kéo Component Image hiển thị tư thế/thân người nhân vật 1 (MainCharter) vào đây.")]
     public Image characterPoseImage;
 
-    [Tooltip("Kéo Component Image hiển thị biểu cảm khuôn mặt nhân vật (Expention) vào đây.")]
+    [Tooltip("Kéo Component Image hiển thị biểu cảm khuôn mặt nhân vật 1 (Expention) vào đây.")]
     public Image characterExpressionImage;
 
-    [Tooltip("Kéo Component Image hiển thị kiểu tóc nhân vật (nếu có tách layer tóc) vào đây.")]
+    [Tooltip("Kéo Component Image hiển thị kiểu tóc nhân vật 1 (nếu có) vào đây.")]
     public Image characterHairImage;
+
+    [Header("Character 2 UI References")]
+    [Tooltip("Kéo GameObject cha chứa nhân vật 2 (ví dụ Charter_Left / Charter_2) vào đây (tự động ẩn khi cảnh chỉ có 1 nhân vật).")]
+    public GameObject character2Root;
+
+    [Tooltip("Kéo Component Image hiển thị tư thế/thân người nhân vật 2 vào đây.")]
+    public Image character2PoseImage;
+
+    [Tooltip("Kéo Component Image hiển thị biểu cảm khuôn mặt nhân vật 2 vào đây.")]
+    public Image character2ExpressionImage;
+
+    [Tooltip("Kéo Component Image hiển thị kiểu tóc nhân vật 2 (nếu có) vào đây.")]
+    public Image character2HairImage;
+
+    [Header("Character Highlight & Dimming")]
+    [Tooltip("Màu của nhân vật khi đang nói (Sáng rõ)")]
+    public Color activeSpeakerColor = Color.white;
+
+    [Tooltip("Màu của nhân vật khi không nói (Tối đi, ví dụ xám 45%)")]
+    public Color inactiveSpeakerColor = new Color(0.45f, 0.45f, 0.45f, 1f);
+
+    [Tooltip("Tốc độ chuyển đổi màu sáng/tối")]
+    public float dimTransitionSpeed = 8f;
 
     [Tooltip("Kéo Object/RectTransform cha chứa danh sách các nút lựa chọn (ChoicesContainer có Horizontal Layout Group) vào đây.")]
     public Transform choicesContainer; // Nơi chứa các nút (Dùng Horizontal Layout Group)
@@ -81,6 +107,16 @@ public class ScenarioPlayer : MonoBehaviour
         {
             statImpactPopupPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/VisualNovelSystem/Prefabs/StatImpactPopupPrefab.prefab");
         }
+        if (character1Root == null)
+        {
+            Transform charter = GameObject.Find("Charter")?.transform ?? GameObject.Find("MainCharter")?.transform;
+            if (charter != null) character1Root = charter.gameObject;
+        }
+        if (character2Root == null)
+        {
+            Transform charter2 = GameObject.Find("Charter_Left")?.transform ?? GameObject.Find("Charter_2")?.transform;
+            if (charter2 != null) character2Root = charter2.gameObject;
+        }
         if (popupSpawnTransform == null)
         {
             Transform charter = GameObject.Find("MainCharter")?.transform ?? GameObject.Find("Charter")?.transform;
@@ -104,13 +140,14 @@ public class ScenarioPlayer : MonoBehaviour
     private Dictionary<string, SituationData> situationLookup = new Dictionary<string, SituationData>();
     private Coroutine playSituationRoutine;
     private Coroutine videoTransitionRoutine;
+    private Coroutine dimmingRoutine;
 
     private UnityEngine.Video.VideoPlayer activeVideoPlayer;
     private UnityEngine.Video.VideoPlayer standbyVideoPlayer;
 
     private bool advanceConsumedThisFrame = false;
 
-    private void UpdateCharacterDisplay(Sprite pose, Sprite expression, Sprite hair)
+    private void UpdateCharacter1Display(Sprite pose, Sprite expression, Sprite hair)
     {
         if (characterPoseImage != null && pose != null)
         {
@@ -129,6 +166,162 @@ public class ScenarioPlayer : MonoBehaviour
             characterHairImage.sprite = hair;
             characterHairImage.gameObject.SetActive(true);
         }
+    }
+
+    private void UpdateCharacter2Display(Sprite pose, Sprite expression, Sprite hair)
+    {
+        if (character2PoseImage != null && pose != null)
+        {
+            character2PoseImage.sprite = pose;
+            character2PoseImage.gameObject.SetActive(true);
+        }
+
+        if (character2ExpressionImage != null && expression != null)
+        {
+            character2ExpressionImage.sprite = expression;
+            character2ExpressionImage.gameObject.SetActive(true);
+        }
+
+        if (character2HairImage != null && hair != null)
+        {
+            character2HairImage.sprite = hair;
+            character2HairImage.gameObject.SetActive(true);
+        }
+    }
+
+    private void UpdateCharacterDisplay(Sprite pose, Sprite expression, Sprite hair)
+    {
+        UpdateCharacter1Display(pose, expression, hair);
+    }
+
+    private void SetCharacter1ColorDirect(Color c)
+    {
+        if (characterPoseImage != null) characterPoseImage.color = c;
+        if (characterExpressionImage != null) characterExpressionImage.color = c;
+        if (characterHairImage != null) characterHairImage.color = c;
+    }
+
+    private void SetCharacter2ColorDirect(Color c)
+    {
+        if (character2PoseImage != null) character2PoseImage.color = c;
+        if (character2ExpressionImage != null) character2ExpressionImage.color = c;
+        if (character2HairImage != null) character2HairImage.color = c;
+    }
+
+    public void ApplySpeakerHighlight(SituationData sit, DialogueLineData line, bool immediate = false)
+    {
+        bool has2 = sit != null && sit.hasSecondCharacter;
+
+        // Nếu chỉ có 1 nhân vật: NV1 luôn sáng (activeSpeakerColor), NV2 tự động ẩn
+        if (!has2)
+        {
+            if (character2Root != null) character2Root.SetActive(false);
+            if (character1Root != null) character1Root.SetActive(true);
+
+            if (dimmingRoutine != null) StopCoroutine(dimmingRoutine);
+            SetCharacter1ColorDirect(activeSpeakerColor);
+            return;
+        }
+
+        // Nếu có 2 nhân vật: Bật cả 2 root
+        if (character1Root != null) character1Root.SetActive(true);
+        if (character2Root != null) character2Root.SetActive(true);
+
+        Color targetColor1 = activeSpeakerColor;
+        Color targetColor2 = activeSpeakerColor;
+
+        string currentSpeaker = line != null ? (!string.IsNullOrEmpty(line.speakerName) ? line.speakerName : sit.speakerName) : sit.speakerName;
+        SpeakerFocusMode focus = line != null ? line.speakerFocus : SpeakerFocusMode.AutoByName;
+
+        switch (focus)
+        {
+            case SpeakerFocusMode.Character1:
+                targetColor1 = activeSpeakerColor;
+                targetColor2 = inactiveSpeakerColor;
+                break;
+
+            case SpeakerFocusMode.Character2:
+                targetColor1 = inactiveSpeakerColor;
+                targetColor2 = activeSpeakerColor;
+                break;
+
+            case SpeakerFocusMode.Both:
+                targetColor1 = activeSpeakerColor;
+                targetColor2 = activeSpeakerColor;
+                break;
+
+            case SpeakerFocusMode.None:
+                targetColor1 = inactiveSpeakerColor;
+                targetColor2 = inactiveSpeakerColor;
+                break;
+
+            case SpeakerFocusMode.AutoByName:
+            default:
+                if (!string.IsNullOrEmpty(currentSpeaker))
+                {
+                    bool isChar1 = !string.IsNullOrEmpty(sit.character1Name) && currentSpeaker.Trim().Equals(sit.character1Name.Trim(), StringComparison.OrdinalIgnoreCase);
+                    bool isChar2 = !string.IsNullOrEmpty(sit.character2Name) && currentSpeaker.Trim().Equals(sit.character2Name.Trim(), StringComparison.OrdinalIgnoreCase);
+
+                    if (isChar1 && !isChar2)
+                    {
+                        targetColor1 = activeSpeakerColor;
+                        targetColor2 = inactiveSpeakerColor;
+                    }
+                    else if (isChar2 && !isChar1)
+                    {
+                        targetColor1 = inactiveSpeakerColor;
+                        targetColor2 = activeSpeakerColor;
+                    }
+                    else
+                    {
+                        // Nếu không khớp riêng biệt ai, cả 2 cùng sáng
+                        targetColor1 = activeSpeakerColor;
+                        targetColor2 = activeSpeakerColor;
+                    }
+                }
+                else
+                {
+                    // Lời dẫn không có tên người nói
+                    targetColor1 = activeSpeakerColor;
+                    targetColor2 = activeSpeakerColor;
+                }
+                break;
+        }
+
+        if (immediate)
+        {
+            if (dimmingRoutine != null) StopCoroutine(dimmingRoutine);
+            SetCharacter1ColorDirect(targetColor1);
+            SetCharacter2ColorDirect(targetColor2);
+        }
+        else
+        {
+            if (dimmingRoutine != null) StopCoroutine(dimmingRoutine);
+            dimmingRoutine = StartCoroutine(TransitionSpeakerColorsRoutine(targetColor1, targetColor2));
+        }
+    }
+
+    private System.Collections.IEnumerator TransitionSpeakerColorsRoutine(Color target1, Color target2)
+    {
+        Color start1 = characterPoseImage != null ? characterPoseImage.color : activeSpeakerColor;
+        Color start2 = character2PoseImage != null ? character2PoseImage.color : activeSpeakerColor;
+
+        float t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * dimTransitionSpeed;
+            Color cur1 = Color.Lerp(start1, target1, t);
+            Color cur2 = Color.Lerp(start2, target2, t);
+
+            SetCharacter1ColorDirect(cur1);
+            SetCharacter2ColorDirect(cur2);
+
+            yield return null;
+        }
+
+        SetCharacter1ColorDirect(target1);
+        SetCharacter2ColorDirect(target2);
+        dimmingRoutine = null;
     }
 
     private void Update()
@@ -298,7 +491,12 @@ public class ScenarioPlayer : MonoBehaviour
             }
 
             // Cập nhật Biểu cảm/Tư thế nhân vật mặc định của Tình huống
-            UpdateCharacterDisplay(sit.characterPose, sit.characterExpression, sit.characterHair);
+            UpdateCharacter1Display(sit.characterPose, sit.characterExpression, sit.characterHair);
+            if (sit.hasSecondCharacter)
+            {
+                UpdateCharacter2Display(sit.character2Pose, sit.character2Expression, sit.character2Hair);
+            }
+            ApplySpeakerHighlight(sit, null, immediate: true);
 
             // Cập nhật Text
             if(timeTextUI != null) timeTextUI.text = sit.timeText;
@@ -436,6 +634,9 @@ public class ScenarioPlayer : MonoBehaviour
                 }
             }
 
+            // Cập nhật Highlight / Dimming cho người nói (nếu có 2 người)
+            ApplySpeakerHighlight(sit, line, immediate: false);
+
             PlayDescriptionText(line.text);
 
             // STATE A: Đang gõ chữ (Typewriter)
@@ -564,7 +765,11 @@ public class ScenarioPlayer : MonoBehaviour
         if (choicesContainer != null) choicesContainer.gameObject.SetActive(false);
 
         // Cập nhật biểu cảm/tư thế nhân vật tương ứng với lựa chọn này (nếu có gán)
-        UpdateCharacterDisplay(choice.characterPose, choice.characterExpression, choice.characterHair);
+        UpdateCharacter1Display(choice.characterPose, choice.characterExpression, choice.characterHair);
+        if (choice.character2Pose != null || choice.character2Expression != null || choice.character2Hair != null)
+        {
+            UpdateCharacter2Display(choice.character2Pose, choice.character2Expression, choice.character2Hair);
+        }
 
         // Play animation video (if any)
         if (choice.videoClip != null)

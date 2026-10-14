@@ -8,6 +8,20 @@ public enum DialogueAdvanceMode
     WaitForPlayer
 }
 
+public enum SpeakerFocusMode
+{
+    [InspectorName("Auto (Theo tên người nói)")]
+    AutoByName,
+    [InspectorName("Nhân vật 1")]
+    Character1,
+    [InspectorName("Nhân vật 2")]
+    Character2,
+    [InspectorName("Cả hai")]
+    Both,
+    [InspectorName("Không ai (Lời dẫn/Mờ cả hai)")]
+    None
+}
+
 [System.Serializable]
 public class DialogueLineData
 {
@@ -17,6 +31,7 @@ public class DialogueLineData
     public DialogueAdvanceMode advanceMode = DialogueAdvanceMode.Auto;
     [Min(0f)]
     public float displayDuration = 3f;
+    public SpeakerFocusMode speakerFocus = SpeakerFocusMode.AutoByName;
 }
 
 public enum StatImpactType
@@ -53,10 +68,15 @@ public class ChoiceData
     public float delayAfterChoice = 2.0f;
     public UnityEngine.Video.VideoClip videoClip;
     
-    [Header("Character Expression / Pose")]
+    [Header("Character 1 Expression / Pose")]
     public Sprite characterExpression; // Biểu cảm (VD: e1, e2, e3, e4)
     public Sprite characterPose;       // Tư thế (VD: pose 1, pose 2)
     public Sprite characterHair;       // Mái tóc (VD: mái.png)
+
+    [Header("Character 2 Expression / Pose (Optional)")]
+    public Sprite character2Expression;
+    public Sprite character2Pose;
+    public Sprite character2Hair;
 
     public Sprite choiceBgSprite;       // Ảnh nền tùy chỉnh cho nút lựa chọn này (Optional)
 
@@ -90,10 +110,18 @@ public class SituationData
     public UnityEngine.Video.VideoClip choiceVideo;
     public bool loopChoiceVideo = true;
 
-    [Header("Character Default Sprites")]
-    public Sprite characterExpression; // Biểu cảm khuôn mặt
-    public Sprite characterPose;       // Tư thế nhân vật
-    public Sprite characterHair;       // Mái tóc
+    [Header("Character 1 (Default / Slot 1)")]
+    public string character1Name;      // Tên nhận diện NV1 (để Auto-focus khi nói)
+    public Sprite characterPose;       // Tư thế nhân vật 1
+    public Sprite characterExpression; // Biểu cảm khuôn mặt nhân vật 1
+    public Sprite characterHair;       // Mái tóc nhân vật 1
+
+    [Header("Character 2 (Optional / Slot 2)")]
+    public bool hasSecondCharacter = false; // Tình huống này có 2 nhân vật hay không
+    public string character2Name;      // Tên nhận diện NV2 (để Auto-focus khi nói)
+    public Sprite character2Pose;      // Tư thế nhân vật 2
+    public Sprite character2Expression;// Biểu cảm khuôn mặt nhân vật 2
+    public Sprite character2Hair;      // Mái tóc nhân vật 2
 
     [Header("Dialogues")]
     [HideInInspector]

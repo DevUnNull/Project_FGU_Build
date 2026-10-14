@@ -14,30 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScenarioData
   entryGuid: 
   situations:
-  - guid: 1f038b67-dba6-469d-911d-cfd70fc3bc72
+  - guid: f127bf9c-0565-4f17-8347-53ac485ad44b
     situationId: Situation_0
     editorPosition: {x: 0, y: 0}
     timeText: 00:00
     speakerName: 
-    mediaType: 0
-    illustration: {fileID: 4130640169021434097, guid: eecee4ad6d1fd44db8c8958d863edecb, type: 3}
+    mediaType: 1
+    illustration: {fileID: 0}
     descriptionBgSprite: {fileID: 0}
     dialogueVideo: {fileID: 0}
     loopDialogueVideo: 0
     choiceVideo: {fileID: 0}
     loopChoiceVideo: 1
-    characterExpression: {fileID: 2095784869074111139, guid: 82cf6f89454da42d19be1379dd07aebe, type: 3}
+    character1Name: "h\u1EA3i"
     characterPose: {fileID: 0}
+    characterExpression: {fileID: 0}
     characterHair: {fileID: 0}
+    hasSecondCharacter: 1
+    character2Name: "tu\u1EA5n"
+    character2Pose: {fileID: 0}
+    character2Expression: {fileID: 0}
+    character2Hair: {fileID: 0}
     description: 
     dialogues: []
     hasMigratedDialogues: 1
     dialogueLines:
-    - speakerName: ...
-      text: ...
+    - speakerName: "h\u1EA3i"
+      text: chao ban
       advanceMode: 0
-      displayDuration: 5
-    autoTransitionDelay: 0
+      displayDuration: 4
+      speakerFocus: 0
+    - speakerName: "tu\u1EA5n"
+      text: "chao b\u1EA1n"
+      advanceMode: 0
+      displayDuration: 0
+      speakerFocus: 0
+    autoTransitionDelay: 3
     autoTargetType: 0
     autoTargetGuid: 
     choices: []
