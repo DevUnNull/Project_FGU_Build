@@ -71,6 +71,8 @@ MonoBehaviour:
         value: 10
       - targetStat: 2
         value: -5
+      - targetStat: 4
+        value: 10
     - choiceText: "T\u1EAFt chu\xF4ng, tr\xF9m ch\u0103n ng\u1EE7 ti\u1EBFp: \"Th\xEAm
         10 ph\xFAt n\u1EEFa th\xF4i...\""
       delayAfterChoice: 0
@@ -106,6 +108,8 @@ MonoBehaviour:
       - targetStat: 2
         value: 30
       - targetStat: 0
+        value: -15
+      - targetStat: 4
         value: -15
   - guid: abcfe83e-d035-44e9-b6b7-c1b66049b035
     situationId: "NH\xC1NH 2A (N\u1EBFu ch\u1ECDn 1A - D\u1EADy s\u1EDBm)"
@@ -461,6 +465,8 @@ MonoBehaviour:
         value: -15
       - targetStat: 2
         value: 15
+      - targetStat: 3
+        value: -10
     - choiceText: "Mua v\u1ED9i \u1ED5 b\xE1nh m\xEC kh\xF4 kh\u1ED1c l\u1EC1 \u0111\u01B0\u1EDDng,
         v\u1EEBa ch\u1EA1y xe v\u1EEBa g\u1EB7m"
       delayAfterChoice: 0
@@ -618,6 +624,8 @@ MonoBehaviour:
         value: 25
       - targetStat: 0
         value: -10
+      - targetStat: 3
+        value: -10
     - choiceText: "L\xE0m c\u1ED1c C\xE0 Ph\xEA \u0110en \u0110\xE1 kh\xF4ng \u0111\u01B0\u1EDDng
         th\u1EADt \u0111\u1EADm"
       delayAfterChoice: 0
@@ -636,6 +644,8 @@ MonoBehaviour:
         value: 10
       - targetStat: 2
         value: 15
+      - targetStat: 3
+        value: -10
   - guid: aeccf406-d1c1-4f21-aa6a-10ab6badeeab
     situationId: 2.C.A
     editorPosition: {x: 908, y: 77}
@@ -788,7 +798,9 @@ MonoBehaviour:
       choiceBgSprite: {fileID: 0}
       targetType: 0
       targetGuid: 7c866e15-c6c8-4b0a-814f-0a4455f70b82
-      impacts: []
+      impacts:
+      - targetStat: 0
+        value: 10
     - choiceText: "C\u01B0\u1EDDi g\u1EA1t \u0111i, th\xE1o c\xFAc \xE1o cho tho\xE1ng"
       delayAfterChoice: 0
       videoClip: {fileID: 0}
@@ -801,7 +813,11 @@ MonoBehaviour:
       choiceBgSprite: {fileID: 0}
       targetType: 0
       targetGuid: c791a9bf-4942-4ec7-b3a7-4f98de3c7120
-      impacts: []
+      impacts:
+      - targetStat: 0
+        value: -10
+      - targetStat: 2
+        value: 10
   - guid: 7c866e15-c6c8-4b0a-814f-0a4455f70b82
     situationId: 3.A
     editorPosition: {x: 1677.5, y: -115.5}
@@ -955,6 +971,8 @@ MonoBehaviour:
         value: 15
       - targetStat: 2
         value: -20
+      - targetStat: 3
+        value: 15
     - choiceText: "X\xE1ch xe \u0111i \u0103n \u0111\u1ED3 n\u01B0\u1EDBng l\u1EC1
         \u0111\u01B0\u1EDDng + n\u1ED1c bia/n\u01B0\u1EDBc ng\u1ECDt c\xF3 gas t\u1EDBi
         khuya"
@@ -974,6 +992,10 @@ MonoBehaviour:
         value: 25
       - targetStat: 0
         value: -15
+      - targetStat: 3
+        value: -15
+      - targetStat: 4
+        value: -10
     - choiceText: "T\u1EEB ch\u1ED1i + B\u1ECF b\u1EEFa t\u1ED1i, ti\u1EBFp t\u1EE5c
         th\u1EE9c c\xE0y game / l\xE0m d\u1EF1 \xE1n xuy\xEAn \u0111\xEAm"
       delayAfterChoice: 0
@@ -992,6 +1014,8 @@ MonoBehaviour:
         value: 35
       - targetStat: 0
         value: -25
+      - targetStat: 4
+        value: -20
   - guid: b26c1501-c4c0-47a3-8c14-6e01dd1e0ab7
     situationId: 4.A
     editorPosition: {x: 2442, y: -127.5}
@@ -1337,7 +1361,11 @@ MonoBehaviour:
       choiceBgSprite: {fileID: 0}
       targetType: 1
       targetGuid: 
-      impacts: []
+      impacts:
+      - targetStat: 4
+        value: 10
+      - targetStat: 1
+        value: 10
     - choiceText: "Th\xF4i n\u1EB1m ngh\u1EC9"
       delayAfterChoice: 0
       videoClip: {fileID: 0}
@@ -1350,7 +1378,9 @@ MonoBehaviour:
       choiceBgSprite: {fileID: 0}
       targetType: 1
       targetGuid: 
-      impacts: []
+      impacts:
+      - targetStat: 4
+        value: 15
   - guid: ac676c03-89e6-4adb-841c-a9bc8ef0ab35
     situationId: Start
     editorPosition: {x: -458.5, y: -18}

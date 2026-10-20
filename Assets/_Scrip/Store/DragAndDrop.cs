@@ -208,6 +208,9 @@ public class DragAndDrop : MonoBehaviour
 
             PlayHeroSpawnSound();
 
+            // Hiệu ứng "đáp xuống": bè ra & lùn xuống rồi nảy về dáng gốc
+            UnitJuice.GetOrAdd(gameObject).Punch(new Vector2(0.22f, -0.22f), 0.35f);
+
             Animator anim = GetComponent<Animator>();
             if (anim) anim.enabled = true;
         }

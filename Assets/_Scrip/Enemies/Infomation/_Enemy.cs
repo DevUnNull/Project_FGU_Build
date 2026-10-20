@@ -10,6 +10,12 @@ public class _Enemy : EnemyBase
     
     // Reference đến EnemyPopUp component
     private EnemyPopUp enemyPopUp;
+
+    // Máu gốc lúc sinh ra, dùng để hồi lại khi lấy enemy từ Pool ra tái sử dụng
+    private int spawnHealth;
+    private bool isDead = false;
+    private const float DeathFadeDuration = 0.35f;
+    private static readonly Color HitFlashTint = new Color(1f, 0.55f, 0.55f, 1f);
     
     // Hàm Awake được gọi khi GameObject được tạo
     private void Awake()
@@ -29,6 +35,27 @@ public class _Enemy : EnemyBase
 
         // Auto-attach virus mechanics based on GameObject/Enemy Name
         AutoAttachVirusMechanics();
+
+        spawnHealth = health;
+    }
+
+    // Được gọi mỗi lần Pool bật enemy lên -> reset trạng thái của lần sống trước
+    private void OnEnable()
+    {
+        health = spawnHealth;
+        isDead = false;
+        SetCombatScriptsEnabled(true);
+    }
+
+    // Bật/tắt các script di chuyển & tấn công (tắt trong lúc đang mờ dần khi chết)
+    private void SetCombatScriptsEnabled(bool enabled)
+    {
+        var movement = GetComponent<WaypointMovement>();
+        if (movement != null) movement.enabled = enabled;
+        var cumA = GetComponent<EnemyCumA>();
+        if (cumA != null) cumA.enabled = enabled;
+        var pheCau = GetComponent<EnemyPheCau>();
+        if (pheCau != null) pheCau.enabled = enabled;
     }
 
     private void Start()
@@ -60,8 +87,16 @@ public class _Enemy : EnemyBase
     // Hàm nhận sát thương từ Hero
     public void TakeDamage(int damageAmount)
     {
+        // Đã chết (đang mờ dần / đang nổ) -> bỏ qua đòn đánh tới sau
+        if (isDead) return;
+
         // Trừ máu
         health -= damageAmount;
+
+        // Hiệu ứng trúng đòn: nháy đỏ + giật nhẹ
+        UnitJuice juice = UnitJuice.GetOrAdd(gameObject);
+        juice.Flash(HitFlashTint);
+        juice.Punch(new Vector2(-0.1f, 0.1f), 0.18f);
         
         // Hiển thị popup damage (nếu có component)
         if (enemyPopUp != null)
@@ -72,13 +107,6 @@ public class _Enemy : EnemyBase
         // Nếu máu <= 0 thì enemy chết
         if (health <= 0)
         {
-            // Nếu là Ecoli bị đánh bại -> Nổ tại chỗ
-            EnemyEcoli ecoli = GetComponent<EnemyEcoli>();
-            if (ecoli != null)
-            {
-                ecoli.ExplodeOnSpot();
-            }
-
             // Gọi hàm Die để xử lý khi enemy chết
             Die();
         }
@@ -87,6 +115,8 @@ public class _Enemy : EnemyBase
     // Hàm xử lý khi enemy bị tiêu diệt
     private void Die()
     {
+        isDead = true;
+
         int amount = Mathf.Max(0, currencyWorth);
         if (amount > 0)
         {
@@ -115,7 +145,19 @@ public class _Enemy : EnemyBase
             }
         }
         
-        // Trả enemy về pool để tái sử dụng
-        MultiEnemyPool.Instance?.ReturnToPool(gameObject);
+        // E.coli tự xử lý cái chết: phát animation "die" -> nổ -> tự trả về Pool
+        EnemyEcoli ecoli = GetComponent<EnemyEcoli>();
+        if (ecoli != null)
+        {
+            ecoli.ExplodeOnSpot();
+            return;
+        }
+
+        // Các enemy khác: dừng di chuyển/tấn công, mờ dần rồi mới trả về pool để tái sử dụng
+        SetCombatScriptsEnabled(false);
+        UnitJuice.GetOrAdd(gameObject).FadeOut(DeathFadeDuration, () =>
+        {
+            MultiEnemyPool.Instance?.ReturnToPool(gameObject);
+        });
     }
 }

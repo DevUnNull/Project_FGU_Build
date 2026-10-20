@@ -15,6 +15,10 @@ public class GridManager : MonoBehaviour
 
     [Header("Obstacles")]
     public GameObject toxinObstaclePrefab;
+    [Tooltip("Hình ảnh ô Độc tố (dùng khi toxinObstaclePrefab không có SpriteRenderer)")]
+    public Sprite toxinObstacleSprite;
+    [Tooltip("Kích thước hiển thị của ô Độc tố (đơn vị world)")]
+    public float toxinObstacleSize = 1.5f;
     private bool[,] gridStatus; // true = occupied, false = free
 
     private List<TileCell> allTiles = new List<TileCell>();
@@ -131,37 +135,62 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Danh sách các ô thật trên bàn cờ (bỏ qua object cha chứa các ô con bị gắn nhầm TileCell).
+    /// </summary>
+    public List<TileCell> GetBoardTiles()
+    {
+        if (allTiles.Count == 0) RefreshTileCache();
+
+        List<TileCell> result = new List<TileCell>();
+        foreach (var tile in allTiles)
+        {
+            if (tile == null || !tile.gameObject.activeInHierarchy) continue;
+            if (tile.GetComponentsInChildren<TileCell>(true).Length > 1) continue;
+            result.Add(tile);
+        }
+        return result;
+    }
+
     private void SpawnToxinObstacles()
     {
         if (StomachDayData.Instance == null || toxinObstaclePrefab == null) return;
 
         int obstaclesToSpawn = Mathf.RoundToInt(StomachDayData.Instance.toxicityLevel);
-        List<Vector2Int> freeCells = new List<Vector2Int>();
+        if (obstaclesToSpawn <= 0) return;
 
-        for (int r = 0; r < rows; r++)
+        // Khóa ngẫu nhiên các ô thật còn trống (trừ cột 0 để người chơi luôn có chỗ đặt phòng thủ)
+        List<TileCell> freeTiles = new List<TileCell>();
+        foreach (var tile in GetBoardTiles())
         {
-            for (int c = 0; c < cols; c++)
-            {
-                if (c > 0)
-                {
-                    freeCells.Add(new Vector2Int(r, c));
-                }
-            }
+            if (tile.col > 0 && IsTileFree(tile)) freeTiles.Add(tile);
         }
 
-        for (int i = 0; i < obstaclesToSpawn; i++)
+        for (int i = 0; i < obstaclesToSpawn && freeTiles.Count > 0; i++)
         {
-            if (freeCells.Count == 0) break;
+            int randomIndex = Random.Range(0, freeTiles.Count);
+            TileCell tile = freeTiles[randomIndex];
+            freeTiles.RemoveAt(randomIndex);
 
-            int randomIndex = Random.Range(0, freeCells.Count);
-            Vector2Int pos = freeCells[randomIndex];
-            freeCells.RemoveAt(randomIndex);
-
-            gridStatus[pos.x, pos.y] = true;
-            
-            Vector3 worldPos = GetWorldPosition(pos.x, pos.y);
-            Instantiate(toxinObstaclePrefab, worldPos, Quaternion.identity, transform);
+            GameObject obstacle = Instantiate(toxinObstaclePrefab, tile.CenterPosition, Quaternion.identity, transform);
+            obstacle.SetActive(true);
+            EnsureToxinVisual(obstacle);
+            OccupyTile(tile, obstacle);
         }
+    }
+
+    private void EnsureToxinVisual(GameObject obstacle)
+    {
+        if (toxinObstacleSprite == null || obstacle.GetComponentInChildren<SpriteRenderer>() != null) return;
+
+        SpriteRenderer sr = obstacle.AddComponent<SpriteRenderer>();
+        sr.sprite = toxinObstacleSprite;
+        sr.sortingOrder = 2; // Trên ô Tile, dưới Tế bào & quái
+        sr.color = new Color(0.75f, 0.85f, 0.45f, 0.95f);
+
+        float spriteWidth = Mathf.Max(0.01f, toxinObstacleSprite.bounds.size.x);
+        float scale = toxinObstacleSize / spriteWidth;
+        obstacle.transform.localScale = new Vector3(scale, scale, 1f);
     }
 
     public Vector3 GetWorldPosition(int row, int col)

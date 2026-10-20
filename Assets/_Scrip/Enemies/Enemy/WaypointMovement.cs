@@ -19,7 +19,6 @@ public class WaypointMovement : MonoBehaviour
         enemy = GetComponent<_Enemy>();
         if (enemy != null && enemy.speed > 0) speed = enemy.speed;
         lastPosition = transform.position;
-        Debug.Log("Speed " + speed);
     }
 
     public void UpdateMovement()

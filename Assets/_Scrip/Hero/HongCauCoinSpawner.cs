@@ -56,8 +56,12 @@ public class HongCauCoinSpawner : MonoBehaviour
             return;
         }
 
+        // Hydration (Nước): Quyết định tốc độ hồi chiêu sinh tiền của Hồng Cầu
+        float hydration = StomachDayData.Instance != null ? StomachDayData.Instance.hydrationMultiplier : 1f;
+        float actualInterval = spawnInterval / Mathf.Max(0.1f, hydration);
+
         timer += Time.deltaTime;
-        if (timer >= spawnInterval)
+        if (timer >= actualInterval)
         {
             timer = 0f;
             TriggerSpawnCoinAnimation();

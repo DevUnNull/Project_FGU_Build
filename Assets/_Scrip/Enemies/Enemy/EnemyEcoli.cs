@@ -37,6 +37,13 @@ public class EnemyEcoli : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    // Được gọi mỗi lần Pool bật E.coli lên -> reset trạng thái nổ của lần sống trước
+    private void OnEnable()
+    {
+        hasExploded = false;
+        if (waypointMovement != null) waypointMovement.isStopped = false;
+    }
+
     private void Update()
     {
         if (hasExploded) return;
@@ -176,7 +183,6 @@ public class EnemyEcoli : MonoBehaviour
             if (hero != null && hero.health > 0 && DragAndDrop.IsUnitActiveOnBoard(hero.gameObject))
             {
                 hero.TakeDamage(damage);
-                Debug.Log($"💥 Sức nổ E.coli gây {damage} sát thương lên {hero.name}");
             }
         }
     }

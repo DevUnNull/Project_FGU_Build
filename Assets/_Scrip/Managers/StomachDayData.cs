@@ -33,6 +33,20 @@ public class StomachDayData : MonoBehaviour
         }
     }
 
+    // Giới hạn hệ số cho Immunity / Energy / Hydration / Recovery
+    public const float MaxMultiplier = 2.0f;
+    public const float MinMultiplier = 0.1f;
+
+    /// <summary>
+    /// Điểm sức khỏe tổng hợp: tổng mức lệch so với 1.0 của 4 chỉ số tích cực, trừ 0.1 cho mỗi điểm Độc tố.
+    /// > 0 là khỏe hơn bình thường, < 0 là yếu hơn bình thường.
+    /// </summary>
+    public float GetHealthScore()
+    {
+        return (immunityMultiplier - 1f) + (energyMultiplier - 1f) + (hydrationMultiplier - 1f) + (recoveryMultiplier - 1f)
+               - toxicityLevel * 0.1f;
+    }
+
     public void ResetData()
     {
         immunityMultiplier = 1.0f;

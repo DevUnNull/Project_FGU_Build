@@ -57,9 +57,9 @@ public class DayReportUI : MonoBehaviour
 
         fullReportText += "\n<b><size=120%>ẢNH HƯỞNG TIÊU CỰC</size></b>\n\n";
         float toxicity = StomachDayData.Instance.toxicityLevel;
-        if (toxicity > 0)
+        int lockedCount = Mathf.RoundToInt(toxicity);
+        if (lockedCount > 0)
         {
-            int lockedCount = Mathf.RoundToInt(toxicity);
             fullReportText += $"- <color=#ff4444>Độc tố cao (+{toxicity:0.#}) -> Xuất hiện {lockedCount} Ô Axit bị khóa!</color>\n";
         }
         else

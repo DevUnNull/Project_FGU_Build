@@ -17,5 +17,6 @@ MonoBehaviour:
   health: 100
   speed: 0
   price: 75
+  affectedByHydration: 1
   spawnSound: {fileID: 8300000, guid: fd5a20bf737a7354fa1b62f0fb7f97de, type: 3}
   spawnSoundVolume: 0.515

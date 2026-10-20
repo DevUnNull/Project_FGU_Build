@@ -52,7 +52,8 @@ public class SetupPerfectTileGrid : EditorWindow
         }
     }
 
-    [InitializeOnLoadMethod]
+    // Không tự chạy khi load script nữa: tự căn lại sẽ ghi đè vị trí Tile đã chỉnh tay trong Scene.
+    // Muốn căn lưới thì chạy menu "Tools/Re-align All Tiles to Perfect Grid".
     public static void AutoExecuteOnLoad()
     {
         AlignTilesWithParameters(-4.40f, 2.80f, 1.90f, 1.60f, 5, 7);

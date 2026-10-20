@@ -18,7 +18,14 @@ public class Scene2Transition : MonoBehaviour
 
     [Header("Visual Configs")]
     public Color goodColor = new Color(0.2f, 0.8f, 0.2f, 1f); // Xanh lá
+    public Color mediumColor = new Color(0.9f, 0.7f, 0.2f, 1f); // Vàng cam
     public Color badColor = new Color(0.8f, 0.2f, 0.2f, 1f); // Đỏ mờ
+
+    [Header("Ngưỡng điểm sức khỏe (StomachDayData.GetHealthScore)")]
+    [Tooltip("Điểm >= ngưỡng này: Trạng thái Tốt")]
+    public float goodScoreThreshold = 0.3f;
+    [Tooltip("Điểm < ngưỡng này: Trạng thái Xấu. Ở giữa: Trung bình")]
+    public float badScoreThreshold = -0.3f;
 
     private void Start()
     {
@@ -30,30 +37,23 @@ public class Scene2Transition : MonoBehaviour
         // Set initial state
         canvasGroup.alpha = 0f;
 
-        // Check data and set color/text
-        bool isGoodState = true;
-        if (StomachDayData.Instance != null)
-        {
-            // Simple logic: if bad events happened or stats went down, it's a bad state
-            if (StomachDayData.Instance.toxicityLevel > 0 || 
-                StomachDayData.Instance.immunityMultiplier < 1.0f ||
-                StomachDayData.Instance.energyMultiplier < 1.0f ||
-                StomachDayData.Instance.hydrationMultiplier < 1.0f ||
-                StomachDayData.Instance.recoveryMultiplier < 1.0f)
-            {
-                isGoodState = false;
-            }
-        }
+        // Chấm điểm sức khỏe tổng hợp -> 3 mức Tốt / Trung bình / Xấu
+        float score = StomachDayData.Instance != null ? StomachDayData.Instance.GetHealthScore() : goodScoreThreshold;
 
-        if (isGoodState)
+        if (score >= goodScoreThreshold)
         {
             backgroundImage.color = goodColor;
             statusTextUI.text = "Cơ thể sung sức! Hệ miễn dịch sẵn sàng chiến đấu.";
         }
+        else if (score >= badScoreThreshold)
+        {
+            backgroundImage.color = mediumColor;
+            statusTextUI.text = "Cơ thể tạm ổn... nhưng hệ miễn dịch đang có điểm yếu.";
+        }
         else
         {
             backgroundImage.color = badColor;
-            statusTextUI.text = "Cơ thể kiệt huệ! Vi khuẩn đang thừa cơ tấn công.";
+            statusTextUI.text = "Cơ thể kiệt quệ! Vi khuẩn đang thừa cơ tấn công.";
         }
 
         // Fade in

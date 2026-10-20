@@ -3,8 +3,8 @@ using UnityEngine;
 /// <summary>
 /// Trạng thái Attack của Hero (Tế bào):
 /// - Khi vào Attack State: Bật animator "IsAttack" = true.
-/// - Tại thời điểm chém (0.25s): Tự động/Animation Event gọi PerformAttack() để gây sát thương chuẩn xác.
-/// - Khi động tác hoàn tất (0.42s): Tự động gọi FinishAttackAndRest() để tắt "IsAttack",
+/// - Tại thời điểm chém (60% độ dài clip tấn công): Tự động/Animation Event gọi PerformAttack() để gây sát thương chuẩn xác.
+/// - Khi động tác hoàn tất (hết clip tấn công): Tự động gọi FinishAttackAndRest() để tắt "IsAttack",
 ///   đặt cooldownTimer (1.2s+) và chuyển về Idle State đứng nghỉ.
 /// </summary>
 public class HeroAttackState : IHeroState
@@ -16,6 +16,11 @@ public class HeroAttackState : IHeroState
     private float attackTimer;
     private bool hasFiredInThisAttack = false;
 
+    // Thời điểm bắn & kết thúc đòn đánh, tính theo độ dài clip tấn công thật (đã tính tốc độ Animator)
+    private const float FirePointRatio = 0.6f;
+    private float attackDuration;
+    private float fireTime;
+
     public HeroAttackState(HeroStateMachine stateMachine, HeroBase hero)
     {
         this.stateMachine = stateMachine;
@@ -24,9 +29,10 @@ public class HeroAttackState : IHeroState
 
     public void EnterState()
     {
-        Debug.Log("Hero: Enter Attack State");
         hasFiredInThisAttack = false;
         attackTimer = 0f;
+        attackDuration = stateMachine.GetAttackDuration();
+        fireTime = attackDuration * FirePointRatio;
 
         Animator animator = hero.GetComponent<Animator>();
         if (animator != null)
@@ -90,14 +96,14 @@ public class HeroAttackState : IHeroState
             stateMachine.FaceTowards(currentTarget.transform.position);
         }
 
-        // 🎯 3. Đảm bảo gây sát thương đúng frame chém (0.25f) nếu Animation Event bị bỏ qua
-        if (!hasFiredInThisAttack && attackTimer >= 0.25f)
+        // 🎯 3. Đảm bảo gây sát thương đúng frame chém nếu Animation Event bị bỏ qua
+        if (!hasFiredInThisAttack && attackTimer >= fireTime)
         {
             PerformAttack();
         }
 
-        // 🛑 4. ĐỘNG TÁC CHÉM HOÀN TẤT (0.42f) -> Bắt buộc kết thúc đợt đánh & về Idle nghỉ
-        if (attackTimer >= 0.42f)
+        // 🛑 4. ĐỘNG TÁC CHÉM HOÀN TẤT (hết clip) -> Bắt buộc kết thúc đợt đánh & về Idle nghỉ
+        if (attackTimer >= attackDuration)
         {
             FinishAttackAndRest();
         }
@@ -105,7 +111,6 @@ public class HeroAttackState : IHeroState
 
     public void ExitState()
     {
-        Debug.Log("Hero: Exit Attack State");
         currentTarget = null;
         Animator animator = hero.GetComponent<Animator>();
         if (animator != null)
@@ -133,7 +138,8 @@ public class HeroAttackState : IHeroState
 
         if (currentTarget != null)
         {
-            Debug.Log($"Hero attacks {currentTarget.name} for {hero.damage} damage!");
+            // Hiệu ứng ra đòn: vươn cao & thon lại một nhịp ngắn
+            UnitJuice.GetOrAdd(hero.gameObject).Punch(new Vector2(-0.08f, 0.1f), 0.16f);
 
             string unitName = hero.gameObject.name;
             bool isMeleeUnit = unitName.Contains("BachCau") || unitName.Contains("DaiThucBao");

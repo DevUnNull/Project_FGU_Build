@@ -134,7 +134,6 @@ public class EnemyPheCau : MonoBehaviour
             if (damage <= 0) damage = 10;
 
             target.TakeDamage(damage);
-            Debug.Log($"🦠 PheCau tung đòn Animation Event gây {damage} sát thương lên {target.name}!");
         }
     }
 

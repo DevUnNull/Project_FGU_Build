@@ -835,26 +835,27 @@ public class ScenarioPlayer : MonoBehaviour
         {
             case StatImpactType.Immunity:
                 if (Mathf.Abs(delta) >= 1.0f) delta /= 100f;
-                StomachDayData.Instance.immunityMultiplier = Mathf.Max(0.1f, StomachDayData.Instance.immunityMultiplier + delta);
+                StomachDayData.Instance.immunityMultiplier = Mathf.Clamp(StomachDayData.Instance.immunityMultiplier + delta, StomachDayData.MinMultiplier, StomachDayData.MaxMultiplier);
                 break;
 
             case StatImpactType.Energy:
                 if (Mathf.Abs(delta) >= 1.0f) delta /= 100f;
-                StomachDayData.Instance.energyMultiplier = Mathf.Max(0.1f, StomachDayData.Instance.energyMultiplier + delta);
+                StomachDayData.Instance.energyMultiplier = Mathf.Clamp(StomachDayData.Instance.energyMultiplier + delta, StomachDayData.MinMultiplier, StomachDayData.MaxMultiplier);
                 break;
 
             case StatImpactType.Hydration:
                 if (Mathf.Abs(delta) >= 1.0f) delta /= 100f;
-                StomachDayData.Instance.hydrationMultiplier = Mathf.Max(0.1f, StomachDayData.Instance.hydrationMultiplier + delta);
+                StomachDayData.Instance.hydrationMultiplier = Mathf.Clamp(StomachDayData.Instance.hydrationMultiplier + delta, StomachDayData.MinMultiplier, StomachDayData.MaxMultiplier);
                 break;
 
             case StatImpactType.Recovery:
                 if (Mathf.Abs(delta) >= 1.0f) delta /= 100f;
-                StomachDayData.Instance.recoveryMultiplier = Mathf.Max(0.1f, StomachDayData.Instance.recoveryMultiplier + delta);
+                StomachDayData.Instance.recoveryMultiplier = Mathf.Clamp(StomachDayData.Instance.recoveryMultiplier + delta, StomachDayData.MinMultiplier, StomachDayData.MaxMultiplier);
                 break;
 
             case StatImpactType.Toxicity:
-                if (Mathf.Abs(delta) >= 10.0f) delta /= 10f;
+                // Toxicity luôn nhập theo đơn vị x10 (VD: +5 -> +0.5 ô, +30 -> +3 ô) để các giá trị nhất quán
+                delta /= 10f;
                 StomachDayData.Instance.toxicityLevel = Mathf.Max(0f, StomachDayData.Instance.toxicityLevel + delta);
                 break;
         }

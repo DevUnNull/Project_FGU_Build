@@ -13,6 +13,9 @@ public class HeroData : ScriptableObject
     [Tooltip("Thời gian giữa 2 lần đánh (tính bằng giây). Đặt 1 = sau 1s đánh lại, 2 = sau 2s đánh lại")]
     public float attackInterval = 1f;
 
+    [Tooltip("Tích chọn nếu tốc độ đánh/hồi chiêu của tướng này chịu ảnh hưởng bởi chỉ số Hydration (Nước) từ Scene 1")]
+    public bool affectedByHydration = false;
+
     [Header("Audio")]
     [Tooltip("Sound khi hero ra trận (spawn)")]
     public AudioClip spawnSound;

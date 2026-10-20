@@ -62,6 +62,38 @@ public class HeroStateMachine : MonoBehaviour
         attackState = new HeroAttackState(this, hero);
     }
 
+    // Độ dài động tác tấn công mặc định khi Animator không có clip tấn công
+    private const float DefaultAttackClipLength = 0.42f;
+    private float attackClipLength = -1f;
+
+    /// <summary>
+    /// Độ dài clip tấn công thật (tìm clip có tên chứa "attack"/"atack"), đã chia cho tốc độ Animator.
+    /// Dùng để đồng bộ thời điểm bắn và kết thúc đòn đánh với animation.
+    /// </summary>
+    public float GetAttackDuration()
+    {
+        Animator animator = GetComponent<Animator>();
+        if (attackClipLength < 0f)
+        {
+            attackClipLength = DefaultAttackClipLength;
+            if (animator != null && animator.runtimeAnimatorController != null)
+            {
+                foreach (var clip in animator.runtimeAnimatorController.animationClips)
+                {
+                    string clipName = clip.name.ToLower();
+                    if (clipName.Contains("attack") || clipName.Contains("atack"))
+                    {
+                        attackClipLength = clip.length;
+                        break;
+                    }
+                }
+            }
+        }
+
+        float animSpeed = (animator != null && animator.speed > 0f) ? animator.speed : 1f;
+        return attackClipLength / animSpeed;
+    }
+
     // Hàm Start được gọi sau tất cả Awake, khởi tạo state ban đầu
     void Start()
     {

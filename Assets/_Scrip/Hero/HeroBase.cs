@@ -23,6 +23,9 @@ public class HeroBase : MonoBehaviour
 
     private EnemyPopUp popUpComponent;
 
+    private bool isDead = false;
+    private const float DeathFadeDuration = 0.4f;
+
     private void Awake()
     {
         popUpComponent = GetComponent<EnemyPopUp>();
@@ -55,8 +58,7 @@ public class HeroBase : MonoBehaviour
             hpMult = StomachDayData.Instance.immunityMultiplier;
 
             // Hydration (Nước): Quyết định tốc độ hồi chiêu (Cooldown/Tốc độ đánh) của Tế Bào B & Hồng Cầu
-            if (gameObject.name.Contains("CellB") || gameObject.name.Contains("Tế Bào B") || 
-                gameObject.name.Contains("HongCau") || gameObject.name.Contains("Hồng Cầu"))
+            if (heroData.affectedByHydration)
             {
                 atkSpeedMult = StomachDayData.Instance.hydrationMultiplier;
             }
@@ -93,8 +95,16 @@ public class HeroBase : MonoBehaviour
         // Nếu tướng chưa được mua/chưa đặt lên bàn (đang trong shop) -> Không thể bị mất máu/bị đánh
         if (!DragAndDrop.IsUnitActiveOnBoard(gameObject)) return;
 
+        // Đang chết (mờ dần) -> bỏ qua các đòn đánh tới sau
+        if (isDead) return;
+
         health -= damageAmount;
         OnHealthChanged?.Invoke(health, maxHealth);
+
+        // Hiệu ứng trúng đòn: nháy đỏ + co nhẹ
+        UnitJuice juice = UnitJuice.GetOrAdd(gameObject);
+        juice.Flash(new Color(1f, 0.45f, 0.45f, 1f));
+        juice.Punch(new Vector2(0.08f, -0.08f), 0.18f);
 
         // Hiển thị popup sát thương nhận phải (Màu Cam Đỏ nổi bật cho Cell)
         if (popUpComponent == null) popUpComponent = GetComponent<EnemyPopUp>() ?? gameObject.AddComponent<EnemyPopUp>();
@@ -111,8 +121,33 @@ public class HeroBase : MonoBehaviour
 
     protected virtual void Die()
     {
+        if (isDead) return;
+        isDead = true;
+
         OnHeroDied?.Invoke();
-        // Bạn có thể return về pool hoặc destroy
-        Destroy(gameObject);
+
+        // Ngừng mọi hành động: tấn công, sinh tiền, kéo thả, va chạm
+        HeroStateMachine sm = GetComponent<HeroStateMachine>();
+        if (sm != null) sm.enabled = false;
+        HongCauCoinSpawner coinSpawner = GetComponent<HongCauCoinSpawner>();
+        if (coinSpawner != null) coinSpawner.enabled = false;
+        DragAndDrop drag = GetComponent<DragAndDrop>();
+        if (drag != null) drag.enabled = false;
+        foreach (var col in GetComponentsInChildren<Collider2D>())
+        {
+            col.enabled = false;
+        }
+
+        // Thanh máu (UI Canvas) không mờ theo SpriteRenderer -> ẩn luôn
+        foreach (var canvas in GetComponentsInChildren<Canvas>())
+        {
+            canvas.enabled = false;
+        }
+
+        // Đứng hình ở tư thế hiện tại rồi mờ dần, sau đó mới xóa (ô Tile tự trống khi object bị hủy)
+        Animator anim = GetComponent<Animator>();
+        if (anim != null) anim.speed = 0f;
+
+        UnitJuice.GetOrAdd(gameObject).FadeOut(DeathFadeDuration, () => Destroy(gameObject));
     }
 }

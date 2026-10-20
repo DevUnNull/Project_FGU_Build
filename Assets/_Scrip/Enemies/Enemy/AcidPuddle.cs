@@ -112,7 +112,6 @@ public class AcidPuddle : MonoBehaviour
             if (hero != null && hero.health > 0 && DragAndDrop.IsUnitActiveOnBoard(hero.gameObject))
             {
                 hero.TakeDamage(damagePerSecond);
-                Debug.Log($"🧪 Vũng Axit E.coli gây {damagePerSecond} sát thương lên {hero.name}");
             }
         }
     }

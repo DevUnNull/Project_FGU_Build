@@ -18,7 +18,24 @@ public class SetupSceneTiles
         {
             if (t == null) continue;
             string name = t.name;
-            if (name.StartsWith("Tile") && !name.Contains("Edge"))
+
+            // Dọn TileCell & Collider bị gắn nhầm lên object cha "Tiles" (ô giả nằm ngoài bàn cờ)
+            if (name == "Tiles")
+            {
+                TileCell strayCell = t.GetComponent<TileCell>();
+                if (strayCell != null)
+                {
+                    Object.DestroyImmediate(strayCell);
+                    BoxCollider2D strayCol = t.GetComponent<BoxCollider2D>();
+                    if (strayCol != null) Object.DestroyImmediate(strayCol);
+                    t.gameObject.tag = "Untagged";
+                    Debug.Log("🧹 [Tools] Đã gỡ TileCell & BoxCollider2D gắn nhầm trên object cha 'Tiles'.");
+                }
+                continue;
+            }
+
+            // Bỏ qua object cha "Tiles" (chứa các ô con), chỉ xử lý từng ô Tile
+            if (name.StartsWith("Tile") && !name.Contains("Edge") && name != "Tiles")
             {
                 // 1. Gắn hoặc cập nhật TileCell
                 TileCell cell = t.GetComponent<TileCell>();

@@ -128,6 +128,5 @@ public class EnemyCumA : MonoBehaviour
             proj.Initialize(target.transform, damage, projectileSpeed);
         }
 
-        Debug.Log($"👾 CumA bắn đạn vào {target.name} gây {damage} sát thương!");
     }
 }

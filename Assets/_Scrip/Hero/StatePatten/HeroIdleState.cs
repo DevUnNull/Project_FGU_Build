@@ -25,7 +25,6 @@ public class HeroIdleState : IHeroState
     public void EnterState()
     {
         // Log ra console để debug
-        Debug.Log("Hero: Enter Idle State");
         // Lấy Animator component từ Hero
         Animator animator = hero.GetComponent<Animator>();
         // Nếu có Animator thì set bool IsAttack = false để quay về idleState
@@ -69,7 +68,6 @@ public class HeroIdleState : IHeroState
     public void ExitState()
     {
         // Log ra console để debug
-        Debug.Log("Hero: Exit Idle State");
     }
 
 }

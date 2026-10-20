@@ -44,6 +44,16 @@ public class WaveManager : MonoBehaviour
     [Tooltip("Hệ số thưởng vàng khi người chơi ấn ra quái sớm (vàng = ceil(giây còn lại * hệ số))")]
     [SerializeField] private float earlySpawnRewardMultiplier = 1f;
 
+    [Header("Gastric Acid Wave")]
+    [Tooltip("Độc tố (Toxicity) tối thiểu để kích hoạt Sóng Axit ở wave 2")]
+    [SerializeField] private float gastricAcidToxicityThreshold = 3f;
+    [SerializeField] private float gastricAcidDuration = 10f;
+    [SerializeField] private int gastricAcidDamagePerSecond = 10;
+    [Tooltip("Thời gian cảnh báo (vạch axit nhấp nháy) trước khi bắt đầu gây sát thương")]
+    [SerializeField] private float gastricAcidWarningTime = 2f;
+    [SerializeField] private AudioClip gastricAcidSound;
+    private bool gastricAcidWaveTriggered = false;
+
 
     // default game 
     [SerializeField] public PauseMenu pauseMenu;
@@ -204,8 +214,11 @@ public class WaveManager : MonoBehaviour
             OnWaveStart?.Invoke(wave);
             OnWaveProgressChanged?.Invoke(GetCurrentGlobalWaveIndex(), GetTotalWaveCount());
 
-            if (waveIdx == 1 && StomachDayData.Instance != null && StomachDayData.Instance.toxicityLevel > 0)
+            // Sóng Axit chỉ kích hoạt 1 lần/trận, khi làn đầu tiên bước vào wave 2 và Độc tố đủ cao
+            if (waveIdx == 1 && !gastricAcidWaveTriggered && StomachDayData.Instance != null &&
+                StomachDayData.Instance.toxicityLevel >= gastricAcidToxicityThreshold)
             {
+                gastricAcidWaveTriggered = true;
                 StartCoroutine(SpawnGastricAcidWave());
             }
 
@@ -630,114 +643,140 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnGastricAcidWave()
+    private static HeroBase GetHeroOnTile(TileCell tile)
     {
-        Debug.Log("🌊 CẢNH BÁO: GASTRIC ACID WAVE TRÀN VÀO LANE 3!");
-        
-        float duration = 10f;
-        float damagePerSecond = 10f;
-        float elapsed = 0f;
-        
-        while (elapsed < duration)
-        {
-            HeroBase[] heroes = FindObjectsOfType<HeroBase>();
-            foreach(var hero in heroes)
-            {
-                if (GridManager.Instance != null)
-                {
-                    float expectedY = GridManager.Instance.GetWorldPosition(2, 0).y;
-                    if (Mathf.Abs(hero.transform.position.y - expectedY) < 0.5f)
-                    {
-                        hero.TakeDamage(Mathf.RoundToInt(damagePerSecond * Time.deltaTime));
-                    }
-                }
-            }
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    private HashSet<string> startedWaveKeys = new HashSet<string>();
-
-    public void RecordWaveStart(int tuneIdx, int waveIdx)
-    {
-        if (tuneIdx >= 0 && tuneIdx < tunes.Count && tunes[tuneIdx] != null && tunes[tuneIdx].waves != null)
-        {
-            if (waveIdx >= 0 && waveIdx < tunes[tuneIdx].waves.Count)
-            {
-                var wave = tunes[tuneIdx].waves[waveIdx];
-                if (wave != null && wave.IsEmptyWave())
-                {
-                    // Lượt trống: không ghi nhận là 1 wave đã khởi chạy
-                    return;
-                }
-            }
-        }
-        string key = $"{tuneIdx}_{waveIdx}";
-        startedWaveKeys.Add(key);
+        return tile.IsOccupied ? tile.OccupiedUnit.GetComponent<HeroBase>() : null;
     }
 
     /// <summary>
-    /// Tính tổng tất cả số wave không trống từ tất cả các TuneConfig
+    /// Hàng có nhiều Tế bào nhất (hòa thì chọn ngẫu nhiên, sân trống thì hàng giữa)
+    /// </summary>
+    private int FindMostCrowdedRow(List<TileCell> tiles)
+    {
+        int maxRow = 0;
+        foreach (var tile in tiles) maxRow = Mathf.Max(maxRow, tile.row);
+
+        int[] counts = new int[maxRow + 1];
+        foreach (var tile in tiles)
+        {
+            if (GetHeroOnTile(tile) != null) counts[tile.row]++;
+        }
+
+        int best = maxRow / 2;
+        int bestCount = 0;
+        int ties = 0;
+        for (int r = 0; r <= maxRow; r++)
+        {
+            if (counts[r] > bestCount)
+            {
+                best = r;
+                bestCount = counts[r];
+                ties = 1;
+            }
+            else if (counts[r] == bestCount && bestCount > 0 && Random.Range(0, ++ties) == 0)
+            {
+                best = r;
+            }
+        }
+        return best;
+    }
+
+    private IEnumerator SpawnGastricAcidWave()
+    {
+        if (GridManager.Instance == null) yield break;
+
+        List<TileCell> rowTiles = new List<TileCell>();
+        List<TileCell> boardTiles = GridManager.Instance.GetBoardTiles();
+        int targetRow = FindMostCrowdedRow(boardTiles);
+        foreach (var tile in boardTiles)
+        {
+            if (tile.row == targetRow) rowTiles.Add(tile);
+        }
+        if (rowTiles.Count == 0) yield break;
+
+        Debug.Log($"🌊 CẢNH BÁO: GASTRIC ACID WAVE TRÀN VÀO HÀNG {targetRow + 1}!");
+
+        // Báo trước để người chơi kịp phản ứng (bán/di chuyển tế bào)
+        // Chiều cao 1 hàng = khoảng cách Y trung bình giữa các hàng trên bàn cờ
+        float minY = float.MaxValue, maxY = float.MinValue;
+        int maxRow = 0;
+        foreach (var tile in boardTiles)
+        {
+            minY = Mathf.Min(minY, tile.CenterPosition.y);
+            maxY = Mathf.Max(maxY, tile.CenterPosition.y);
+            maxRow = Mathf.Max(maxRow, tile.row);
+        }
+        float cellHeight = maxRow > 0 ? (maxY - minY) / maxRow : 1.4f;
+
+        GastricAcidWaveEffect effect = GastricAcidWaveEffect.Create(rowTiles, cellHeight, gastricAcidWarningTime, gastricAcidDuration);
+        if (gastricAcidSound != null) AudioSource.PlayClipAtPoint(gastricAcidSound, effect.transform.position);
+        yield return new WaitForSeconds(gastricAcidWarningTime);
+
+        // Gây sát thương theo nhịp 1s/lần (tránh làm tròn deltaTime về 0)
+        for (float elapsed = 0f; elapsed < gastricAcidDuration; elapsed += 1f)
+        {
+            yield return new WaitForSeconds(1f);
+
+            foreach (var tile in rowTiles)
+            {
+                HeroBase hero = tile != null ? GetHeroOnTile(tile) : null;
+                if (hero != null) hero.TakeDamage(gastricAcidDamagePerSecond);
+            }
+        }
+    }
+
+    // Lượt (round) = cùng chỉ số wave trên tất cả các làn. Mỗi lượt có ít nhất 1 làn sinh quái được tính là 1 Wave.
+    private HashSet<int> startedRounds = new HashSet<int>();
+
+    private bool IsRoundEmpty(int waveIdx)
+    {
+        foreach (var tune in tunes)
+        {
+            if (tune == null || tune.waves == null || waveIdx >= tune.waves.Count) continue;
+            var wave = tune.waves[waveIdx];
+            if (wave != null && !wave.IsEmptyWave()) return false;
+        }
+        return true;
+    }
+
+    public void RecordWaveStart(int tuneIdx, int waveIdx)
+    {
+        if (tuneIdx < 0 || tuneIdx >= tunes.Count || tunes[tuneIdx] == null || tunes[tuneIdx].waves == null) return;
+        if (waveIdx < 0 || waveIdx >= tunes[tuneIdx].waves.Count) return;
+
+        var wave = tunes[tuneIdx].waves[waveIdx];
+        // Lượt trống: không ghi nhận là 1 wave đã khởi chạy
+        if (wave == null || wave.IsEmptyWave()) return;
+
+        startedRounds.Add(waveIdx);
+    }
+
+    /// <summary>
+    /// Tổng số lượt (round) có quái, tính chung cho tất cả các làn
     /// </summary>
     public int GetTotalWaveCount()
     {
         if (tunes == null || tunes.Count == 0) return 0;
-        int total = 0;
+        int maxWaves = 0;
         foreach (var tune in tunes)
         {
-            if (tune != null && tune.waves != null)
-            {
-                foreach (var wave in tune.waves)
-                {
-                    if (wave != null && !wave.IsEmptyWave())
-                        total++;
-                }
-            }
+            if (tune != null && tune.waves != null) maxWaves = Mathf.Max(maxWaves, tune.waves.Count);
+        }
+
+        int total = 0;
+        for (int i = 0; i < maxWaves; i++)
+        {
+            if (!IsRoundEmpty(i)) total++;
         }
         return total;
     }
 
     /// <summary>
-    /// Tính thứ tự Wave hiện tại (mỗi wave hợp lệ mới bắt đầu sẽ tăng lên 1)
+    /// Số lượt (round) có quái đã bắt đầu
     /// </summary>
     public int GetCurrentGlobalWaveIndex()
     {
-        if (startedWaveKeys == null || startedWaveKeys.Count == 0)
-        {
-            int globalWaveIndex = 0;
-            int targetTuneIndex = Mathf.Max(0, currentTuneIndex);
-            for (int i = 0; i < tunes.Count; i++)
-            {
-                if (tunes[i] == null || tunes[i].waves == null) continue;
-                if (i < targetTuneIndex)
-                {
-                    foreach (var w in tunes[i].waves)
-                    {
-                        if (w != null && !w.IsEmptyWave())
-                            globalWaveIndex++;
-                    }
-                }
-                else if (i == targetTuneIndex)
-                {
-                    for (int wIdx = 0; wIdx < Mathf.Min(currentWaveIndex, tunes[i].waves.Count); wIdx++)
-                    {
-                        var w = tunes[i].waves[wIdx];
-                        if (w != null && !w.IsEmptyWave())
-                            globalWaveIndex++;
-                    }
-                    if (currentWaveIndex >= 0 && currentWaveIndex < tunes[i].waves.Count)
-                    {
-                        var currentW = tunes[i].waves[currentWaveIndex];
-                        if (currentW != null && !currentW.IsEmptyWave())
-                            globalWaveIndex++;
-                    }
-                    break;
-                }
-            }
-            return globalWaveIndex;
-        }
-        return startedWaveKeys.Count;
+        return startedRounds.Count;
     }
 
     /// <summary>
