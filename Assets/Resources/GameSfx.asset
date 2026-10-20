@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d057603fa8bd43c5a8adfe120ecd399, type: 3}
+  m_Name: GameSfx
+  m_EditorClassIdentifier: Assembly-CSharp::GameSfx
+  enemyHit: {fileID: 8300000, guid: 50a47f95d653e234e9cb8554bece417f, type: 3}
+  enemyDeath: {fileID: 8300000, guid: ea2ce4c5a3751c748a7b3d73d09d8c56, type: 3}
+  cellHit: {fileID: 8300000, guid: 0741d6242cca668499d7d8a9f1c88ec2, type: 3}
+  cellDeath: {fileID: 8300000, guid: e10643be9d4660a4196c6d237645386e, type: 3}
+  acidWave: {fileID: 8300000, guid: 9cae53c745691fe4789a3c0303f1f86b, type: 3}
+  lifeLost: {fileID: 8300000, guid: 699390adfee691c458634b03e36dc8a5, type: 3}
+  itemUse: {fileID: 8300000, guid: 20e38fe0e2594944bad4094a57bb4033, type: 3}
+  merge: {fileID: 8300000, guid: aa4134cc123af424488f64b39eaf3745, type: 3}
+  hitVolume: 0.35
+  eventVolume: 0.8
+  minInterval: 0.08

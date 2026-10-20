@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4684c9da05cc4b4dbcf4f7d64838f0e, type: 3}
+  m_Name: UISkin
+  m_EditorClassIdentifier: Assembly-CSharp::UISkin
+  warningBanner: {fileID: -3036690795257780524, guid: 5b9b282b876aa4e6ea4d8cb4ed1879cb, type: 3}
+  pillButton: {fileID: -1320278761549929059, guid: 41b194267e7cc4617ac3461f28b2210a, type: 3}
+  starFilled: {fileID: 21300000, guid: 1099c643b0b224d70939088534f67340, type: 3}
+  starEmpty: {fileID: 21300000, guid: 77f356499436245caab55dafd6a3006b, type: 3}
+  levelBadge: {fileID: 4486469048764378353, guid: 28d17c34c3b7341b2baa5279bad76dca, type: 3}
+  sliderTrack: {fileID: 4124254866393502983, guid: 4d207e892e6d6407ebda0a32e90040fa, type: 3}
+  sliderFill: {fileID: 1399725893816511699, guid: ccd35341bc888454d847cc9e3440c29d, type: 3}
+  sliderKnob: {fileID: -8881135623113425294, guid: b2977ecf49c764f02876702a68a790bf, type: 3}
+  musicIcon: {fileID: 3952392024310007418, guid: b9875753e87f542e0823c6ce85ea1c20, type: 3}
+  sfxIcon: {fileID: -1987106194605972585, guid: bf66226fe1cf5494ca963f90fa52a611, type: 3}
+  heartIcon: {fileID: 4852907479538503740, guid: 3d3ec79cfe5ad4a7094b438c28f324e8, type: 3}
+  atpIcon: {fileID: 21300000, guid: 84dca52ec994f4853be713494e36f70b, type: 3}

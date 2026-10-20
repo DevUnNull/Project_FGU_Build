@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d278ca8de8844b6d8fdbd4dd8a79ea6, type: 3}
+  m_Name: NotebookCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::NotebookCatalog
+  heroes:
+  - assetName: Cell_HongCau
+    displayName: "H\u1ED3ng c\u1EA7u"
+    icon: {fileID: 2252110749663853911, guid: 19c8ff85f23124c1bb60adb30ee0cf67, type: 3}
+    description: "H\u1ED3ng c\u1EA7u ch\u1EDF oxy t\u1EEB ph\u1ED5i \u0111i kh\u1EAFp
+      c\u01A1 th\u1EC3 nh\u1EDD huy\u1EBFt s\u1EAFc t\u1ED1 (hemoglobin). Trong tr\u1EADn,
+      H\u1ED3ng c\u1EA7u t\u1EA1o ATP \u2013 n\u0103ng l\u01B0\u1EE3ng \u0111\u1EC3
+      g\u1ECDi th\xEAm t\u1EBF b\xE0o. U\u1ED1ng \u0111\u1EE7 n\u01B0\u1EDBc gi\xFAp
+      H\u1ED3ng c\u1EA7u l\xE0m vi\u1EC7c nhanh h\u01A1n."
+  - assetName: Cell_BachCau
+    displayName: "B\u1EA1ch c\u1EA7u"
+    icon: {fileID: 6514262437043616, guid: d452e89c440354a8eaa56a9a4ef03f27, type: 3}
+    description: "B\u1EA1ch c\u1EA7u trung t\xEDnh l\xE0 l\xEDnh tu\u1EA7n tra: lao
+      t\u1EDBi \u1ED5 nhi\u1EC5m khu\u1EA9n \u0111\u1EA7u ti\xEAn v\xE0 ti\xEAu di\u1EC7t
+      vi khu\u1EA9n. Khi b\u1EA1n b\u1ECB s\u1ED1t, \u0111\xF3 th\u01B0\u1EDDng l\xE0
+      l\xFAc b\u1EA1ch c\u1EA7u \u0111ang chi\u1EBFn \u0111\u1EA5u. \u0110\xE1nh
+      c\u1EADn chi\u1EBFn, m\xE1u d\xE0y."
+  - assetName: Cell_ThucBao
+    displayName: "\u0110\u1EA1i th\u1EF1c b\xE0o"
+    icon: {fileID: 4886974325887949573, guid: 341d71b58ea2a452ab452f87b786e3f6, type: 3}
+    description: "\u0110\u1EA1i th\u1EF1c b\xE0o \"nu\u1ED1t\" v\xE0 ti\xEAu h\xF3a
+      m\u1EA7m b\u1EC7nh c\xF9ng x\xE1c t\u1EBF b\xE0o ch\u1EBFt, r\u1ED3i b\xE1o
+      \u0111\u1ED9ng cho c\xE1c t\u1EBF b\xE0o mi\u1EC5n d\u1ECBch kh\xE1c. L\xE0
+      t\u1EA5m khi\xEAn ch\u1EAFn \u0111\u01B0\u1EDDng cho c\u1EA3 \u0111\u1ED9i."
+  - assetName: Cell_B
+    displayName: "T\u1EBF b\xE0o B"
+    icon: {fileID: -8163071391416789271, guid: e133866f2cb054c80bd6d4ca43cffa7c, type: 3}
+    description: "T\u1EBF b\xE0o B (lympho B) s\u1EA3n xu\u1EA5t kh\xE1ng th\u1EC3
+      \u2013 nh\u1EEFng \"vi\xEAn \u0111\u1EA1n\" b\xE1m v\xE0o m\u1EA7m b\u1EC7nh
+      \u0111\u1EC3 v\xF4 hi\u1EC7u h\xF3a ch\xFAng. Ti\xEAm v\u1EAFc-xin gi\xFAp
+      c\u01A1 th\u1EC3 c\xF3 s\u1EB5n t\u1EBF b\xE0o B ghi nh\u1EDB m\u1EA7m b\u1EC7nh."
+  enemies:
+  - assetName: VirusCumA
+    displayName: "Virus c\xFAm A"
+    icon: {fileID: 7170690381563601057, guid: 01331926719f940ce9f4d47b6869a8df, type: 3}
+    description: "Virus c\xFAm A l\xE2y qua gi\u1ECDt b\u1EAFn khi ho, h\u1EAFt h\u01A1i,
+      g\xE2y s\u1ED1t, \u0111au h\u1ECDng, m\u1EC7t m\u1ECFi. \u0110eo kh\u1EA9u
+      trang, r\u1EEDa tay th\u01B0\u1EDDng xuy\xEAn v\xE0 ti\xEAm v\u1EAFc-xin c\xFAm
+      h\u1EB1ng n\u0103m gi\xFAp ph\xF2ng b\u1EC7nh."
+  - assetName: VirusEcoli
+    displayName: "Vi khu\u1EA9n E. coli"
+    icon: {fileID: -3667762128783509720, guid: 63e1c89aaec444b6c90ea1e24c5805e1, type: 3}
+    description: "Ph\u1EA7n l\u1EDBn E. coli s\u1ED1ng hi\u1EC1n l\xE0nh trong ru\u1ED9t,
+      nh\u01B0ng m\u1ED9t s\u1ED1 ch\u1EE7ng g\xE2y ti\xEAu ch\u1EA3y, \u0111au b\u1EE5ng
+      khi \u0103n \u0111\u1ED3 b\u1EA9n ho\u1EB7c ch\u01B0a n\u1EA5u ch\xEDn. \u0102n
+      ch\xEDn u\u1ED1ng s\xF4i, r\u1EEDa tay tr\u01B0\u1EDBc khi \u0103n \u0111\u1EC3
+      ph\xF2ng."
+  - assetName: VirusPheCau
+    displayName: "Ph\u1EBF c\u1EA7u khu\u1EA9n"
+    icon: {fileID: -7588291285237407726, guid: eb35ca6406ac24e62a5c36bf7cb880d0, type: 3}
+    description: "Ph\u1EBF c\u1EA7u khu\u1EA9n c\xF3 th\u1EC3 g\xE2y vi\xEAm ph\u1ED5i,
+      vi\xEAm tai gi\u1EEFa, vi\xEAm m\xE0ng n\xE3o; tr\u1EBB nh\u1ECF v\xE0 ng\u01B0\u1EDDi
+      l\u1EDBn tu\u1ED5i d\u1EC5 m\u1EAFc n\u1EB7ng. C\xF3 v\u1EAFc-xin ph\u1EBF
+      c\u1EA7u \u0111\u1EC3 ph\xF2ng b\u1EC7nh."

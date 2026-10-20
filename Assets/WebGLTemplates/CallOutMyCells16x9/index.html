@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+#if SHOW_DIAGNOSTICS
+    <link rel="stylesheet" href="<<<TemplateData/diagnostics.css>>>">
+    <script src="<<<TemplateData/diagnostics.js>>>"></script>
+#endif
+#if DEVELOPMENT_PLAYER
+  <script src="<<<TemplateData/profiler.js>>>"></script>
+#endif
+  </head>
+  <body>
+    <!--
+      Template giữ khung game LUÔN đúng tỉ lệ 16:9 (giống Game view trong Editor).
+      Lý do: camera thế giới co theo chiều cao còn ảnh nền UI co theo chiều rộng,
+      nên nếu tỉ lệ khác 16:9 thì ô bàn cờ sẽ lệch khỏi ảnh nền và nền bị hở.
+    -->
+    <div id="unity-container">
+      <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-loading-title">{{{ PRODUCT_NAME }}}</div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-fullscreen-button" title="Toàn màn hình"></div>
+      <!-- Điện thoại cầm dọc: nhắc xoay ngang (chạm vào để thử tự xoay trên Android) -->
+      <div id="rotate-hint">
+        <div class="rotate-icon"></div>
+        <div class="rotate-text">Xoay ngang điện thoại để chơi</div>
+        <div class="rotate-sub">Chạm vào màn hình để vào chế độ toàn màn hình</div>
+      </div>
+#if SHOW_DIAGNOSTICS
+      <img id="diagnostics-icon" src="TemplateData/webmemd-icon.png">
+#endif
+    </div>
+    <script>
+      var ASPECT = 16 / 9;
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var rotateHint = document.querySelector("#rotate-hint");
+
+      // Điện thoại / máy tính bảng (iPadOS báo là Macintosh nhưng có cảm ứng)
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+        (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+      var isIOS = /iPhone|iPod/i.test(navigator.userAgent);
+      if (isMobile) document.body.classList.add("is-mobile");
+
+      function isPortrait() { return window.innerHeight > window.innerWidth; }
+
+      function updateRotateHint() {
+        rotateHint.style.display = (isMobile && isPortrait()) ? "flex" : "none";
+      }
+
+      // Toàn màn hình + khóa xoay ngang. Trình duyệt chỉ cho làm sau 1 lần chạm của người chơi.
+      // Android Chrome: tự xoay ngang. iPhone Safari không hỗ trợ -> người chơi tự xoay theo hướng dẫn.
+      function enterLandscapeFullscreen() {
+        var el = document.documentElement;
+        var request = el.requestFullscreen || el.webkitRequestFullscreen;
+        var already = document.fullscreenElement || document.webkitFullscreenElement;
+        var done = function () {
+          if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock("landscape").catch(function () {});
+          }
+        };
+        if (!already && request) {
+          var result = request.call(el);
+          if (result && result.then) result.then(done).catch(function () {}); else done();
+        } else {
+          done();
+        }
+      }
+
+      if (isMobile) {
+        var firstTouch = function () {
+          enterLandscapeFullscreen();
+          document.removeEventListener("touchend", firstTouch);
+        };
+        document.addEventListener("touchend", firstTouch);
+        rotateHint.addEventListener("touchend", enterLandscapeFullscreen);
+        // iPhone không có Fullscreen API cho trang web -> ẩn nút toàn màn hình
+        if (isIOS) document.querySelector("#unity-fullscreen-button").style.display = "none";
+      }
+
+      // Co khung game vừa cửa sổ nhưng giữ đúng 16:9, phần thừa là viền đen
+      function fitCanvas() {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        if (w / h > ASPECT) {
+          w = Math.floor(h * ASPECT);
+        } else {
+          h = Math.floor(w / ASPECT);
+        }
+        canvas.style.width = w + "px";
+        canvas.style.height = h + "px";
+        updateRotateHint();
+      }
+      fitCanvas();
+      window.addEventListener("resize", fitCanvas);
+      window.addEventListener("orientationchange", function () { setTimeout(fitCanvas, 200); });
+      document.addEventListener("fullscreenchange", fitCanvas);
+      document.addEventListener("webkitfullscreenchange", fitCanvas);
+
+      function unityShowBanner(msg, type) {
+        var warningBanner = document.querySelector("#unity-warning");
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+        frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_THREADS
+        workerUrl: buildUrl + "/{{{ WORKER_FILENAME }}}",
+#endif
+#if USE_WASM
+        codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+        symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
+#endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+        showBanner: unityShowBanner,
+      };
+
+      // Điện thoại màn hình mật độ cao (DPR 3): giới hạn ở 2 để game chạy mượt hơn
+      if (isMobile) config.devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+      // Toàn màn hình: phóng cả trang (không phải riêng canvas) để vẫn giữ 16:9 trên màn hình 16:10, 4:3...
+      document.querySelector("#unity-fullscreen-button").onclick = function () {
+        if (isMobile) { enterLandscapeFullscreen(); return; }
+        var el = document.documentElement;
+        if (document.fullscreenElement || document.webkitFullscreenElement) {
+          (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+        } else if (el.requestFullscreen) {
+          el.requestFullscreen();
+        } else if (el.webkitRequestFullscreen) {
+          el.webkitRequestFullscreen();
+        }
+      };
+
+#if BACKGROUND_FILENAME
+      canvas.style.background = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";
+#endif
+      document.querySelector("#unity-loading-bar").style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          document.querySelector("#unity-loading-bar").style.display = "none";
+#if SHOW_DIAGNOSTICS
+          document.getElementById("diagnostics-icon").onclick = () => {
+            unityDiagnostics.openDiagnosticsDiv(unityInstance.GetMetricsInfo);
+          };
+#endif
+#if DEVELOPMENT_PLAYER
+          var profile = unityProfiler.createButton(unityInstance);
+          profile.style.position = 'fixed';
+          profile.style.left = '10px';
+          profile.style.bottom = '10px';
+          document.body.appendChild(profile);
+#endif
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>

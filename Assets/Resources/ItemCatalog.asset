@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798f70d74713749f48901d47dac0c37b, type: 3}
+  m_Name: ItemCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::ItemCatalog
+  items:
+  - type: 1
+    displayName: "B\xECnh n\u01B0\u1EDBc"
+    icon: {fileID: 21300000, guid: 9f628ce679cd7448c808b60203c5ddc6, type: 3}
+    effectText: "ATP sinh ra nhanh g\u1EA5p \u0111\xF4i trong 15 gi\xE2y. U\u1ED1ng
+      \u0111\u1EE7 n\u01B0\u1EDBc gi\xFAp m\xE1u l\u01B0u th\xF4ng v\xE0 h\u1ED3ng
+      c\u1EA7u l\xE0m vi\u1EC7c t\u1ED1t."
+  - type: 2
+    displayName: Vitamin C
+    icon: {fileID: 21300000, guid: bfaa6a06070d3461a8c6b100e9fd503c, type: 3}
+    effectText: "T\u1EBF b\xE0o g\xE2y th\xEAm 50% s\xE1t th\u01B0\u01A1ng trong
+      12 gi\xE2y. Rau xanh, tr\xE1i c\xE2y gi\xE0u vitamin C h\u1ED7 tr\u1EE3 h\u1EC7
+      mi\u1EC5n d\u1ECBch."
+  - type: 3
+    displayName: "Gi\u1EA5c ng\u1EE7 ngon"
+    icon: {fileID: 21300000, guid: 52e2384d4e2324faeb231edf7a0950ff, type: 3}
+    effectText: "H\u1ED3i 2 m\xE1u tim v\xE0 h\u1ED3i \u0111\u1EA7y m\xE1u m\u1ECDi
+      t\u1EBF b\xE0o tr\xEAn b\xE0n. Ng\u1EE7 \u0111\u1EE7 gi\u1EA5c l\xE0 l\xFAc
+      c\u01A1 th\u1EC3 t\u1EF1 s\u1EEDa ch\u1EEFa."
+  - type: 4
+    displayName: "B\u1EEFa \u0103n \u1EA5m"
+    icon: {fileID: 21300000, guid: 73ca2694908cb42078f436a3e7c2de4b, type: 3}
+    effectText: "Nh\u1EADn ngay 60 ATP. B\u1EEFa \u0103n \u0111\u1EE7 ch\u1EA5t cho
+      c\u01A1 th\u1EC3 n\u0103ng l\u01B0\u1EE3ng \u0111\u1EC3 ch\u1ED1ng l\u1EA1i
+      m\u1EA7m b\u1EC7nh."
+  slotBackground: {fileID: 21300000, guid: 3e156ed92f50e4998b09b3e14df851cc, type: 3}

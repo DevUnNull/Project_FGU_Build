@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_ScenesCallOurMyCell/MainMenuScene.unity
+    path: Assets/_Game/Scenes/MainMenuScene.unity
     guid: f2d0c1422d8d6a1449d31d54871d26e9
   - enabled: 1
-    path: Assets/_ScenesCallOurMyCell/MainMap.unity
+    path: Assets/_Game/Scenes/MainMap.unity
     guid: a88a6f6eeb080004d8155d47c28d7351
   - enabled: 1
-    path: Assets/_ScenesCallOurMyCell/Scene1_LifeSimulation.unity
+    path: Assets/_Game/Scenes/Scene1_LifeSimulation.unity
     guid: 5ef762b59abc149f583cd2fb01896b35
   - enabled: 1
-    path: Assets/_ScenesCallOurMyCell/Scene2_Transition.unity
+    path: Assets/_Game/Scenes/Scene2_Transition.unity
     guid: 73076114351a646d4a25b2bc206dc749
   - enabled: 1
-    path: Assets/_ScenesCallOurMyCell/Ingame_1.unity
+    path: Assets/_Game/Scenes/Ingame_1.unity
     guid: 21f75c457bc2f4046b869b888fe39ffc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

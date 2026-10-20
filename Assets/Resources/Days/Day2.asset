@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86208a1a7f2724844a52c5ba09fee400, type: 3}
+  m_Name: Day2
+  m_EditorClassIdentifier: Assembly-CSharp::DayConfig
+  dayNumber: 2
+  displayName: "Ng\xE0y 2: Cu\u1ED1i tu\u1EA7n th\u1EA3 ga"
+  scenario: {fileID: 11400000, guid: fc1eb30d33b094933bf4565dd3f2fb62, type: 2}
+  tunes:
+  - {fileID: 11400000, guid: e0d9b9031606e423489c9232133c5047, type: 2}
+  - {fileID: 11400000, guid: cf1d76454edc840e4a7bcd0dd83223eb, type: 2}
+  - {fileID: 11400000, guid: 0ab15f9f181604bdeab5d27a2fc6b1b4, type: 2}
+  - {fileID: 11400000, guid: 5a606078994ad4103815ae67c282b0da, type: 2}
+  - {fileID: 11400000, guid: 9ef4ffa5e9ad54cec88f9b9a681900fb, type: 2}

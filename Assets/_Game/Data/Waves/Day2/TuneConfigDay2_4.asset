@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1fb194b615ef24ca4b2b8e2a0f85f0, type: 3}
+  m_Name: TuneConfigDay2_4
+  m_EditorClassIdentifier: Assembly-CSharp::TuneConfig
+  waves:
+  - {fileID: 11400000, guid: ff1384a389b31496d94fa0f636e1c912, type: 2}
+  - {fileID: 11400000, guid: 700ef8b44df6148b6bd532f5bad3e06c, type: 2}
+  - {fileID: 11400000, guid: 5f5ecde7d244f49f68edabd7a985d1c0, type: 2}
+  - {fileID: 11400000, guid: c6540e1ef30224f19aa7eb7b9ce5e9c4, type: 2}
+  - {fileID: 11400000, guid: 2d3ee592403c2425db302a3bd00d7093, type: 2}
+  - {fileID: 11400000, guid: 788cdbbc6e41e45ca875c135513a0e40, type: 2}
+  - {fileID: 11400000, guid: a88bd5808e94a427e8691e6bd730f686, type: 2}
+  - {fileID: 11400000, guid: 59a86e419da6540dba11a64a52a139cb, type: 2}
