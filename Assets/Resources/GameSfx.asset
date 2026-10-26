@@ -12,14 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d057603fa8bd43c5a8adfe120ecd399, type: 3}
   m_Name: GameSfx
   m_EditorClassIdentifier: Assembly-CSharp::GameSfx
-  enemyHit: {fileID: 8300000, guid: 50a47f95d653e234e9cb8554bece417f, type: 3}
-  enemyDeath: {fileID: 8300000, guid: ea2ce4c5a3751c748a7b3d73d09d8c56, type: 3}
-  cellHit: {fileID: 8300000, guid: 0741d6242cca668499d7d8a9f1c88ec2, type: 3}
-  cellDeath: {fileID: 8300000, guid: e10643be9d4660a4196c6d237645386e, type: 3}
-  acidWave: {fileID: 8300000, guid: 9cae53c745691fe4789a3c0303f1f86b, type: 3}
-  lifeLost: {fileID: 8300000, guid: 699390adfee691c458634b03e36dc8a5, type: 3}
-  itemUse: {fileID: 8300000, guid: 20e38fe0e2594944bad4094a57bb4033, type: 3}
-  merge: {fileID: 8300000, guid: aa4134cc123af424488f64b39eaf3745, type: 3}
+  enemyHit: {fileID: 8300000, guid: d69a74e4744764ce68e7fa9fc2684b30, type: 3}
+  enemyDeath: {fileID: 8300000, guid: 25f2d4023e4c1447f97c48c4c7d34871, type: 3}
+  cellHit: {fileID: 8300000, guid: 0b2fa15b4537c4268b8ca498473117cb, type: 3}
+  cellDeath: {fileID: 8300000, guid: e4aadff899a18487f9d762d8f11335cf, type: 3}
+  acidWave: {fileID: 8300000, guid: 2b1910396ae714c37bca4488b143c2a5, type: 3}
+  lifeLost: {fileID: 8300000, guid: 35d28fe3a1b7d44b9bc6f109cef1ce80, type: 3}
+  itemUse: {fileID: 8300000, guid: 9707c9bd12afc401c903ae6898600d7e, type: 3}
+  merge: {fileID: 8300000, guid: 50df997180f534639afbcea039c11dd2, type: 3}
+  rollSpin: {fileID: 8300000, guid: 28066de3dc6fc47c18b66d0b09100aba, type: 3}
+  rollLock: {fileID: 8300000, guid: 486f72b262abb4f4f877636d0119681e, type: 3}
+  place: {fileID: 8300000, guid: 660837c34118c4b5095969d2619641e2, type: 3}
+  coin: {fileID: 8300000, guid: 32746afad4c954f24afc1f07d8d3a4d0, type: 3}
+  lose: {fileID: 8300000, guid: 74878a4d13596d344adc0cf1cefe54fe, type: 3}
+  uiClick: {fileID: 8300000, guid: d3f579eb62c6c4b6ca6f646780758ec3, type: 3}
+  panelOpen: {fileID: 8300000, guid: ecd65ac19fba241ffb4c09d3a6daa567, type: 3}
+  error: {fileID: 8300000, guid: 93696bb2b14d44ce48d4a0e5bf53123b, type: 3}
+  toast: {fileID: 8300000, guid: 364043c48d18d4ddabb6aa92bffe89db, type: 3}
+  reward: {fileID: 8300000, guid: 6d29cef97ce2e4048ba65fda71040302, type: 3}
+  typing: {fileID: 8300000, guid: 994fd4fa4f1ba480eb7fe059e361d256, type: 3}
   hitVolume: 0.35
   eventVolume: 0.8
+  uiVolume: 0.6
+  errorVolume: 0.3
+  toastVolume: 0.25
+  lifeLostVolume: 0.45
+  acidWaveVolume: 0.4
+  typingVolume: 0.15
   minInterval: 0.08
+  warningInterval: 1
+  typingInterval: 0.06

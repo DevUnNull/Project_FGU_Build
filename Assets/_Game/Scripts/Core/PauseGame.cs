@@ -61,6 +61,7 @@ public class PauseMenu : MonoBehaviour
     // 🧊 Dừng game + mở menu
     public void PauseGame()
     {
+        GameSfx.Play(GameSfx.Kind.PanelOpen);
         if (pausePanel != null)
         {
             pausePanel.SetActive(true);

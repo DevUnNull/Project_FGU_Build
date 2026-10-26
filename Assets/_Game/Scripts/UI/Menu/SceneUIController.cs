@@ -59,8 +59,9 @@ public class SceneUIController : MonoBehaviour
 
     public void MusicSet()             //Sound when setting music
     {
-        if (isOn) { audioSource.Stop(); isOn = false; }
-        else { audioSource.Play(); isOn = true; }
+        // Tắt tiếng thay vì Stop/Play để bật lại thì nhạc chạy tiếp, không phát lại từ đầu
+        isOn = !isOn;
+        audioSource.mute = !isOn;
     }
 
     public void SoundSet()         //Setting game sound

@@ -6,10 +6,27 @@ public class ShopSpawner : MonoBehaviour
     public Transform[] slots;             // 4 vị trí tương ứng các ô
     public GameObject[] unitPrefabs;      // Các prefab tướng để random
     public int price;
+    private ShopSlotLocks locks;
+
     void Start()
     {
         SpawnUnitsInSlots();
         AutoSetupRollButton();
+
+        locks = GetComponent<ShopSlotLocks>();
+        if (locks == null) locks = gameObject.AddComponent<ShopSlotLocks>();
+        GetReelController(); // ShopSlotLocks cần reel để biết lúc đang quay
+        locks.Init(slots);
+    }
+
+    // Các ô không bị khóa: chỉ những ô này được xóa và quay lại khi Roll
+    private Transform[] UnlockedSlots()
+    {
+        int count = 0;
+        for (int i = 0; i < slots.Length; i++) if (!locks.IsLocked(i)) count++;
+        Transform[] result = new Transform[count];
+        for (int i = 0, n = 0; i < slots.Length; i++) if (!locks.IsLocked(i)) result[n++] = slots[i];
+        return result;
     }
 
     // Hàm sinh tướng mới ban đầu
@@ -47,20 +64,59 @@ public class ShopSpawner : MonoBehaviour
     // Lần cuối bấm Roll (MergeHintUI dùng để biết người chơi đang đứng yên)
     public static float LastRollTime { get; private set; }
 
-    // ✅ Hàm reset lại cửa hàng, nhưng giữ tướng đã mua
+    // ===== Roll miễn phí mỗi khi sang wave mới =====
+    private int lastRoundSeen;
+    private bool freeRollPending;
+
+    private void Update()
+    {
+        if (WaveManager.Instance == null) return;
+
+        // Lượt chung (có quái) tăng lên -> từ wave thứ 2 trở đi được đổi khay miễn phí 1 lần
+        int round = WaveManager.Instance.GetCurrentGlobalWaveIndex();
+        if (round > lastRoundSeen)
+        {
+            if (lastRoundSeen >= 1) freeRollPending = true;
+            lastRoundSeen = round;
+        }
+
+        // Chờ người chơi thả tế bào đang kéo từ khay (không xóa mất con họ đang cầm)
+        bool draggingFromShop = DragAndDrop.Dragging != null && !DragAndDrop.Dragging.isBuy;
+        if (freeRollPending && !draggingFromShop && Time.timeScale > 0f && !GetReelController().IsRolling)
+        {
+            freeRollPending = false;
+            Roll(true);
+        }
+    }
+
+    private SlotMachineReelController GetReelController()
+    {
+        SlotMachineReelController reelController = GetComponent<SlotMachineReelController>();
+        if (reelController == null) reelController = gameObject.AddComponent<SlotMachineReelController>();
+        return reelController;
+    }
+
+    // ✅ Hàm reset lại cửa hàng, nhưng giữ tướng đã mua (nút Roll, tốn 2 ATP)
     public void ResetShop()
     {
-        // Tự động tìm/gắn ReelController nếu chưa có
-        SlotMachineReelController reelController = GetComponent<SlotMachineReelController>();
-        if (reelController == null)
-        {
-            reelController = gameObject.AddComponent<SlotMachineReelController>();
-        }
+        Roll(false);
+    }
+
+    private void Roll(bool free)
+    {
+        SlotMachineReelController reelController = GetReelController();
 
         // Đang quay reel thì bỏ qua click spam (kiểm tra TRƯỚC khi trừ tiền để không mất ATP oan)
         if (reelController.IsRolling) return;
 
-        if (!GoldManager.Instance.HasEnoughGold(2))
+        Transform[] rollSlots = UnlockedSlots();
+        if (rollSlots.Length == 0)
+        {
+            if (!free) BattleHUD.Toast("Cả 4 ô đang khóa! Bấm ổ khóa để mở bớt rồi mới Roll.", BattleHUD.WarningColor);
+            return;
+        }
+
+        if (!free && !GoldManager.Instance.HasEnoughGold(2))
         {
             BattleHUD.Toast("Cần 2 ATP để đổi tế bào mới!", BattleHUD.WarningColor);
             return;
@@ -77,22 +133,30 @@ public class ShopSpawner : MonoBehaviour
             }
         }
 
-        GoldManager.Instance.SpendGold(2);
-        Debug.Log("🔁 Reset shop - Trừ 2 vàng");
+        if (free)
+        {
+            BattleHUD.Toast("Wave mới! Khay tế bào được đổi MIỄN PHÍ. Muốn đổi thêm thì bấm Roll (2 ATP).", BattleHUD.TipColor, "free_roll_hint");
+        }
+        else
+        {
+            GoldManager.Instance.SpendGold(2);
+            Debug.Log("🔁 Reset shop - Trừ 2 vàng");
+        }
         LastRollTime = Time.unscaledTime;
+        GameSfx.Play(GameSfx.Kind.RollSpin);
 
-        // Xoá tất cả tướng cũ chưa mua trước
-        foreach (Transform slot in slots)
+        // Xoá tướng cũ chưa mua ở các ô không khóa (ô khóa giữ nguyên)
+        foreach (Transform slot in rollSlots)
         {
             ClearUnboughtUnitsInSlot(slot);
         }
 
-        // Chạy Reel Spin Slot Machine cho 4 ô (Dừng nối tiếp Trái -> Phải)
-        reelController.StartReelRoll(slots, (slotIndex) =>
+        // Chạy Reel Spin Slot Machine cho các ô không khóa (Dừng nối tiếp Trái -> Phải)
+        reelController.StartReelRoll(rollSlots, (slotIndex) =>
         {
-            if (slotIndex >= 0 && slotIndex < slots.Length)
+            if (slotIndex >= 0 && slotIndex < rollSlots.Length)
             {
-                SpawnUnitInSlot(slots[slotIndex]);
+                SpawnUnitInSlot(rollSlots[slotIndex]);
             }
         });
     }

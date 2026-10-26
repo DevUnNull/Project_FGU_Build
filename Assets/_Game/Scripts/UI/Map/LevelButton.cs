@@ -23,6 +23,9 @@ public class LevelButton : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        // Vừa có sao chưa dùng (sau trận thắng đầu tiên) -> giải thích sao & nâng cấp 1 lần
+        UpgradeTutorialUI.TryShowOnMap();
+
         // Ngày chưa mở khóa / chưa có nội dung -> làm tối nút
         if (!IsPlayable)
         {
@@ -58,6 +61,7 @@ public class LevelButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        GameSfx.Play(GameSfx.Kind.UIClick);
         if (string.IsNullOrEmpty(sceneName))
         {
             Debug.LogWarning("Scene name is empty on " + gameObject.name);

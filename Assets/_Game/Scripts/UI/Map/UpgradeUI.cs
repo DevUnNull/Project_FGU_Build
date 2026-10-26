@@ -18,6 +18,9 @@ public class UpgradeUI : MonoBehaviour
     {
         Canvas canvas = RuntimeUI.CreateOverlayCanvas("Upgrades", 450);
         canvas.gameObject.AddComponent<UpgradeUI>().Build(canvas);
+
+        // Lần đầu mở bảng mà chưa xem hướng dẫn -> giải thích sao & nâng cấp ngay trên bảng
+        if (!UpgradeTutorialUI.HasSeen) UpgradeTutorialUI.Show(false);
     }
 
     private void Build(Canvas canvas)
@@ -163,7 +166,11 @@ public class UpgradeUI : MonoBehaviour
         string label = maxed ? "Tối đa" : $"Nâng ({UpgradeProgress.CostPerLevel} sao)";
         Button buy = RuntimeUI.CreateButton(row, label, RuntimeUI.HeaderGreen, new Vector2(280f, 76f), () =>
         {
-            if (UpgradeProgress.TryBuy(type)) Refresh();
+            if (UpgradeProgress.TryBuy(type))
+            {
+                GameSfx.Play(GameSfx.Kind.Reward);
+                Refresh();
+            }
         });
         RectTransform buyRt = (RectTransform)buy.transform;
         buyRt.anchorMin = buyRt.anchorMax = new Vector2(1f, 0.5f);

@@ -179,6 +179,7 @@ public class GameOverHandler : MonoBehaviour, IGameOverHandler, ILifeListener
     {
         resultTriggered = true;
         Time.timeScale = 0f;
+        MusicPlayer.Duck(0.2f); // nhạc trận nhỏ lại để nghe rõ nhạc Thắng/Thua
 
         if (StomachDayData.Instance != null)
         {
@@ -216,6 +217,7 @@ public class GameOverHandler : MonoBehaviour, IGameOverHandler, ILifeListener
         // Lưu sao tốt nhất của ngày (dùng mua nâng cấp ở MainMap)
         int newStars = GameProgress.RecordStars(GameProgress.CurrentDay, stars);
         if (newStars > 0) Debug.Log($"⭐ Kỷ lục mới Ngày {GameProgress.CurrentDay}: +{newStars} sao để nâng cấp.");
+        StarRewardBanner.Show(newStars); // báo ngay trên bảng Thắng: sao dùng để Nâng cấp ở Menu chính
 
         // Hiển thị sao
         UpdateStarDisplay(stars);
@@ -253,6 +255,7 @@ public class GameOverHandler : MonoBehaviour, IGameOverHandler, ILifeListener
 
     private void ShowGameOverPanel(int stars)
     {
+        GameSfx.Play(GameSfx.Kind.Lose);
         //pauseMenu.PauseGame();
         if (gameOverPanel == null)
         {

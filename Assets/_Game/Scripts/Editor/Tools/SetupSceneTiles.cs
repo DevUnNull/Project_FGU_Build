@@ -8,7 +8,6 @@ using UnityEngine;
 public class SetupSceneTiles
 {
     [MenuItem("Tools/Setup Scene TileCells & Colliders")]
-    [InitializeOnLoadMethod]
     public static void SetupTiles()
     {
         var allTransforms = Object.FindObjectsOfType<Transform>();

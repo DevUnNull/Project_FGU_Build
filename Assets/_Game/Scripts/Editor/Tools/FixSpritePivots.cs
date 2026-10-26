@@ -8,7 +8,6 @@ using UnityEngine;
 public class FixSpritePivots
 {
     [MenuItem("Tools/Fix CellB Sprite Pivots to Center")]
-    [InitializeOnLoadMethod]
     public static void FixPivots()
     {
         string[] spritePaths = new string[]

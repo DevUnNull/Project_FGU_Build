@@ -7,7 +7,6 @@ using UnityEngine;
 public class SetupHeroPrefabs
 {
     [MenuItem("Tools/Setup Hero Prefabs & Bullets")]
-    [InitializeOnLoadMethod]
     public static void Setup()
     {
         EnsureDirectories();

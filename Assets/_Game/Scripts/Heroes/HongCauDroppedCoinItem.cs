@@ -80,6 +80,7 @@ public class HongCauDroppedCoinItem : MonoBehaviour
     {
         if (isCollected) return;
         isCollected = true;
+        GameSfx.Play(GameSfx.Kind.Coin);
 
         // Tắt collider ngay tránh click trùng
         Collider2D col = GetComponent<Collider2D>();

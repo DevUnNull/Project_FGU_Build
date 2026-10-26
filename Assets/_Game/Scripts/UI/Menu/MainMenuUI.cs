@@ -13,7 +13,12 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button upgradeButton;
     [SerializeField] private string upgradeLabel = "Nâng cấp";
 
+    /// <summary>Đặt true trước khi về Menu chính để mở thẳng bảng Nâng cấp (nút "Đi nâng cấp" ở MainMap).</summary>
+    public static bool OpenUpgradesOnLoad;
+
     private TextMeshProUGUI upgradeText;
+    private Vector3 upgradeBaseScale = Vector3.one;
+    private bool pulsing;
     private int shownStars = -1;
     private float refreshTimer;
 
@@ -27,11 +32,37 @@ public class MainMenuUI : MonoBehaviour
             RuntimeUI.ApplyPillStyle(upgradeButton);
         }
         upgradeText = upgradeButton.GetComponentInChildren<TextMeshProUGUI>();
+        upgradeBaseScale = upgradeButton.transform.localScale;
         RefreshUpgradeLabel();
+    }
+
+    private void Start()
+    {
+        if (OpenUpgradesOnLoad)
+        {
+            OpenUpgradesOnLoad = false;
+            UpgradeUI.Open();
+        }
     }
 
     private void Update()
     {
+        // Còn sao chưa dùng -> nút Nâng cấp nhún nhẹ để người chơi chú ý
+        // (chỉ đụng tới scale khi đang nhún, để hiệu ứng hover của UIButtonEffect vẫn hoạt động)
+        if (upgradeButton != null)
+        {
+            if (shownStars > 0)
+            {
+                upgradeButton.transform.localScale = upgradeBaseScale * (1f + 0.06f * Mathf.Abs(Mathf.Sin(Time.unscaledTime * 3f)));
+                pulsing = true;
+            }
+            else if (pulsing)
+            {
+                upgradeButton.transform.localScale = upgradeBaseScale;
+                pulsing = false;
+            }
+        }
+
         // Cập nhật số sao chưa dùng sau khi mua / đặt lại nâng cấp
         refreshTimer -= Time.unscaledDeltaTime;
         if (refreshTimer > 0f) return;

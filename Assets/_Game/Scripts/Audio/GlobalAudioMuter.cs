@@ -7,7 +7,7 @@ using UnityEngine;
 public static class GlobalAudioMuter
 {
     // 🔴 BẬT (true) để tắt sạch âm thanh toàn game | 🟢 TẮT (false) để bật lại âm thanh bình thường
-    public static bool isTestMuteActive = true;
+    public static bool isTestMuteActive = false;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void ApplyGlobalMute()

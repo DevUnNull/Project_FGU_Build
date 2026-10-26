@@ -52,13 +52,6 @@ public class AlignGridTiles : EditorWindow
         }
     }
 
-    [InitializeOnLoadMethod]
-    public static void AutoAlignOnLoad()
-    {
-        // Tự động căn chỉnh nhẹ các Tile để loại bỏ sự sai lệch vị trí lung tung
-        AlignDefaultGrid();
-    }
-
     public static void AlignDefaultGrid()
     {
         var tiles = GetSortedTiles();

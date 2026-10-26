@@ -132,6 +132,7 @@ public static class RuntimeUI
 
         CreateText(rt, label, 34f, Color.white);
         if (onClick != null) btn.onClick.AddListener(() => onClick());
+        UIClickSounds.Attach(btn);
         return btn;
     }
 
@@ -196,6 +197,7 @@ public static class RuntimeUI
         TextMeshProUGUI text = CreateText(rt, label, size.y * 0.42f, Color.white);
         text.fontStyle = FontStyles.Bold;
         if (onClick != null) btn.onClick.AddListener(() => onClick());
+        UIClickSounds.Attach(btn);
         return btn;
     }
 
@@ -314,9 +316,61 @@ public static class RuntimeUI
         img.pixelsPerUnitMultiplier = src.rect.height / Mathf.Max(1f, height);
     }
 
+    private static readonly Color SliderTrackColor = new Color(0.25f, 0.2f, 0.15f, 0.35f);
+    private static readonly Color SliderFillColor = new Color(0.3f, 0.7f, 0.35f, 1f);
+
+    /// <summary>
+    /// Thanh kéo âm lượng dùng ảnh Art/UI/Setting (BackGroundBar / Fill / Knob) dựng vào root (giãn theo root, cao height);
+    /// thiếu ảnh thì dùng khối màu. Dùng chung cho bảng Cài đặt ở menu và bảng tạm dừng trong trận.
+    /// </summary>
+    public static Slider CreateVolumeSlider(RectTransform root, float value, float height)
+    {
+        float knobSize = height * 1.55f;
+        UISkin skin = UISkin.Instance;
+        Image track = AddImage(root, SliderTrackColor);
+        if (skin != null && skin.sliderTrack != null)
+        {
+            track.color = Color.white;
+            ApplyHorizontalPill(track, skin.sliderTrack, height);
+        }
+
+        // Phần đầy nằm lọt trong lòng thanh nền
+        float inset = height * 0.11f;
+        RectTransform fillArea = CreateRect(root, "FillArea", Vector2.zero, Vector2.one, new Vector2(inset, inset), new Vector2(-inset, -inset));
+        RectTransform fill = CreateRect(fillArea, "Fill", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        Image fillImg = AddImage(fill, SliderFillColor, false);
+        if (skin != null && skin.sliderFill != null)
+        {
+            fillImg.color = Color.white;
+            ApplyHorizontalPill(fillImg, skin.sliderFill, height - inset * 2f);
+        }
+
+        RectTransform handleArea = CreateRect(root, "HandleArea", Vector2.zero, Vector2.one, new Vector2(knobSize * 0.4f, 0f), new Vector2(-knobSize * 0.4f, 0f));
+        RectTransform handle = CreateRect(handleArea, "Handle", new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), Vector2.zero, Vector2.zero);
+        handle.sizeDelta = new Vector2(knobSize, knobSize);
+        Image handleImg = AddImage(handle, Color.white);
+        Sprite knob = skin != null && skin.sliderKnob != null ? skin.sliderKnob : skin != null ? skin.levelBadge : null;
+        if (knob != null)
+        {
+            handleImg.sprite = knob;
+            handleImg.preserveAspect = true;
+        }
+
+        Slider slider = root.gameObject.AddComponent<Slider>();
+        slider.fillRect = fill;
+        slider.handleRect = handle;
+        slider.targetGraphic = handleImg;
+        slider.direction = Slider.Direction.LeftToRight;
+        slider.minValue = 0f;
+        slider.maxValue = 1f;
+        slider.SetValueWithoutNotify(value);
+        return slider;
+    }
+
     /// <summary>Hiệu ứng hiện ra: mờ -> rõ & phóng nhẹ (dùng thời gian thực).</summary>
     public static IEnumerator PopIn(CanvasGroup group, RectTransform target, float duration = 0.22f)
     {
+        GameSfx.Play(GameSfx.Kind.PanelOpen);
         for (float t = 0f; t < duration; t += Time.unscaledDeltaTime)
         {
             float k = t / duration;

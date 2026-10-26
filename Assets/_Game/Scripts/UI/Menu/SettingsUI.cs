@@ -9,14 +9,11 @@ using UnityEngine.UI;
 /// </summary>
 public class SettingsUI : MonoBehaviour
 {
-    private const float RowHeight = 96f;
+    private const float RowHeight = 84f;
     private const float LabelWidth = 400f;
-    private const float IconSize = 84f;
-    private const float SliderHeight = 60f;
-    private const float KnobSize = 96f;
+    private const float IconSize = 72f;
+    private const float SliderHeight = 54f;
     private static readonly Color RowColor = new Color(1f, 0.97f, 0.88f, 0.9f);
-    private static readonly Color TrackColor = new Color(0.25f, 0.2f, 0.15f, 0.35f);
-    private static readonly Color FillColor = new Color(0.3f, 0.7f, 0.35f, 1f);
 
     private RectTransform list;
     private Canvas canvas;
@@ -39,7 +36,8 @@ public class SettingsUI : MonoBehaviour
 
         int row = 0;
         UISkin skin = UISkin.Instance;
-        AddSliderRow(row++, "Âm lượng tổng", skin != null ? skin.musicIcon : null, GameSettings.MasterVolume, GameSettings.SetMasterVolume);
+        AddSliderRow(row++, "Âm lượng tổng", null, GameSettings.MasterVolume, GameSettings.SetMasterVolume);
+        AddSliderRow(row++, "Nhạc nền", skin != null ? skin.musicIcon : null, GameSettings.MusicVolume, GameSettings.SetMusicVolume);
         AddSliderRow(row++, "Hiệu ứng âm thanh", skin != null ? skin.sfxIcon : null, GameSettings.SfxVolume, GameSettings.SetSfxVolume);
 
         RectTransform speedRow = CreateRow(row++, "Tốc độ trận mặc định");
@@ -132,7 +130,7 @@ public class SettingsUI : MonoBehaviour
 
         RectTransform sliderRt = RuntimeUI.CreateRect(row, "Slider", new Vector2(0f, 0.5f), new Vector2(1f, 0.5f),
             new Vector2(LabelWidth + 30f, -SliderHeight * 0.5f), new Vector2(-140f, SliderHeight * 0.5f));
-        Slider slider = BuildSlider(sliderRt, value);
+        Slider slider = RuntimeUI.CreateVolumeSlider(sliderRt, value, SliderHeight);
         slider.onValueChanged.AddListener(v =>
         {
             percent.text = Percent(v);
@@ -141,49 +139,6 @@ public class SettingsUI : MonoBehaviour
     }
 
     private static string Percent(float v) => Mathf.RoundToInt(v * 100f) + "%";
-
-    /// <summary>Thanh kéo dùng ảnh Art/UI/Setting (BackGroundBar / Fill / Knob); thiếu ảnh thì dùng khối màu.</summary>
-    private static Slider BuildSlider(RectTransform root, float value)
-    {
-        UISkin skin = UISkin.Instance;
-        Image track = RuntimeUI.AddImage(root, TrackColor);
-        if (skin != null && skin.sliderTrack != null)
-        {
-            track.color = Color.white;
-            RuntimeUI.ApplyHorizontalPill(track, skin.sliderTrack, SliderHeight);
-        }
-
-        // Phần đầy nằm lọt trong lòng thanh nền
-        RectTransform fillArea = RuntimeUI.CreateRect(root, "FillArea", Vector2.zero, Vector2.one, new Vector2(6f, 6f), new Vector2(-6f, -6f));
-        RectTransform fill = RuntimeUI.CreateRect(fillArea, "Fill", Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        Image fillImg = RuntimeUI.AddImage(fill, FillColor, false);
-        if (skin != null && skin.sliderFill != null)
-        {
-            fillImg.color = Color.white;
-            RuntimeUI.ApplyHorizontalPill(fillImg, skin.sliderFill, SliderHeight - 12f);
-        }
-
-        RectTransform handleArea = RuntimeUI.CreateRect(root, "HandleArea", Vector2.zero, Vector2.one, new Vector2(KnobSize * 0.4f, 0f), new Vector2(-KnobSize * 0.4f, 0f));
-        RectTransform handle = RuntimeUI.CreateRect(handleArea, "Handle", new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), Vector2.zero, Vector2.zero);
-        handle.sizeDelta = new Vector2(KnobSize, KnobSize);
-        Image handleImg = RuntimeUI.AddImage(handle, Color.white);
-        Sprite knob = skin != null && skin.sliderKnob != null ? skin.sliderKnob : skin != null ? skin.levelBadge : null;
-        if (knob != null)
-        {
-            handleImg.sprite = knob;
-            handleImg.preserveAspect = true;
-        }
-
-        Slider slider = root.gameObject.AddComponent<Slider>();
-        slider.fillRect = fill;
-        slider.handleRect = handle;
-        slider.targetGraphic = handleImg;
-        slider.direction = Slider.Direction.LeftToRight;
-        slider.minValue = 0f;
-        slider.maxValue = 1f;
-        slider.SetValueWithoutNotify(value);
-        return slider;
-    }
 
     private void ConfirmReset()
     {

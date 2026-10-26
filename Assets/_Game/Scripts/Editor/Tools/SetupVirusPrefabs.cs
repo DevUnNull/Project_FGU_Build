@@ -7,7 +7,6 @@ using UnityEngine;
 public class SetupVirusPrefabs
 {
     [MenuItem("Tools/Setup Virus Bullets & Prefabs")]
-    [InitializeOnLoadMethod]
     public static void Setup()
     {
         EnsureDirectories();

@@ -8,7 +8,6 @@ using UnityEngine;
 public class SetupAnimatorController
 {
     [MenuItem("Tools/Setup CellB Animator Transitions")]
-    [InitializeOnLoadMethod]
     public static void SetupCellBAnimator()
     {
         string[] controllerPaths = new string[]

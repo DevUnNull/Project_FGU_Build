@@ -199,6 +199,7 @@ public class DragAndDrop : MonoBehaviour
                 HeroBase soldHero = GetComponent<HeroBase>();
                 int refund = price * (soldHero != null ? soldHero.UnitCount : 1);
                 TrashSellAnimation.Play(transform.position, refund);
+                GameSfx.Play(GameSfx.Kind.Coin);
                 LastActionTime = Time.unscaledTime;
                 Destroy(gameObject);
                 return;
@@ -296,6 +297,7 @@ public class DragAndDrop : MonoBehaviour
             }
 
             // ❌ Đặt không hợp lệ (thả ra ngoài bàn cờ, ô bận, thiếu ATP) -> Trả về vị trí cũ (khung shop nếu chưa mua)
+            if (targetTile != null) GameSfx.Play(GameSfx.Kind.Error);
             RevertToPreviousPosition();
         }
     }
@@ -455,31 +457,10 @@ public class DragAndDrop : MonoBehaviour
         if (anim) anim.enabled = true;
     }
 
+    // Tiếng đặt tế bào chung (GameSfx.place). HeroData.spawnSound cũ là giọng tướng game trước nên không dùng nữa.
     private void PlayHeroSpawnSound()
     {
-        HeroAudio heroAudio = GetComponent<HeroAudio>();
-        if (heroAudio != null)
-        {
-            heroAudio.PlaySpawnSound();
-            return;
-        }
-
-        _Hero hero = GetComponent<_Hero>();
-        if (hero != null && hero.HeroData != null)
-        {
-            HeroData heroData = hero.HeroData;
-            if (heroData.spawnSound != null)
-            {
-                if (AudioManager.Instance != null)
-                {
-                    AudioManager.Instance.PlaySFX(heroData.spawnSound, heroData.spawnSoundVolume, 1f);
-                }
-                else
-                {
-                    AudioSource.PlayClipAtPoint(heroData.spawnSound, transform.position, heroData.spawnSoundVolume);
-                }
-            }
-        }
+        GameSfx.Play(GameSfx.Kind.Place);
     }
 
     private void OnDrawGizmosSelected()

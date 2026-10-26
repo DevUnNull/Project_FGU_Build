@@ -160,12 +160,14 @@ public class SlotMachineReelController : MonoBehaviour
 
     private void PlayLockSound()
     {
+        // Không gán clip riêng trong Inspector -> dùng tiếng chốt chung của game (GameSfx.rollLock)
         if (lockSoundClip == null)
         {
-            lockSoundClip = Resources.Load<AudioClip>("Sounds/Button - High");
+            GameSfx.Play(GameSfx.Kind.RollLock);
+            return;
         }
 
-        if (audioSource != null && lockSoundClip != null)
+        if (audioSource != null)
         {
             audioSource.PlayOneShot(lockSoundClip, soundVolume);
         }

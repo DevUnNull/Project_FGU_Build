@@ -262,6 +262,7 @@ public class BattleHUD : MonoBehaviour
         while (toastQueue.Count > 0)
         {
             var (message, color) = toastQueue.Dequeue();
+            GameSfx.Play(color == WarningColor ? GameSfx.Kind.Error : GameSfx.Kind.Toast);
             toastText.text = message;
             toastText.color = color;
 

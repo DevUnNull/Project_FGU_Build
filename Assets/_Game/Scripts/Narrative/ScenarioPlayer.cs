@@ -814,6 +814,7 @@ public class ScenarioPlayer : MonoBehaviour
                 {
                     ChoiceData currentChoice = choice;
                     btnComponent.onClick.AddListener(() => OnChoiceSelected(currentChoice));
+                    UIClickSounds.Attach(btnComponent);
                 }
             }
         }
@@ -1114,10 +1115,19 @@ public class ScenarioPlayer : MonoBehaviour
         float bounceDuration = TypewriterBounceDuration; // Thời gian nảy của mỗi chữ
         float totalDuration = characterCount * delayBetweenChars + bounceDuration;
         float elapsed = 0;
+        int typedChars = 0;
 
         while (elapsed < totalDuration)
         {
             elapsed += Time.deltaTime;
+
+            // Tiếng gõ chữ khi có ký tự mới hiện ra (bỏ qua dấu cách; GameSfx tự giãn nhịp để không dồn dập)
+            int revealed = Mathf.Min(characterCount, Mathf.FloorToInt(elapsed / delayBetweenChars) + 1);
+            if (revealed > typedChars)
+            {
+                typedChars = revealed;
+                if (textInfo.characterInfo[revealed - 1].isVisible) GameSfx.Play(GameSfx.Kind.Typing);
+            }
             
             for (int i = 0; i < textInfo.materialCount; i++)
             {

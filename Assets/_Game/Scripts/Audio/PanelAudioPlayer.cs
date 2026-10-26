@@ -72,6 +72,7 @@ public class PanelAudioPlayer : MonoBehaviour
         }
 
         audioSource.loop = loopClip;
+        audioSource.volume = GameSettings.MusicVolume; // nhạc Thắng/Thua theo thanh "Nhạc nền"
 
         if (loopClip)
         {

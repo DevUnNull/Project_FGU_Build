@@ -42,6 +42,7 @@ public static class ItemRewardUI
         btnRt.anchorMin = btnRt.anchorMax = new Vector2(0.5f, 0f);
         btnRt.anchoredPosition = new Vector2(0f, 35f);
 
+        GameSfx.Play(GameSfx.Kind.Reward);
         yield return RuntimeUI.PopIn(group, card);
         while (!closed) yield return null;
         yield return RuntimeUI.FadeOut(group);

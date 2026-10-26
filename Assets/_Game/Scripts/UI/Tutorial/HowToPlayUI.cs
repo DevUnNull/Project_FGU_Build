@@ -68,7 +68,7 @@ public class HowToPlayUI : MonoBehaviour
         RectTransform big = AddIcon(row2, cellB, new Vector2(290f, 0f), 96f);
         AddBadge(big, "2");
 
-        RectTransform row3 = CreateRow(list, 2, "3", "Không có con cùng loại? Bấm <b>Roll</b> (2 ATP) để đổi tế bào mới trong khay. Tế bào đã đặt trên bàn vẫn giữ nguyên.");
+        RectTransform row3 = CreateRow(list, 2, "3", "Mỗi <b>wave mới</b>, khay tự đổi tế bào <color=#2E8B3E><b>miễn phí</b></color>. Muốn đổi thêm để tìm con cùng loại? Bấm <b>Roll</b> (2 ATP). Tế bào trên bàn vẫn giữ nguyên.");
         RectTransform rollIcon = AddIcon(row3, FindSceneSprite("Roll"), new Vector2(165f, 0f), 100f);
         TextMeshProUGUI rollText = RuntimeUI.CreateText(rollIcon, "Roll", 26f, Color.white);
         rollText.fontStyle = FontStyles.Bold;
